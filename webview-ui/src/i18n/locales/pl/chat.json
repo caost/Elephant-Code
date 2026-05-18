@@ -1,5 +1,5 @@
 {
-	"greeting": "Witamy w Zoo Code!",
+	"greeting": "Witamy w Elephant Code!",
 	"task": {
 		"title": "Zadanie",
 		"expand": "Rozwiń zadanie",
@@ -88,7 +88,7 @@
 	"enqueueMessage": "Dodaj wiadomość do kolejki (zostanie wysłana po zakończeniu bieżącego zadania)",
 	"scrollToBottom": "Przewiń do dołu czatu",
 	"scrollToLatestCheckpoint": "Przewiń do poprzedniego punktu kontrolnego",
-	"about": "Zoo Code to cały zespół deweloperów AI w Twoim edytorze.",
+	"about": "Elephant Code to cały zespół deweloperów AI w Twoim edytorze.",
 	"docs": "Sprawdź naszą <DocsLink>dokumentację</DocsLink>, aby dowiedzieć się więcej.",
 	"onboarding": "Twoja lista zadań w tym obszarze roboczym jest pusta.",
 	"rooTips": {
@@ -120,7 +120,7 @@
 		"title": "Tryby",
 		"marketplace": "Marketplace Trybów",
 		"settings": "Ustawienia Trybów",
-		"description": "Wyspecjalizowane persony, które dostosowują zachowanie Zoo.",
+		"description": "Wyspecjalizowane persony, które dostosowują zachowanie Elephant.",
 		"searchPlaceholder": "Szukaj trybów...",
 		"noResults": "Nie znaleziono wyników"
 	},
@@ -134,7 +134,7 @@
 	"diffError": {
 		"title": "Edycja nieudana"
 	},
-	"troubleMessage": "Zoo ma problemy...",
+	"troubleMessage": "Elephant ma problemy...",
 	"apiRequest": {
 		"title": "Zapytanie API",
 		"failed": "Zapytanie API nie powiodło się",
@@ -152,7 +152,7 @@
 			"500": "Błąd serwera dostawcy. Po stronie dostawcy coś się nie powiodło, w Twoim żądaniu nie ma nic złego.",
 			"docs": "Dokumentacja",
 			"goToSettings": "Ustawienia",
-			"unknown": "Nieznany błąd API. Skontaktuj się z pomocą techniczną Zoo Code.",
+			"unknown": "Nieznany błąd API. Skontaktuj się z pomocą techniczną Elephant Code.",
 			"connection": "Błąd połączenia. Upewnij się, że masz działające połączenie internetowe.",
 			"claudeCodeNotAuthenticated": "Musisz się zalogować, aby korzystać z Claude Code. Przejdź do Ustawień i kliknij \"Zaloguj się do Claude Code\", aby się uwierzytelnić."
 		}
@@ -180,40 +180,40 @@
 		"wantsToFetch": "Roo chce pobrać szczegółowe instrukcje, aby pomóc w bieżącym zadaniu"
 	},
 	"fileOperations": {
-		"wantsToRead": "Zoo chce przeczytać ten plik",
-		"wantsToReadOutsideWorkspace": "Zoo chce przeczytać ten plik poza obszarem roboczym",
-		"didRead": "Zoo przeczytał ten plik",
-		"wantsToEdit": "Zoo chce edytować ten plik",
-		"wantsToEditOutsideWorkspace": "Zoo chce edytować ten plik poza obszarem roboczym",
-		"wantsToEditProtected": "Zoo chce edytować chroniony plik konfiguracyjny",
-		"wantsToCreate": "Zoo chce utworzyć nowy plik",
+		"wantsToRead": "Elephant chce przeczytać ten plik",
+		"wantsToReadOutsideWorkspace": "Elephant chce przeczytać ten plik poza obszarem roboczym",
+		"didRead": "Elephant przeczytał ten plik",
+		"wantsToEdit": "Elephant chce edytować ten plik",
+		"wantsToEditOutsideWorkspace": "Elephant chce edytować ten plik poza obszarem roboczym",
+		"wantsToEditProtected": "Elephant chce edytować chroniony plik konfiguracyjny",
+		"wantsToCreate": "Elephant chce utworzyć nowy plik",
 		"wantsToSearchReplace": "Roo chce wykonać wyszukiwanie i zamianę w tym pliku",
 		"didSearchReplace": "Roo wykonał wyszukiwanie i zamianę w tym pliku",
-		"wantsToInsert": "Zoo chce wstawić zawartość do tego pliku",
-		"wantsToInsertWithLineNumber": "Zoo chce wstawić zawartość do tego pliku w linii {{lineNumber}}",
-		"wantsToInsertAtEnd": "Zoo chce dodać zawartość na końcu tego pliku",
-		"wantsToReadAndXMore": "Zoo chce przeczytać ten plik i {{count}} więcej",
-		"wantsToReadMultiple": "Zoo chce odczytać wiele plików",
-		"wantsToApplyBatchChanges": "Zoo chce zastosować zmiany do wielu plików",
-		"wantsToGenerateImage": "Zoo chce wygenerować obraz",
-		"wantsToGenerateImageOutsideWorkspace": "Zoo chce wygenerować obraz poza obszarem roboczym",
-		"wantsToGenerateImageProtected": "Zoo chce wygenerować obraz w chronionym miejscu",
-		"didGenerateImage": "Zoo wygenerował obraz"
+		"wantsToInsert": "Elephant chce wstawić zawartość do tego pliku",
+		"wantsToInsertWithLineNumber": "Elephant chce wstawić zawartość do tego pliku w linii {{lineNumber}}",
+		"wantsToInsertAtEnd": "Elephant chce dodać zawartość na końcu tego pliku",
+		"wantsToReadAndXMore": "Elephant chce przeczytać ten plik i {{count}} więcej",
+		"wantsToReadMultiple": "Elephant chce odczytać wiele plików",
+		"wantsToApplyBatchChanges": "Elephant chce zastosować zmiany do wielu plików",
+		"wantsToGenerateImage": "Elephant chce wygenerować obraz",
+		"wantsToGenerateImageOutsideWorkspace": "Elephant chce wygenerować obraz poza obszarem roboczym",
+		"wantsToGenerateImageProtected": "Elephant chce wygenerować obraz w chronionym miejscu",
+		"didGenerateImage": "Elephant wygenerował obraz"
 	},
 	"directoryOperations": {
-		"wantsToViewTopLevel": "Zoo chce zobaczyć pliki najwyższego poziomu w tym katalogu",
-		"didViewTopLevel": "Zoo zobaczył pliki najwyższego poziomu w tym katalogu",
-		"wantsToViewRecursive": "Zoo chce rekurencyjnie zobaczyć wszystkie pliki w tym katalogu",
-		"didViewRecursive": "Zoo rekurencyjnie zobaczył wszystkie pliki w tym katalogu",
-		"wantsToSearch": "Zoo chce przeszukać ten katalog w poszukiwaniu <code>{{regex}}</code>",
-		"didSearch": "Zoo przeszukał ten katalog w poszukiwaniu <code>{{regex}}</code>",
-		"wantsToSearchOutsideWorkspace": "Zoo chce przeszukać ten katalog (poza obszarem roboczym) w poszukiwaniu <code>{{regex}}</code>",
-		"didSearchOutsideWorkspace": "Zoo przeszukał ten katalog (poza obszarem roboczym) w poszukiwaniu <code>{{regex}}</code>",
-		"wantsToViewTopLevelOutsideWorkspace": "Zoo chce zobaczyć pliki najwyższego poziomu w tym katalogu (poza obszarem roboczym)",
-		"didViewTopLevelOutsideWorkspace": "Zoo zobaczył pliki najwyższego poziomu w tym katalogu (poza obszarem roboczym)",
-		"wantsToViewRecursiveOutsideWorkspace": "Zoo chce rekurencyjnie zobaczyć wszystkie pliki w tym katalogu (poza obszarem roboczym)",
-		"didViewRecursiveOutsideWorkspace": "Zoo rekurencyjnie zobaczył wszystkie pliki w tym katalogu (poza obszarem roboczym)",
-		"wantsToViewMultipleDirectories": "Zoo chce wyświetlić wiele katalogów"
+		"wantsToViewTopLevel": "Elephant chce zobaczyć pliki najwyższego poziomu w tym katalogu",
+		"didViewTopLevel": "Elephant zobaczył pliki najwyższego poziomu w tym katalogu",
+		"wantsToViewRecursive": "Elephant chce rekurencyjnie zobaczyć wszystkie pliki w tym katalogu",
+		"didViewRecursive": "Elephant rekurencyjnie zobaczył wszystkie pliki w tym katalogu",
+		"wantsToSearch": "Elephant chce przeszukać ten katalog w poszukiwaniu <code>{{regex}}</code>",
+		"didSearch": "Elephant przeszukał ten katalog w poszukiwaniu <code>{{regex}}</code>",
+		"wantsToSearchOutsideWorkspace": "Elephant chce przeszukać ten katalog (poza obszarem roboczym) w poszukiwaniu <code>{{regex}}</code>",
+		"didSearchOutsideWorkspace": "Elephant przeszukał ten katalog (poza obszarem roboczym) w poszukiwaniu <code>{{regex}}</code>",
+		"wantsToViewTopLevelOutsideWorkspace": "Elephant chce zobaczyć pliki najwyższego poziomu w tym katalogu (poza obszarem roboczym)",
+		"didViewTopLevelOutsideWorkspace": "Elephant zobaczył pliki najwyższego poziomu w tym katalogu (poza obszarem roboczym)",
+		"wantsToViewRecursiveOutsideWorkspace": "Elephant chce rekurencyjnie zobaczyć wszystkie pliki w tym katalogu (poza obszarem roboczym)",
+		"didViewRecursiveOutsideWorkspace": "Elephant rekurencyjnie zobaczył wszystkie pliki w tym katalogu (poza obszarem roboczym)",
+		"wantsToViewMultipleDirectories": "Elephant chce wyświetlić wiele katalogów"
 	},
 	"commandOutput": "Wyjście polecenia",
 	"commandExecution": {
@@ -235,24 +235,24 @@
 	"response": "Odpowiedź",
 	"arguments": "Argumenty",
 	"text": {
-		"rooSaid": "Zoo powiedział"
+		"rooSaid": "Elephant powiedział"
 	},
 	"feedback": {
 		"youSaid": "Powiedziałeś"
 	},
 	"mcp": {
-		"wantsToUseTool": "Zoo chce użyć narzędzia na serwerze MCP {{serverName}}",
-		"wantsToAccessResource": "Zoo chce uzyskać dostęp do zasobu na serwerze MCP {{serverName}}"
+		"wantsToUseTool": "Elephant chce użyć narzędzia na serwerze MCP {{serverName}}",
+		"wantsToAccessResource": "Elephant chce uzyskać dostęp do zasobu na serwerze MCP {{serverName}}"
 	},
 	"modes": {
-		"wantsToSwitch": "Zoo chce przełączyć się na tryb <code>{{mode}}</code>",
-		"wantsToSwitchWithReason": "Zoo chce przełączyć się na tryb <code>{{mode}}</code> ponieważ: {{reason}}",
-		"didSwitch": "Zoo przełączył się na tryb <code>{{mode}}</code>",
-		"didSwitchWithReason": "Zoo przełączył się na tryb <code>{{mode}}</code> ponieważ: {{reason}}"
+		"wantsToSwitch": "Elephant chce przełączyć się na tryb <code>{{mode}}</code>",
+		"wantsToSwitchWithReason": "Elephant chce przełączyć się na tryb <code>{{mode}}</code> ponieważ: {{reason}}",
+		"didSwitch": "Elephant przełączył się na tryb <code>{{mode}}</code>",
+		"didSwitchWithReason": "Elephant przełączył się na tryb <code>{{mode}}</code> ponieważ: {{reason}}"
 	},
 	"subtasks": {
-		"wantsToCreate": "Zoo chce utworzyć nowe podzadanie w trybie <code>{{mode}}</code>",
-		"wantsToFinish": "Zoo chce zakończyć to podzadanie",
+		"wantsToCreate": "Elephant chce utworzyć nowe podzadanie w trybie <code>{{mode}}</code>",
+		"wantsToFinish": "Elephant chce zakończyć to podzadanie",
 		"newTaskContent": "Instrukcje podzadania",
 		"completionContent": "Podzadanie zakończone",
 		"resultContent": "Wyniki podzadania",
@@ -261,7 +261,7 @@
 		"goToSubtask": "Wyświetl zadanie"
 	},
 	"questions": {
-		"hasQuestion": "Zoo ma pytanie"
+		"hasQuestion": "Elephant ma pytanie"
 	},
 	"taskCompleted": "Zadanie zakończone",
 	"modelResponseIncomplete": "Odpowiedź modelu niekompletna",
@@ -277,7 +277,7 @@
 		"copyToClipboard": "Kopiuj do schowka",
 		"copied": "Skopiowano!",
 		"diagnostics": "Uzyskaj szczegółowe informacje o błędzie",
-		"proxyProvider": "Wygląda na to, że używasz dostawcy opartego na proxy. Pamiętaj, aby sprawdzić jego dzienniki i upewnić się, że nie przepisuje żądań Zoo."
+		"proxyProvider": "Wygląda na to, że używasz dostawcy opartego na proxy. Pamiętaj, aby sprawdzić jego dzienniki i upewnić się, że nie przepisuje żądań Elephant."
 	},
 	"powershell": {
 		"issues": "Wygląda na to, że masz problemy z Windows PowerShell, proszę zapoznaj się z tym"
@@ -320,24 +320,24 @@
 		}
 	},
 	"skill": {
-		"wantsToLoad": "Zoo chce załadować umiejętność",
-		"didLoad": "Zoo załadował umiejętność"
+		"wantsToLoad": "Elephant chce załadować umiejętność",
+		"didLoad": "Elephant załadował umiejętność"
 	},
 	"followUpSuggest": {
 		"copyToInput": "Kopiuj do pola wprowadzania (lub Shift + kliknięcie)",
 		"timerPrefix": "Automatyczne zatwierdzanie włączone. Zaznaczanie za {{seconds}}s…"
 	},
 	"announcement": {
-		"title": "Zoo Code {{version}} wydany",
-		"support": "Wesprzyj Zoo Code, dając nam gwiazdkę na <githubLink>GitHub</githubLink>.",
+		"title": "Elephant Code {{version}} wydany",
+		"support": "Wesprzyj Elephant Code, dając nam gwiazdkę na <githubLink>GitHub</githubLink>.",
 		"handoff": {
-			"heading": "Roo Code wraca! Teraz jako wtyczka utrzymywana przez społeczność pod nazwą Zoo Code!!",
-			"description": "Jeśli nie jesteś na bieżąco, zespół Roo Code niedawno ogłosił, że wygasza rozwój Roo Code i archiwizuje dotychczasową pracę. Ale bez obaw — społeczność ruszyła do działania, aby kontynuować dziedzictwo Roo Code pod nową nazwą i w nowym domu! Nie jesteśmy już tylko jednym „Roo” — jesteśmy społecznością, czyli „Zoo”, jeśli wolisz. Zoo Code to wtyczka utrzymywana przez społeczność, która przejmuje pałeczkę tam, gdzie Roo Code skończył, i zobowiązujemy się zachować ducha Roo, jednocześnie wprowadzając nowe funkcje i ulepszenia. Chcemy też ogromnie podziękować całemu zespołowi Roo Code za ich niesamowitą pracę i stworzenie tak świetnego narzędzia dla deweloperów. Cieszymy się, że możemy rozwijać ich dorobek i zobaczyć, dokąd społeczność zaprowadzi Zoo Code w przyszłości!",
-			"readMore": "Zobacz nową stronę główną Zoo Code i przeczytaj pełne ogłoszenie"
+			"heading": "Roo Code wraca! Teraz jako wtyczka utrzymywana przez społeczność pod nazwą Elephant Code!!",
+			"description": "Jeśli nie jesteś na bieżąco, zespół Roo Code niedawno ogłosił, że wygasza rozwój Roo Code i archiwizuje dotychczasową pracę. Ale bez obaw — społeczność ruszyła do działania, aby kontynuować dziedzictwo Roo Code pod nową nazwą i w nowym domu! Nie jesteśmy już tylko jednym „Roo” — jesteśmy społecznością, czyli „Elephant”, jeśli wolisz. Elephant Code to wtyczka utrzymywana przez społeczność, która przejmuje pałeczkę tam, gdzie Roo Code skończył, i zobowiązujemy się zachować ducha Roo, jednocześnie wprowadzając nowe funkcje i ulepszenia. Chcemy też ogromnie podziękować całemu zespołowi Roo Code za ich niesamowitą pracę i stworzenie tak świetnego narzędzia dla deweloperów. Cieszymy się, że możemy rozwijać ich dorobek i zobaczyć, dokąd społeczność zaprowadzi Elephant Code w przyszłości!",
+			"readMore": "Zobacz nową stronę główną Elephant Code i przeczytaj pełne ogłoszenie"
 		},
 		"release": {
 			"heading": "Co nowego:",
-			"gpt55": "GPT-5.5 przez OpenAI Codex: Dodano obsługę GPT-5.5 w dostawcy OpenAI Codex, żebyś mógł korzystać z najnowszego modelu bezpośrednio z Zoo Code.",
+			"gpt55": "GPT-5.5 przez OpenAI Codex: Dodano obsługę GPT-5.5 w dostawcy OpenAI Codex, żebyś mógł korzystać z najnowszego modelu bezpośrednio z Elephant Code.",
 			"claudeOpus47": "Claude Opus 4.7 w Vertex AI: Dodano Claude Opus 4.7 do dostawcy Vertex AI - najnowszy flagowy model rozumowania od Anthropic.",
 			"checkpointNav": "Nawigacja po poprzednich checkpointach: Dodano kontrolki w czacie, żebyś mógł cofać się do wcześniejszych checkpointów, z pełną obsługą i18n."
 		},
@@ -363,24 +363,24 @@
 	"profileViolationWarning": "Bieżący profil nie jest kompatybilny z ustawieniami Twojej organizacji",
 	"shellIntegration": {
 		"title": "Ostrzeżenie wykonania polecenia",
-		"description": "Twoje polecenie jest wykonywane bez integracji powłoki terminala VSCode. Aby ukryć to ostrzeżenie, możesz wyłączyć integrację powłoki w sekcji <strong>Terminal</strong> w <settingsLink>ustawieniach Zoo Code</settingsLink> lub rozwiązać problemy z integracją terminala VSCode korzystając z poniższego linku.",
+		"description": "Twoje polecenie jest wykonywane bez integracji powłoki terminala VSCode. Aby ukryć to ostrzeżenie, możesz wyłączyć integrację powłoki w sekcji <strong>Terminal</strong> w <settingsLink>ustawieniach Elephant Code</settingsLink> lub rozwiązać problemy z integracją terminala VSCode korzystając z poniższego linku.",
 		"troubleshooting": "Kliknij tutaj, aby zobaczyć dokumentację integracji powłoki."
 	},
 	"ask": {
 		"autoApprovedRequestLimitReached": {
 			"title": "Osiągnięto limit automatycznie zatwierdzonych żądań",
-			"description": "Zoo osiągnął automatycznie zatwierdzony limit {{count}} żądania/żądań API. Czy chcesz zresetować licznik i kontynuować zadanie?",
+			"description": "Elephant osiągnął automatycznie zatwierdzony limit {{count}} żądania/żądań API. Czy chcesz zresetować licznik i kontynuować zadanie?",
 			"button": "Zresetuj i kontynuuj"
 		},
 		"autoApprovedCostLimitReached": {
 			"button": "Zresetuj i Kontynuuj",
 			"title": "Osiągnięto limit kosztów z automatycznym zatwierdzaniem",
-			"description": "Zoo osiągnął automatycznie zatwierdzony limit kosztów wynoszący ${{count}}. Czy chcesz zresetować koszt i kontynuować zadanie?"
+			"description": "Elephant osiągnął automatycznie zatwierdzony limit kosztów wynoszący ${{count}}. Czy chcesz zresetować koszt i kontynuować zadanie?"
 		}
 	},
 	"codebaseSearch": {
-		"wantsToSearch": "Zoo chce przeszukać bazę kodu w poszukiwaniu <code>{{query}}</code>",
-		"wantsToSearchWithPath": "Zoo chce przeszukać bazę kodu w poszukiwaniu <code>{{query}}</code> w <code>{{path}}</code>",
+		"wantsToSearch": "Elephant chce przeszukać bazę kodu w poszukiwaniu <code>{{query}}</code>",
+		"wantsToSearchWithPath": "Elephant chce przeszukać bazę kodu w poszukiwaniu <code>{{query}}</code> w <code>{{path}}</code>",
 		"didSearch_one": "Znaleziono 1 wynik",
 		"didSearch_other": "Znaleziono {{count}} wyników",
 		"resultTooltip": "Wynik podobieństwa: {{score}} (kliknij, aby otworzyć plik)"
@@ -421,7 +421,7 @@
 		"ariaLabel": "Wersja {{version}} - Kliknij, aby wyświetlić informacje o wydaniu"
 	},
 	"rooCloudCTA": {
-		"title": "Zoo Code Cloud się rozwija!",
+		"title": "Elephant Code Cloud się rozwija!",
 		"description": "Uruchamiaj zdalne agenty w chmurze, uzyskuj dostęp do swoich zadań z dowolnego miejsca, współpracuj z innymi i wiele więcej.",
 		"joinWaitlist": "Zarejestruj się, aby otrzymywać najnowsze aktualizacje."
 	},
@@ -462,8 +462,8 @@
 		"clickToEdit": "Kliknij, aby edytować wiadomość"
 	},
 	"slashCommand": {
-		"wantsToRun": "Zoo chce uruchomić komendę slash",
-		"didRun": "Zoo uruchomił komendę slash"
+		"wantsToRun": "Elephant chce uruchomić komendę slash",
+		"didRun": "Elephant uruchomił komendę slash"
 	},
 	"todo": {
 		"partial": "Ukończono {{completed}} z {{total}} zadań do wykonania",
@@ -482,7 +482,7 @@
 		"openMcpSettings": "Otwórz ustawienia MCP"
 	},
 	"readCommandOutput": {
-		"title": "Zoo read command output"
+		"title": "Elephant read command output"
 	},
 	"retiredProvider": {
 		"title": "Dostawca nie jest już obsługiwany",

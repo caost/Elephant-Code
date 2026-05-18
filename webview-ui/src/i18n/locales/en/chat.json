@@ -1,5 +1,5 @@
 {
-	"greeting": "Welcome to Zoo Code!",
+	"greeting": "Welcome to Elephant Code!",
 	"task": {
 		"title": "Task",
 		"expand": "Expand task",
@@ -115,7 +115,7 @@
 	},
 	"scrollToBottom": "Scroll to bottom of chat",
 	"scrollToLatestCheckpoint": "Scroll to previous checkpoint",
-	"about": "Zoo is a whole AI dev team in your editor",
+	"about": "Elephant is a whole AI dev team in your editor",
 	"docs": "Check our <DocsLink>docs</DocsLink> to get started",
 	"onboarding": "What would you like to do?",
 	"rooTips": {
@@ -125,7 +125,7 @@
 		},
 		"modelAgnostic": {
 			"title": "Bring your own model, no markup or lock-in",
-			"description": "Use your own provider key or even run local inference — Zoo doesn't charge for it"
+			"description": "Use your own provider key or even run local inference — Elephant doesn't charge for it"
 		}
 	},
 	"selectMode": "Select mode for interaction",
@@ -137,7 +137,7 @@
 		"title": "Modes",
 		"marketplace": "Mode Marketplace",
 		"settings": "Mode Settings",
-		"description": "Specialized personas that tailor Zoo's behavior.",
+		"description": "Specialized personas that tailor Elephant's behavior.",
 		"searchPlaceholder": "Search modes...",
 		"noResults": "No results found"
 	},
@@ -175,7 +175,7 @@
 			"docs": "Docs",
 			"goToSettings": "Settings",
 			"connection": "Connection error. Make sure you have a working internet connection.",
-			"unknown": "Unknown API error. Please contact Zoo Code support.",
+			"unknown": "Unknown API error. Please contact Elephant Code support.",
 			"claudeCodeNotAuthenticated": "You need to sign in to use Claude Code. Go to Settings and click \"Sign in to Claude Code\" to authenticate."
 		}
 	},
@@ -214,46 +214,46 @@
 		}
 	},
 	"skill": {
-		"wantsToLoad": "Zoo wants to load a skill",
-		"didLoad": "Zoo loaded a skill"
+		"wantsToLoad": "Elephant wants to load a skill",
+		"didLoad": "Elephant loaded a skill"
 	},
 	"fileOperations": {
-		"wantsToRead": "Zoo wants to read this file",
-		"wantsToReadMultiple": "Zoo wants to read multiple files",
-		"wantsToReadAndXMore": "Zoo wants to read this file and {{count}} more",
-		"wantsToReadOutsideWorkspace": "Zoo wants to read this file outside of the workspace",
-		"didRead": "Zoo read this file",
-		"wantsToEdit": "Zoo wants to edit this file",
-		"wantsToEditOutsideWorkspace": "Zoo wants to edit this file outside of the workspace",
-		"wantsToEditProtected": "Zoo wants to edit a protected configuration file",
-		"wantsToApplyBatchChanges": "Zoo wants to apply changes to multiple files",
-		"wantsToGenerateImage": "Zoo wants to generate an image",
-		"wantsToGenerateImageOutsideWorkspace": "Zoo wants to generate an image outside of the workspace",
-		"wantsToGenerateImageProtected": "Zoo wants to generate an image in a protected location",
-		"didGenerateImage": "Zoo generated an image",
-		"wantsToCreate": "Zoo wants to create a new file",
-		"wantsToInsert": "Zoo wants to insert content into this file",
-		"wantsToInsertWithLineNumber": "Zoo wants to insert content into this file at line {{lineNumber}}",
-		"wantsToInsertAtEnd": "Zoo wants to append content to the end of this file"
+		"wantsToRead": "Elephant wants to read this file",
+		"wantsToReadMultiple": "Elephant wants to read multiple files",
+		"wantsToReadAndXMore": "Elephant wants to read this file and {{count}} more",
+		"wantsToReadOutsideWorkspace": "Elephant wants to read this file outside of the workspace",
+		"didRead": "Elephant read this file",
+		"wantsToEdit": "Elephant wants to edit this file",
+		"wantsToEditOutsideWorkspace": "Elephant wants to edit this file outside of the workspace",
+		"wantsToEditProtected": "Elephant wants to edit a protected configuration file",
+		"wantsToApplyBatchChanges": "Elephant wants to apply changes to multiple files",
+		"wantsToGenerateImage": "Elephant wants to generate an image",
+		"wantsToGenerateImageOutsideWorkspace": "Elephant wants to generate an image outside of the workspace",
+		"wantsToGenerateImageProtected": "Elephant wants to generate an image in a protected location",
+		"didGenerateImage": "Elephant generated an image",
+		"wantsToCreate": "Elephant wants to create a new file",
+		"wantsToInsert": "Elephant wants to insert content into this file",
+		"wantsToInsertWithLineNumber": "Elephant wants to insert content into this file at line {{lineNumber}}",
+		"wantsToInsertAtEnd": "Elephant wants to append content to the end of this file"
 	},
 	"directoryOperations": {
-		"wantsToViewTopLevel": "Zoo wants to view the top level files in this directory",
-		"didViewTopLevel": "Zoo viewed the top level files in this directory",
-		"wantsToViewTopLevelOutsideWorkspace": "Zoo wants to view the top level files in this directory (outside workspace)",
-		"didViewTopLevelOutsideWorkspace": "Zoo viewed the top level files in this directory (outside workspace)",
-		"wantsToViewRecursive": "Zoo wants to recursively view all files in this directory",
-		"didViewRecursive": "Zoo recursively viewed all files in this directory",
-		"wantsToViewRecursiveOutsideWorkspace": "Zoo wants to recursively view all files in this directory (outside workspace)",
-		"didViewRecursiveOutsideWorkspace": "Zoo recursively viewed all files in this directory (outside workspace)",
-		"wantsToViewMultipleDirectories": "Zoo wants to view multiple directories",
-		"wantsToSearch": "Zoo wants to search this directory for <code>{{regex}}</code>",
-		"didSearch": "Zoo searched this directory for <code>{{regex}}</code>",
-		"wantsToSearchOutsideWorkspace": "Zoo wants to search this directory (outside workspace) for <code>{{regex}}</code>",
-		"didSearchOutsideWorkspace": "Zoo searched this directory (outside workspace) for <code>{{regex}}</code>"
+		"wantsToViewTopLevel": "Elephant wants to view the top level files in this directory",
+		"didViewTopLevel": "Elephant viewed the top level files in this directory",
+		"wantsToViewTopLevelOutsideWorkspace": "Elephant wants to view the top level files in this directory (outside workspace)",
+		"didViewTopLevelOutsideWorkspace": "Elephant viewed the top level files in this directory (outside workspace)",
+		"wantsToViewRecursive": "Elephant wants to recursively view all files in this directory",
+		"didViewRecursive": "Elephant recursively viewed all files in this directory",
+		"wantsToViewRecursiveOutsideWorkspace": "Elephant wants to recursively view all files in this directory (outside workspace)",
+		"didViewRecursiveOutsideWorkspace": "Elephant recursively viewed all files in this directory (outside workspace)",
+		"wantsToViewMultipleDirectories": "Elephant wants to view multiple directories",
+		"wantsToSearch": "Elephant wants to search this directory for <code>{{regex}}</code>",
+		"didSearch": "Elephant searched this directory for <code>{{regex}}</code>",
+		"wantsToSearchOutsideWorkspace": "Elephant wants to search this directory (outside workspace) for <code>{{regex}}</code>",
+		"didSearchOutsideWorkspace": "Elephant searched this directory (outside workspace) for <code>{{regex}}</code>"
 	},
 	"codebaseSearch": {
-		"wantsToSearch": "Zoo wants to search the codebase for <code>{{query}}</code>",
-		"wantsToSearchWithPath": "Zoo wants to search the codebase for <code>{{query}}</code> in <code>{{path}}</code>",
+		"wantsToSearch": "Elephant wants to search the codebase for <code>{{query}}</code>",
+		"wantsToSearchWithPath": "Elephant wants to search the codebase for <code>{{query}}</code> in <code>{{path}}</code>",
 		"didSearch_one": "Found 1 result",
 		"didSearch_other": "Found {{count}} results",
 		"resultTooltip": "Similarity score: {{score}} (click to open file)"
@@ -278,24 +278,24 @@
 	"response": "Response",
 	"arguments": "Arguments",
 	"text": {
-		"rooSaid": "Zoo said"
+		"rooSaid": "Elephant said"
 	},
 	"feedback": {
 		"youSaid": "You said"
 	},
 	"mcp": {
-		"wantsToUseTool": "Zoo wants to use a tool on the {{serverName}} MCP server",
-		"wantsToAccessResource": "Zoo wants to access a resource on the {{serverName}} MCP server"
+		"wantsToUseTool": "Elephant wants to use a tool on the {{serverName}} MCP server",
+		"wantsToAccessResource": "Elephant wants to access a resource on the {{serverName}} MCP server"
 	},
 	"modes": {
-		"wantsToSwitch": "Zoo wants to switch to {{mode}} mode",
-		"wantsToSwitchWithReason": "Zoo wants to switch to {{mode}} mode because: {{reason}}",
-		"didSwitch": "Zoo switched to {{mode}} mode",
-		"didSwitchWithReason": "Zoo switched to {{mode}} mode because: {{reason}}"
+		"wantsToSwitch": "Elephant wants to switch to {{mode}} mode",
+		"wantsToSwitchWithReason": "Elephant wants to switch to {{mode}} mode because: {{reason}}",
+		"didSwitch": "Elephant switched to {{mode}} mode",
+		"didSwitchWithReason": "Elephant switched to {{mode}} mode because: {{reason}}"
 	},
 	"subtasks": {
-		"wantsToCreate": "Zoo wants to create a new subtask in {{mode}} mode",
-		"wantsToFinish": "Zoo wants to mark this as completed",
+		"wantsToCreate": "Elephant wants to create a new subtask in {{mode}} mode",
+		"wantsToFinish": "Elephant wants to mark this as completed",
 		"newTaskContent": "Subtask Instructions",
 		"resultContent": "Subtask completed",
 		"defaultResult": "Please continue to the next task.",
@@ -303,7 +303,7 @@
 		"goToSubtask": "View task"
 	},
 	"questions": {
-		"hasQuestion": "Zoo has a question"
+		"hasQuestion": "Elephant has a question"
 	},
 	"taskCompleted": "Task Completed",
 	"error": "Error",
@@ -320,12 +320,12 @@
 		"copyToClipboard": "Copy basic error info",
 		"copied": "Copied!",
 		"diagnostics": "Get detailed error info",
-		"proxyProvider": "You seem to be using a proxy-based provider. Make sure to check its logs and to ensure it's not rewriting Zoo's requests."
+		"proxyProvider": "You seem to be using a proxy-based provider. Make sure to check its logs and to ensure it's not rewriting Elephant's requests."
 	},
 	"diffError": {
 		"title": "Edit Unsuccessful"
 	},
-	"troubleMessage": "Zoo is having trouble...",
+	"troubleMessage": "Elephant is having trouble...",
 	"powershell": {
 		"issues": "It seems like you're having Windows PowerShell issues, please see this"
 	},
@@ -347,16 +347,16 @@
 		"triggerLabelAll": "BRRR"
 	},
 	"announcement": {
-		"title": "Zoo Code {{version}} Released",
-		"support": "Please support Zoo Code by starring us on <githubLink>GitHub</githubLink>.",
+		"title": "Elephant Code {{version}} Released",
+		"support": "Please support Elephant Code by starring us on <githubLink>GitHub</githubLink>.",
 		"handoff": {
-			"heading": "Roo Code is back! Now as a community-maintained plugin called Zoo Code!!",
-			"description": "If you haven't been following, the Roo Code team recently announced they are sun setting the development of Roo Code and are archiving the work they have done. But fear not, the community has stepped up to continue the legacy of Roo Code with a new name and a new home! We are not just a single \"Roo\" anymore, we are a community, a \"Zoo\" if you will, Zoo Code is a community-maintained plugin that picks up where Roo Code left off, and we're committed to keeping the spirit of Roo alive while also introducing new features and improvements. We want to give a huge shoutout to the entire Roo Code team for their incredible work and for creating such an amazing tool for developers. We're excited to continue building on their foundation and to see where the community takes Zoo Code in the future!",
-			"readMore": "See the new home page of Zoo Code and read the full announcement"
+			"heading": "Roo Code is back! Now as a community-maintained plugin called Elephant Code!!",
+			"description": "If you haven't been following, the Roo Code team recently announced they are sun setting the development of Roo Code and are archiving the work they have done. But fear not, the community has stepped up to continue the legacy of Roo Code with a new name and a new home! We are not just a single \"Roo\" anymore, we are a community, a \"Elephant\" if you will, Elephant Code is a community-maintained plugin that picks up where Roo Code left off, and we're committed to keeping the spirit of Roo alive while also introducing new features and improvements. We want to give a huge shoutout to the entire Roo Code team for their incredible work and for creating such an amazing tool for developers. We're excited to continue building on their foundation and to see where the community takes Elephant Code in the future!",
+			"readMore": "See the new home page of Elephant Code and read the full announcement"
 		},
 		"release": {
 			"heading": "What's New:",
-			"gpt55": "GPT-5.5 via OpenAI Codex: Added GPT-5.5 support in the OpenAI Codex provider so you can use the latest model straight from Zoo Code.",
+			"gpt55": "GPT-5.5 via OpenAI Codex: Added GPT-5.5 support in the OpenAI Codex provider so you can use the latest model straight from Elephant Code.",
 			"claudeOpus47": "Claude Opus 4.7 on Vertex AI: Added Claude Opus 4.7 to the Vertex AI provider for Anthropic's newest flagship reasoning model.",
 			"checkpointNav": "Previous Checkpoint Navigation: Added controls in chat to jump back through prior checkpoints, with full i18n support."
 		},
@@ -390,18 +390,18 @@
 	"profileViolationWarning": "The current profile isn't compatible with your organization's settings",
 	"shellIntegration": {
 		"title": "Command Execution Warning",
-		"description": "Your command is being executed without VSCode terminal shell integration. To suppress this warning you can disable shell integration in the <strong>Terminal</strong> section of the <settingsLink>Zoo Code settings</settingsLink> or troubleshoot VSCode terminal integration using the link below.",
+		"description": "Your command is being executed without VSCode terminal shell integration. To suppress this warning you can disable shell integration in the <strong>Terminal</strong> section of the <settingsLink>Elephant Code settings</settingsLink> or troubleshoot VSCode terminal integration using the link below.",
 		"troubleshooting": "Click here for shell integration documentation."
 	},
 	"ask": {
 		"autoApprovedRequestLimitReached": {
 			"title": "Auto-Approved Request Limit Reached",
-			"description": "Zoo has reached the auto-approved limit of {{count}} API request(s). Would you like to reset the count and proceed with the task?",
+			"description": "Elephant has reached the auto-approved limit of {{count}} API request(s). Would you like to reset the count and proceed with the task?",
 			"button": "Reset and Continue"
 		},
 		"autoApprovedCostLimitReached": {
 			"title": "Auto-Approved Cost Limit Reached",
-			"description": "Zoo has reached the auto-approved cost limit of ${{count}}. Would you like to reset the cost and proceed with the task?",
+			"description": "Elephant has reached the auto-approved cost limit of ${{count}}. Would you like to reset the cost and proceed with the task?",
 			"button": "Reset and Continue"
 		}
 	},
@@ -440,8 +440,8 @@
 		}
 	},
 	"slashCommand": {
-		"wantsToRun": "Zoo wants to run a slash command",
-		"didRun": "Zoo ran a slash command"
+		"wantsToRun": "Elephant wants to run a slash command",
+		"didRun": "Elephant ran a slash command"
 	},
 	"queuedMessages": {
 		"title": "Queued Messages",
@@ -470,7 +470,7 @@
 		"openMcpSettings": "Open MCP Settings"
 	},
 	"readCommandOutput": {
-		"title": "Zoo read command output"
+		"title": "Elephant read command output"
 	},
 	"retiredProvider": {
 		"title": "Provider no longer supported",

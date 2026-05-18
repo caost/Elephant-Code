@@ -1,6 +1,6 @@
 {
 	"extension": {
-		"name": "Zoo Code",
+		"name": "Elephant Code",
 		"description": "Ein komplettes Entwicklerteam mit KI in deinem Editor."
 	},
 	"number_format": {
@@ -146,7 +146,7 @@
 	"warnings": {
 		"no_terminal_content": "Kein Terminal-Inhalt ausgewählt",
 		"missing_task_files": "Die Dateien dieser Aufgabe fehlen. Möchtest du sie aus der Aufgabenliste entfernen?",
-		"auto_import_failed": "Fehler beim automatischen Import der ZooCode-Einstellungen: {{error}}"
+		"auto_import_failed": "Fehler beim automatischen Import der ElephantCode-Einstellungen: {{error}}"
 	},
 	"info": {
 		"no_changes": "Keine Änderungen gefunden.",
@@ -155,7 +155,7 @@
 		"custom_storage_path_set": "Benutzerdefinierter Speicherpfad festgelegt: {{path}}",
 		"default_storage_path": "Auf Standardspeicherpfad zurückgesetzt",
 		"settings_imported": "Einstellungen erfolgreich importiert.",
-		"auto_import_success": "ZooCode-Einstellungen automatisch importiert aus {{filename}}",
+		"auto_import_success": "ElephantCode-Einstellungen automatisch importiert aus {{filename}}",
 		"share_link_copied": "Share-Link in die Zwischenablage kopiert",
 		"image_copied_to_clipboard": "Bild-Daten-URI in die Zwischenablage kopiert",
 		"image_saved": "Bild gespeichert unter {{path}}",
@@ -191,12 +191,12 @@
 	},
 	"storage": {
 		"prompt_custom_path": "Gib den benutzerdefinierten Speicherpfad für den Gesprächsverlauf ein, leer lassen für Standardspeicherort",
-		"path_placeholder": "D:\\ZooCodeStorage",
-		"enter_absolute_path": "Bitte gib einen absoluten Pfad ein (z.B. D:\\ZooCodeStorage oder /home/user/storage)",
+		"path_placeholder": "D:\\ElephantCodeStorage",
+		"enter_absolute_path": "Bitte gib einen absoluten Pfad ein (z.B. D:\\ElephantCodeStorage oder /home/user/storage)",
 		"enter_valid_path": "Bitte gib einen gültigen Pfad ein"
 	},
 	"input": {
-		"task_prompt": "Was soll Zoo tun?",
+		"task_prompt": "Was soll Elephant tun?",
 		"task_placeholder": "Gib deine Aufgabe hier ein"
 	},
 	"settings": {
@@ -226,8 +226,8 @@
 	},
 	"mdm": {
 		"errors": {
-			"cloud_auth_required": "Deine Organisation erfordert eine Zoo Code Cloud-Authentifizierung. Bitte melde dich an, um fortzufahren.",
-			"organization_mismatch": "Du musst mit dem Zoo Code Cloud-Konto deiner Organisation authentifiziert sein.",
+			"cloud_auth_required": "Deine Organisation erfordert eine Elephant Code Cloud-Authentifizierung. Bitte melde dich an, um fortzufahren.",
+			"organization_mismatch": "Du musst mit dem Elephant Code Cloud-Konto deiner Organisation authentifiziert sein.",
 			"verification_failed": "Die Organisationsauthentifizierung konnte nicht verifiziert werden."
 		},
 		"info": {
@@ -253,14 +253,14 @@
 	},
 	"zooAuth": {
 		"errors": {
-			"invalid_token_received": "Zoo Code: Ungültiger Authentifizierungstoken empfangen.",
-			"token_verification_failed": "Zoo Code: Token-Überprüfung fehlgeschlagen.",
-			"invalid_token": "Zoo Code: Ungültiger Token.",
-			"could_not_verify_token": "Zoo Code: Token konnte nicht verifiziert werden."
+			"invalid_token_received": "Elephant Code: Ungültiger Authentifizierungstoken empfangen.",
+			"token_verification_failed": "Elephant Code: Token-Überprüfung fehlgeschlagen.",
+			"invalid_token": "Elephant Code: Ungültiger Token.",
+			"could_not_verify_token": "Elephant Code: Token konnte nicht verifiziert werden."
 		},
 		"info": {
-			"connected": "Zoo Code: Erfolgreich verbunden! Du kannst Zoo Code jetzt als KI-Anbieter verwenden.",
-			"disconnected": "Zoo Code: Erfolgreich getrennt."
+			"connected": "Elephant Code: Erfolgreich verbunden! Du kannst Elephant Code jetzt als KI-Anbieter verwenden.",
+			"disconnected": "Elephant Code: Erfolgreich getrennt."
 		}
 	}
 }

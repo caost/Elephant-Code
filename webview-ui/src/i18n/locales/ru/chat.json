@@ -1,5 +1,5 @@
 {
-	"greeting": "Добро пожаловать в Zoo Code!",
+	"greeting": "Добро пожаловать в Elephant Code!",
 	"task": {
 		"title": "Задача",
 		"expand": "Развернуть задачу",
@@ -88,7 +88,7 @@
 	"enqueueMessage": "Добавить сообщение в очередь (будет отправлено после завершения текущей задачи)",
 	"scrollToBottom": "Прокрутить чат вниз",
 	"scrollToLatestCheckpoint": "Прокрутить к предыдущему чекпоинту",
-	"about": "Zoo Code — это целая команда разработчиков ИИ в вашем редакторе.",
+	"about": "Elephant Code — это целая команда разработчиков ИИ в вашем редакторе.",
 	"docs": "Ознакомьтесь с нашей <DocsLink>документацией</DocsLink>, чтобы узнать больше.",
 	"onboarding": "Ваш список задач в этом рабочем пространстве пуст.",
 	"rooTips": {
@@ -111,7 +111,7 @@
 		"title": "Режимы",
 		"marketplace": "Маркетплейс режимов",
 		"settings": "Настройки режимов",
-		"description": "Специализированные персоны, которые настраивают поведение Zoo.",
+		"description": "Специализированные персоны, которые настраивают поведение Elephant.",
 		"searchPlaceholder": "Поиск режимов...",
 		"noResults": "Ничего не найдено"
 	},
@@ -147,7 +147,7 @@
 			"500": "Ошибка сервера провайдера. На стороне провайдера что-то пошло не так, с вашим запросом все в порядке.",
 			"docs": "Документация",
 			"goToSettings": "Настройки",
-			"unknown": "Неизвестная ошибка API. Пожалуйста, свяжитесь с поддержкой Zoo Code.",
+			"unknown": "Неизвестная ошибка API. Пожалуйста, свяжитесь с поддержкой Elephant Code.",
 			"connection": "Ошибка подключения. Убедитесь, что у вас есть рабочее подключение к Интернету.",
 			"claudeCodeNotAuthenticated": "Вам необходимо войти в систему, чтобы использовать Claude Code. Перейдите в Настройки и нажмите «Войти в Claude Code» для аутентификации."
 		}
@@ -175,40 +175,40 @@
 		"wantsToFetch": "Roo хочет получить подробные инструкции для помощи с текущей задачей"
 	},
 	"fileOperations": {
-		"wantsToRead": "Zoo хочет прочитать этот файл",
-		"wantsToReadOutsideWorkspace": "Zoo хочет прочитать этот файл вне рабочей области",
-		"didRead": "Zoo прочитал этот файл",
-		"wantsToEdit": "Zoo хочет отредактировать этот файл",
-		"wantsToEditOutsideWorkspace": "Zoo хочет отредактировать этот файл вне рабочей области",
-		"wantsToEditProtected": "Zoo хочет отредактировать защищённый файл конфигурации",
-		"wantsToCreate": "Zoo хочет создать новый файл",
+		"wantsToRead": "Elephant хочет прочитать этот файл",
+		"wantsToReadOutsideWorkspace": "Elephant хочет прочитать этот файл вне рабочей области",
+		"didRead": "Elephant прочитал этот файл",
+		"wantsToEdit": "Elephant хочет отредактировать этот файл",
+		"wantsToEditOutsideWorkspace": "Elephant хочет отредактировать этот файл вне рабочей области",
+		"wantsToEditProtected": "Elephant хочет отредактировать защищённый файл конфигурации",
+		"wantsToCreate": "Elephant хочет создать новый файл",
 		"wantsToSearchReplace": "Roo хочет выполнить поиск и замену в этом файле",
 		"didSearchReplace": "Roo выполнил поиск и замену в этом файле",
-		"wantsToInsert": "Zoo хочет вставить содержимое в этот файл",
-		"wantsToInsertWithLineNumber": "Zoo хочет вставить содержимое в этот файл на строку {{lineNumber}}",
-		"wantsToInsertAtEnd": "Zoo хочет добавить содержимое в конец этого файла",
-		"wantsToReadAndXMore": "Zoo хочет прочитать этот файл и еще {{count}}",
-		"wantsToReadMultiple": "Zoo хочет прочитать несколько файлов",
-		"wantsToApplyBatchChanges": "Zoo хочет применить изменения к нескольким файлам",
-		"wantsToGenerateImage": "Zoo хочет сгенерировать изображение",
-		"wantsToGenerateImageOutsideWorkspace": "Zoo хочет сгенерировать изображение вне рабочего пространства",
-		"wantsToGenerateImageProtected": "Zoo хочет сгенерировать изображение в защищённом месте",
-		"didGenerateImage": "Zoo сгенерировал изображение"
+		"wantsToInsert": "Elephant хочет вставить содержимое в этот файл",
+		"wantsToInsertWithLineNumber": "Elephant хочет вставить содержимое в этот файл на строку {{lineNumber}}",
+		"wantsToInsertAtEnd": "Elephant хочет добавить содержимое в конец этого файла",
+		"wantsToReadAndXMore": "Elephant хочет прочитать этот файл и еще {{count}}",
+		"wantsToReadMultiple": "Elephant хочет прочитать несколько файлов",
+		"wantsToApplyBatchChanges": "Elephant хочет применить изменения к нескольким файлам",
+		"wantsToGenerateImage": "Elephant хочет сгенерировать изображение",
+		"wantsToGenerateImageOutsideWorkspace": "Elephant хочет сгенерировать изображение вне рабочего пространства",
+		"wantsToGenerateImageProtected": "Elephant хочет сгенерировать изображение в защищённом месте",
+		"didGenerateImage": "Elephant сгенерировал изображение"
 	},
 	"directoryOperations": {
-		"wantsToViewTopLevel": "Zoo хочет просмотреть файлы верхнего уровня в этой директории",
-		"didViewTopLevel": "Zoo просмотрел файлы верхнего уровня в этой директории",
-		"wantsToViewRecursive": "Zoo хочет рекурсивно просмотреть все файлы в этой директории",
-		"didViewRecursive": "Zoo рекурсивно просмотрел все файлы в этой директории",
-		"wantsToSearch": "Zoo хочет выполнить поиск в этой директории по <code>{{regex}}</code>",
-		"didSearch": "Zoo выполнил поиск в этой директории по <code>{{regex}}</code>",
-		"wantsToSearchOutsideWorkspace": "Zoo хочет выполнить поиск в этой директории (вне рабочего пространства) по <code>{{regex}}</code>",
-		"didSearchOutsideWorkspace": "Zoo выполнил поиск в этой директории (вне рабочего пространства) по <code>{{regex}}</code>",
-		"wantsToViewTopLevelOutsideWorkspace": "Zoo хочет просмотреть файлы верхнего уровня в этой директории (вне рабочего пространства)",
-		"didViewTopLevelOutsideWorkspace": "Zoo просмотрел файлы верхнего уровня в этой директории (вне рабочего пространства)",
-		"wantsToViewRecursiveOutsideWorkspace": "Zoo хочет рекурсивно просмотреть все файлы в этой директории (вне рабочего пространства)",
-		"didViewRecursiveOutsideWorkspace": "Zoo рекурсивно просмотрел все файлы в этой директории (вне рабочего пространства)",
-		"wantsToViewMultipleDirectories": "Zoo хочет просмотреть несколько директорий"
+		"wantsToViewTopLevel": "Elephant хочет просмотреть файлы верхнего уровня в этой директории",
+		"didViewTopLevel": "Elephant просмотрел файлы верхнего уровня в этой директории",
+		"wantsToViewRecursive": "Elephant хочет рекурсивно просмотреть все файлы в этой директории",
+		"didViewRecursive": "Elephant рекурсивно просмотрел все файлы в этой директории",
+		"wantsToSearch": "Elephant хочет выполнить поиск в этой директории по <code>{{regex}}</code>",
+		"didSearch": "Elephant выполнил поиск в этой директории по <code>{{regex}}</code>",
+		"wantsToSearchOutsideWorkspace": "Elephant хочет выполнить поиск в этой директории (вне рабочего пространства) по <code>{{regex}}</code>",
+		"didSearchOutsideWorkspace": "Elephant выполнил поиск в этой директории (вне рабочего пространства) по <code>{{regex}}</code>",
+		"wantsToViewTopLevelOutsideWorkspace": "Elephant хочет просмотреть файлы верхнего уровня в этой директории (вне рабочего пространства)",
+		"didViewTopLevelOutsideWorkspace": "Elephant просмотрел файлы верхнего уровня в этой директории (вне рабочего пространства)",
+		"wantsToViewRecursiveOutsideWorkspace": "Elephant хочет рекурсивно просмотреть все файлы в этой директории (вне рабочего пространства)",
+		"didViewRecursiveOutsideWorkspace": "Elephant рекурсивно просмотрел все файлы в этой директории (вне рабочего пространства)",
+		"wantsToViewMultipleDirectories": "Elephant хочет просмотреть несколько директорий"
 	},
 	"commandOutput": "Вывод команды",
 	"commandExecution": {
@@ -237,18 +237,18 @@
 		"youSaid": "Вы сказали"
 	},
 	"mcp": {
-		"wantsToUseTool": "Zoo хочет использовать инструмент на сервере MCP {{serverName}}",
-		"wantsToAccessResource": "Zoo хочет получить доступ к ресурсу на сервере MCP {{serverName}}"
+		"wantsToUseTool": "Elephant хочет использовать инструмент на сервере MCP {{serverName}}",
+		"wantsToAccessResource": "Elephant хочет получить доступ к ресурсу на сервере MCP {{serverName}}"
 	},
 	"modes": {
-		"wantsToSwitch": "Zoo хочет переключиться в режим {{mode}}",
-		"wantsToSwitchWithReason": "Zoo хочет переключиться в режим {{mode}}, потому что: {{reason}}",
-		"didSwitch": "Zoo переключился в режим {{mode}}",
-		"didSwitchWithReason": "Zoo переключился в режим {{mode}}, потому что: {{reason}}"
+		"wantsToSwitch": "Elephant хочет переключиться в режим {{mode}}",
+		"wantsToSwitchWithReason": "Elephant хочет переключиться в режим {{mode}}, потому что: {{reason}}",
+		"didSwitch": "Elephant переключился в режим {{mode}}",
+		"didSwitchWithReason": "Elephant переключился в режим {{mode}}, потому что: {{reason}}"
 	},
 	"subtasks": {
-		"wantsToCreate": "Zoo хочет создать новую подзадачу в режиме {{mode}}",
-		"wantsToFinish": "Zoo хочет завершить эту подзадачу",
+		"wantsToCreate": "Elephant хочет создать новую подзадачу в режиме {{mode}}",
+		"wantsToFinish": "Elephant хочет завершить эту подзадачу",
 		"newTaskContent": "Инструкции по подзадаче",
 		"completionContent": "Подзадача завершена",
 		"resultContent": "Результаты подзадачи",
@@ -257,7 +257,7 @@
 		"goToSubtask": "Просмотреть задачу"
 	},
 	"questions": {
-		"hasQuestion": "У Zoo есть вопрос"
+		"hasQuestion": "У Elephant есть вопрос"
 	},
 	"taskCompleted": "Задача завершена",
 	"error": "Ошибка",
@@ -271,14 +271,14 @@
 	"diffError": {
 		"title": "Не удалось выполнить редактирование"
 	},
-	"troubleMessage": "У Zoo возникли проблемы...",
+	"troubleMessage": "У Elephant возникли проблемы...",
 	"errorDetails": {
 		"link": "Подробности",
 		"title": "Детали ошибки",
 		"copyToClipboard": "Скопировать в буфер обмена",
 		"copied": "Скопировано!",
 		"diagnostics": "Получить подробную информацию об ошибке",
-		"proxyProvider": "Похоже, ты используешь провайдера на основе прокси. Убедись, что ты проверил его логи и что он не переписывает запросы Zoo."
+		"proxyProvider": "Похоже, ты используешь провайдера на основе прокси. Убедись, что ты проверил его логи и что он не переписывает запросы Elephant."
 	},
 	"powershell": {
 		"issues": "Похоже, у вас проблемы с Windows PowerShell, пожалуйста, ознакомьтесь с этим"
@@ -302,16 +302,16 @@
 		"triggerLabelAll": "BRRR"
 	},
 	"announcement": {
-		"title": "Выпущен Zoo Code {{version}}",
-		"support": "Поддержите Zoo Code, поставив нам звезду на <githubLink>GitHub</githubLink>.",
+		"title": "Выпущен Elephant Code {{version}}",
+		"support": "Поддержите Elephant Code, поставив нам звезду на <githubLink>GitHub</githubLink>.",
 		"handoff": {
-			"heading": "Roo Code вернулся — теперь это плагин сообщества под названием Zoo Code!!",
-			"description": "Если ты не следил за новостями, команда Roo Code недавно объявила, что сворачивает разработку Roo Code и архивирует всю проделанную работу. Но не переживай: сообщество взяло эстафету, чтобы продолжить наследие Roo Code под новым именем и в новом доме! Теперь это уже не просто один «Roo», а целое сообщество — «Zoo», если хочешь. Zoo Code — это плагин, который поддерживает сообщество и продолжает путь с того места, где остановился Roo Code. Мы намерены сохранить дух Roo и при этом привносить новые функции и улучшения. Огромное спасибо всей команде Roo Code за их невероятную работу и за создание такого замечательного инструмента для разработчиков. Нам не терпится развивать их основу дальше и увидеть, куда сообщество приведёт Zoo Code в будущем!",
-			"readMore": "Открыть новую домашнюю страницу Zoo Code и прочитать полное объявление"
+			"heading": "Roo Code вернулся — теперь это плагин сообщества под названием Elephant Code!!",
+			"description": "Если ты не следил за новостями, команда Roo Code недавно объявила, что сворачивает разработку Roo Code и архивирует всю проделанную работу. Но не переживай: сообщество взяло эстафету, чтобы продолжить наследие Roo Code под новым именем и в новом доме! Теперь это уже не просто один «Roo», а целое сообщество — «Elephant», если хочешь. Elephant Code — это плагин, который поддерживает сообщество и продолжает путь с того места, где остановился Roo Code. Мы намерены сохранить дух Roo и при этом привносить новые функции и улучшения. Огромное спасибо всей команде Roo Code за их невероятную работу и за создание такого замечательного инструмента для разработчиков. Нам не терпится развивать их основу дальше и увидеть, куда сообщество приведёт Elephant Code в будущем!",
+			"readMore": "Открыть новую домашнюю страницу Elephant Code и прочитать полное объявление"
 		},
 		"release": {
 			"heading": "Что нового:",
-			"gpt55": "GPT-5.5 через OpenAI Codex: Добавлена поддержка GPT-5.5 в провайдере OpenAI Codex, чтобы ты мог использовать новейшую модель прямо из Zoo Code.",
+			"gpt55": "GPT-5.5 через OpenAI Codex: Добавлена поддержка GPT-5.5 в провайдере OpenAI Codex, чтобы ты мог использовать новейшую модель прямо из Elephant Code.",
 			"claudeOpus47": "Claude Opus 4.7 в Vertex AI: Добавлен Claude Opus 4.7 в провайдер Vertex AI — новейшую флагманскую модель рассуждений от Anthropic.",
 			"checkpointNav": "Навигация по предыдущим контрольным точкам: Добавлены элементы управления в чат, чтобы переходить назад по предыдущим контрольным точкам, с полной поддержкой i18n."
 		},
@@ -342,8 +342,8 @@
 		}
 	},
 	"skill": {
-		"wantsToLoad": "Zoo хочет загрузить навык",
-		"didLoad": "Zoo загрузил навык"
+		"wantsToLoad": "Elephant хочет загрузить навык",
+		"didLoad": "Elephant загрузил навык"
 	},
 	"followUpSuggest": {
 		"copyToInput": "Скопировать во ввод (то же, что shift + клик)",
@@ -364,13 +364,13 @@
 	"profileViolationWarning": "Текущий профиль несовместим с настройками вашей организации",
 	"shellIntegration": {
 		"title": "Предупреждение о выполнении команды",
-		"description": "Ваша команда выполняется без интеграции оболочки терминала VSCode. Чтобы скрыть это предупреждение, вы можете отключить интеграцию оболочки в разделе <strong>Terminal</strong> в <settingsLink>настройках Zoo Code</settingsLink> или устранить проблемы с интеграцией терминала VSCode, используя ссылку ниже.",
+		"description": "Ваша команда выполняется без интеграции оболочки терминала VSCode. Чтобы скрыть это предупреждение, вы можете отключить интеграцию оболочки в разделе <strong>Terminal</strong> в <settingsLink>настройках Elephant Code</settingsLink> или устранить проблемы с интеграцией терминала VSCode, используя ссылку ниже.",
 		"troubleshooting": "Нажмите здесь для просмотра документации по интеграции оболочки."
 	},
 	"ask": {
 		"autoApprovedRequestLimitReached": {
 			"title": "Достигнут лимит автоматически одобренных запросов",
-			"description": "Zoo достиг автоматически одобренного лимита в {{count}} API-запрос(ов). Хотите сбросить счетчик и продолжить задачу?",
+			"description": "Elephant достиг автоматически одобренного лимита в {{count}} API-запрос(ов). Хотите сбросить счетчик и продолжить задачу?",
 			"button": "Сбросить и продолжить"
 		},
 		"autoApprovedCostLimitReached": {
@@ -380,8 +380,8 @@
 		}
 	},
 	"codebaseSearch": {
-		"wantsToSearch": "Zoo хочет выполнить поиск в кодовой базе по <code>{{query}}</code>",
-		"wantsToSearchWithPath": "Zoo хочет выполнить поиск в кодовой базе по <code>{{query}}</code> в <code>{{path}}</code>",
+		"wantsToSearch": "Elephant хочет выполнить поиск в кодовой базе по <code>{{query}}</code>",
+		"wantsToSearchWithPath": "Elephant хочет выполнить поиск в кодовой базе по <code>{{query}}</code> в <code>{{path}}</code>",
 		"didSearch_one": "Найден 1 результат",
 		"didSearch_other": "Найдено {{count}} результатов",
 		"resultTooltip": "Оценка схожести: {{score}} (нажмите, чтобы открыть файл)"
@@ -422,7 +422,7 @@
 		"ariaLabel": "Версия {{version}} - Нажмите, чтобы просмотреть примечания к выпуску"
 	},
 	"rooCloudCTA": {
-		"title": "Zoo Code Cloud развивается!",
+		"title": "Elephant Code Cloud развивается!",
 		"description": "Запускайте удаленные агенты в облаке, получайте доступ к своим задачам из любого места, сотрудничайте с другими и многое другое.",
 		"joinWaitlist": "Зарегистрируйтесь, чтобы получать последние обновления."
 	},
@@ -463,8 +463,8 @@
 		"clickToEdit": "Нажмите, чтобы редактировать сообщение"
 	},
 	"slashCommand": {
-		"wantsToRun": "Zoo хочет выполнить слеш-команду",
-		"didRun": "Zoo выполнил слеш-команду"
+		"wantsToRun": "Elephant хочет выполнить слеш-команду",
+		"didRun": "Elephant выполнил слеш-команду"
 	},
 	"todo": {
 		"partial": "{{completed}} из {{total}} задач выполнено",
@@ -483,7 +483,7 @@
 		"openMcpSettings": "Открыть настройки MCP"
 	},
 	"readCommandOutput": {
-		"title": "Zoo read command output"
+		"title": "Elephant read command output"
 	},
 	"retiredProvider": {
 		"title": "Провайдер больше не поддерживается",

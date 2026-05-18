@@ -27,9 +27,9 @@
 		"loading": "Generating mermaid diagram...",
 		"render_error": "Unable to Render Diagram",
 		"buttons": {
-			"zoom": "Zoom",
-			"zoomIn": "Zoom In",
-			"zoomOut": "Zoom Out",
+			"zoom": "Elephantm",
+			"zoomIn": "Elephantm In",
+			"zoomOut": "Elephantm Out",
 			"copy": "Copy",
 			"save": "Save Image",
 			"viewCode": "View Code",

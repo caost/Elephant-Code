@@ -92,7 +92,11 @@ export const ZooCodeAuthBadge: React.FC<ZooCodeAuthBadgeProps> = ({ className })
 						"text-[9px] font-semibold text-[var(--vscode-button-foreground,#ffffff)]",
 				)}
 				style={avatarButtonStyle}
-				title={zooCodeIsAuthenticated ? `Zoo Code: ${zooCodeUserEmail || "Connected"}` : "Sign in to Zoo Code"}>
+				title={
+					zooCodeIsAuthenticated
+						? `Elephant Code: ${zooCodeUserEmail || "Connected"}`
+						: "Sign in to Elephant Code"
+				}>
 				{zooCodeIsAuthenticated ? (
 					showImage ? (
 						<img
@@ -131,7 +135,7 @@ export const ZooCodeAuthBadge: React.FC<ZooCodeAuthBadgeProps> = ({ className })
 					)}>
 					{!zooCodeIsAuthenticated ? (
 						<a href={authUrl} onClick={() => setIsOpen(false)} className={menuItemClasses}>
-							Sign in to Zoo Code
+							Sign in to Elephant Code
 						</a>
 					) : (
 						<>

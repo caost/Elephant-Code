@@ -1,5 +1,5 @@
 {
-	"greeting": "Zoo Code에 오신 것을 환영합니다!",
+	"greeting": "Elephant Code에 오신 것을 환영합니다!",
 	"task": {
 		"title": "작업",
 		"expand": "작업 펼치기",
@@ -88,7 +88,7 @@
 	"enqueueMessage": "메시지를 대기열에 추가 (현재 작업 완료 후 전송)",
 	"scrollToBottom": "채팅 하단으로 스크롤",
 	"scrollToLatestCheckpoint": "이전 체크포인트로 스크롤",
-	"about": "Zoo Code는 편집기 안에 있는 전체 AI 개발팀입니다.",
+	"about": "Elephant Code는 편집기 안에 있는 전체 AI 개발팀입니다.",
 	"docs": "더 알아보려면 <DocsLink>문서</DocsLink>를 확인하세요.",
 	"onboarding": "이 작업 공간의 작업 목록이 비어 있습니다.",
 	"rooTips": {
@@ -152,7 +152,7 @@
 			"500": "공급자 서버 오류입니다. 공급자 쪽에 문제가 있으며 요청에는 문제가 없습니다.",
 			"docs": "문서",
 			"goToSettings": "설정",
-			"unknown": "알 수 없는 API 오류입니다. Zoo Code 지원팀에 문의하세요.",
+			"unknown": "알 수 없는 API 오류입니다. Elephant Code 지원팀에 문의하세요.",
 			"connection": "연결 오류입니다. 인터넷 연결이 제대로 작동하는지 확인하세요.",
 			"claudeCodeNotAuthenticated": "Claude Code를 사용하려면 로그인해야 합니다. 설정으로 이동하여 \"Claude Code에 로그인\"을 클릭하여 인증하세요."
 		}
@@ -328,16 +328,16 @@
 		"timerPrefix": "자동 승인 활성화됨. {{seconds}}초 후 선택 중…"
 	},
 	"announcement": {
-		"title": "Zoo Code {{version}} 출시",
-		"support": "<githubLink>GitHub</githubLink>에서 별표를 눌러 Zoo Code를 응원해 주세요.",
+		"title": "Elephant Code {{version}} 출시",
+		"support": "<githubLink>GitHub</githubLink>에서 별표를 눌러 Elephant Code를 응원해 주세요.",
 		"handoff": {
-			"heading": "Roo Code가 돌아왔습니다! 이제 커뮤니티가 유지 관리하는 플러그인 Zoo Code입니다!!",
-			"description": "최근 소식을 못 보셨다면, Roo Code 팀이 Roo Code 개발을 종료하고 지금까지의 작업을 아카이브하겠다고 발표했어요. 하지만 걱정하지 마세요. 커뮤니티가 나서서 Roo Code의 유산을 새로운 이름과 새로운 터전에서 이어가고 있어요! 이제 우리는 더 이상 하나의 \"Roo\"가 아니라, 말 그대로 하나의 커뮤니티, 즉 \"Zoo\"입니다. Zoo Code는 Roo Code가 멈춘 지점에서 이어받는 커뮤니티 유지 관리 플러그인이며, Roo의 정신을 지키면서도 새로운 기능과 개선 사항을 계속 추가해 나가겠습니다. 개발자들에게 이렇게 훌륭한 도구를 만들어 준 Roo Code 팀 전체에 진심으로 큰 감사를 전합니다. 그들이 만든 기반 위에 계속해서 쌓아 올리고, 앞으로 커뮤니티가 Zoo Code를 어디까지 발전시킬지 정말 기대하고 있습니다!",
-			"readMore": "Zoo Code의 새 홈페이지에서 전체 공지를 읽어보세요"
+			"heading": "Roo Code가 돌아왔습니다! 이제 커뮤니티가 유지 관리하는 플러그인 Elephant Code입니다!!",
+			"description": "최근 소식을 못 보셨다면, Roo Code 팀이 Roo Code 개발을 종료하고 지금까지의 작업을 아카이브하겠다고 발표했어요. 하지만 걱정하지 마세요. 커뮤니티가 나서서 Roo Code의 유산을 새로운 이름과 새로운 터전에서 이어가고 있어요! 이제 우리는 더 이상 하나의 \"Roo\"가 아니라, 말 그대로 하나의 커뮤니티, 즉 \"Elephant\"입니다. Elephant Code는 Roo Code가 멈춘 지점에서 이어받는 커뮤니티 유지 관리 플러그인이며, Roo의 정신을 지키면서도 새로운 기능과 개선 사항을 계속 추가해 나가겠습니다. 개발자들에게 이렇게 훌륭한 도구를 만들어 준 Roo Code 팀 전체에 진심으로 큰 감사를 전합니다. 그들이 만든 기반 위에 계속해서 쌓아 올리고, 앞으로 커뮤니티가 Elephant Code를 어디까지 발전시킬지 정말 기대하고 있습니다!",
+			"readMore": "Elephant Code의 새 홈페이지에서 전체 공지를 읽어보세요"
 		},
 		"release": {
 			"heading": "새로운 기능:",
-			"gpt55": "OpenAI Codex를 통한 GPT-5.5: OpenAI Codex 제공업체에 GPT-5.5 지원을 추가해, Zoo Code에서 바로 최신 모델을 사용할 수 있어요.",
+			"gpt55": "OpenAI Codex를 통한 GPT-5.5: OpenAI Codex 제공업체에 GPT-5.5 지원을 추가해, Elephant Code에서 바로 최신 모델을 사용할 수 있어요.",
 			"claudeOpus47": "Vertex AI에서 Claude Opus 4.7: Anthropic의 최신 플래그십 추론 모델인 Claude Opus 4.7을 Vertex AI 제공업체에 추가했어요.",
 			"checkpointNav": "이전 체크포인트 탐색: 이전 체크포인트로 돌아갈 수 있는 컨트롤을 채팅에 추가했고, i18n을 완벽하게 지원해요."
 		},
@@ -363,7 +363,7 @@
 	"profileViolationWarning": "현재 프로필이 조직 설정과 호환되지 않습니다",
 	"shellIntegration": {
 		"title": "명령 실행 경고",
-		"description": "명령이 VSCode 터미널 쉘 통합 없이 실행되고 있습니다. 이 경고를 숨기려면 <settingsLink>Zoo Code 설정</settingsLink>의 <strong>Terminal</strong> 섹션에서 쉘 통합을 비활성화하거나 아래 링크를 사용하여 VSCode 터미널 통합 문제를 해결하세요.",
+		"description": "명령이 VSCode 터미널 쉘 통합 없이 실행되고 있습니다. 이 경고를 숨기려면 <settingsLink>Elephant Code 설정</settingsLink>의 <strong>Terminal</strong> 섹션에서 쉘 통합을 비활성화하거나 아래 링크를 사용하여 VSCode 터미널 통합 문제를 해결하세요.",
 		"troubleshooting": "쉘 통합 문서를 보려면 여기를 클릭하세요."
 	},
 	"ask": {
@@ -421,7 +421,7 @@
 		"ariaLabel": "버전 {{version}} - 릴리스 노트를 보려면 클릭하세요"
 	},
 	"rooCloudCTA": {
-		"title": "Zoo Code Cloud가 진화하고 있습니다!",
+		"title": "Elephant Code Cloud가 진화하고 있습니다!",
 		"description": "클라우드에서 원격 에이전트를 실행하고, 어디서나 작업에 액세스하고, 다른 사람들과 협업하는 등 다양한 기능을 이용하세요.",
 		"joinWaitlist": "최신 업데이트를 받으려면 가입하세요."
 	},
@@ -482,7 +482,7 @@
 		"openMcpSettings": "MCP 설정 열기"
 	},
 	"readCommandOutput": {
-		"title": "Zoo read command output"
+		"title": "Elephant read command output"
 	},
 	"retiredProvider": {
 		"title": "공급자 지원 종료",

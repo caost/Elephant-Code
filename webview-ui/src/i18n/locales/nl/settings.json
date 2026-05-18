@@ -40,7 +40,7 @@
 		"ui": "UI",
 		"experimental": "Experimenteel",
 		"language": "Taal",
-		"about": "Over Zoo Code",
+		"about": "Over Elephant Code",
 		"skills": "Skills"
 	},
 	"about": {
@@ -56,7 +56,7 @@
 			"label": "Kwetsbaarheid ontdekt?",
 			"link": "Volg ons openbaarmakingsproces"
 		},
-		"community": "Wil je tips of gewoon even hangen met andere Zoo Code-gebruikers? Sluit je aan bij <redditLink>reddit.com/r/ZooCode</redditLink> of <discordLink>discord.gg/VxfP4Vx3gX</discordLink>",
+		"community": "Wil je tips of gewoon even hangen met andere Elephant Code-gebruikers? Sluit je aan bij <redditLink>reddit.com/r/ElephantCode</redditLink> of <discordLink>discord.gg/VxfP4Vx3gX</discordLink>",
 		"contactAndCommunity": "Contact & Gemeenschap",
 		"manageSettings": "Instellingen Beheren",
 		"debugMode": {
@@ -100,7 +100,7 @@
 		"footer": "Gebruik slash-commando's voor snelle toegang tot veelgebruikte prompts en workflows."
 	},
 	"prompts": {
-		"description": "Configureer ondersteuningsprompts die worden gebruikt voor snelle acties zoals het verbeteren van prompts, het uitleggen van code en het oplossen van problemen. Deze prompts helpen Zoo om betere ondersteuning te bieden voor veelvoorkomende ontwikkelingstaken."
+		"description": "Configureer ondersteuningsprompts die worden gebruikt voor snelle acties zoals het verbeteren van prompts, het uitleggen van code en het oplossen van problemen. Deze prompts helpen Elephant om betere ondersteuning te bieden voor veelvoorkomende ontwikkelingstaken."
 	},
 	"codeIndex": {
 		"title": "Codebase indexering",
@@ -223,10 +223,10 @@
 		"disabledAriaLabel": "Automatisch goedkeuren uitgeschakeld - selecteer eerst opties",
 		"readOnly": {
 			"label": "Lezen",
-			"description": "Indien ingeschakeld, bekijkt Zoo automatisch de inhoud van mappen en leest bestanden zonder dat je op de Goedkeuren-knop hoeft te klikken.",
+			"description": "Indien ingeschakeld, bekijkt Elephant automatisch de inhoud van mappen en leest bestanden zonder dat je op de Goedkeuren-knop hoeft te klikken.",
 			"outsideWorkspace": {
 				"label": "Inclusief bestanden buiten werkruimte",
-				"description": "Sta Zoo toe om bestanden buiten de huidige werkruimte te lezen zonder goedkeuring."
+				"description": "Sta Elephant toe om bestanden buiten de huidige werkruimte te lezen zonder goedkeuring."
 			}
 		},
 		"write": {
@@ -235,11 +235,11 @@
 			"delayLabel": "Vertraging na schrijven om diagnostiek de kans te geven mogelijke problemen te detecteren",
 			"outsideWorkspace": {
 				"label": "Inclusief bestanden buiten werkruimte",
-				"description": "Sta Zoo toe om bestanden buiten de huidige werkruimte aan te maken en te bewerken zonder goedkeuring."
+				"description": "Sta Elephant toe om bestanden buiten de huidige werkruimte aan te maken en te bewerken zonder goedkeuring."
 			},
 			"protected": {
 				"label": "Inclusief beschermde bestanden",
-				"description": "Sta Zoo toe om beschermde bestanden (zoals .rooignore en .roo/ configuratiebestanden) aan te maken en te bewerken zonder goedkeuring."
+				"description": "Sta Elephant toe om beschermde bestanden (zoals .rooignore en .roo/ configuratiebestanden) aan te maken en te bewerken zonder goedkeuring."
 			}
 		},
 		"mcp": {
@@ -456,7 +456,7 @@
 			"draftModelDesc": "Draft-model moet uit dezelfde modelfamilie komen voor correcte speculatieve decodering.",
 			"selectDraftModel": "Selecteer draft-model",
 			"noModelsFound": "Geen draft-modellen gevonden. Zorg dat LM Studio draait met Server Mode ingeschakeld.",
-			"description": "LM Studio laat je modellen lokaal op je computer draaien. Zie hun <a>quickstart-gids</a> voor instructies. Je moet ook de <b>lokale server</b>-functie van LM Studio starten om het met deze extensie te gebruiken. <span>Let op:</span> Zoo Code gebruikt complexe prompts en werkt het beste met Claude-modellen. Minder krachtige modellen werken mogelijk niet zoals verwacht."
+			"description": "LM Studio laat je modellen lokaal op je computer draaien. Zie hun <a>quickstart-gids</a> voor instructies. Je moet ook de <b>lokale server</b>-functie van LM Studio starten om het met deze extensie te gebruiken. <span>Let op:</span> Elephant Code gebruikt complexe prompts en werkt het beste met Claude-modellen. Minder krachtige modellen werken mogelijk niet zoals verwacht."
 		},
 		"ollama": {
 			"baseUrl": "Basis-URL (optioneel)",
@@ -466,7 +466,7 @@
 			"numCtx": "Contextvenstergrootte (num_ctx)",
 			"numCtxHelp": "Overschrijft de standaard contextvenstergrootte van het model. Laat leeg om de Modelfile-configuratie van het model te gebruiken. De minimumwaarde is 128.",
 			"description": "Ollama laat je modellen lokaal op je computer draaien. Zie hun quickstart-gids voor instructies.",
-			"warning": "Let op: Zoo Code gebruikt complexe prompts en werkt het beste met Claude-modellen. Minder krachtige modellen werken mogelijk niet zoals verwacht."
+			"warning": "Let op: Elephant Code gebruikt complexe prompts en werkt het beste met Claude-modellen. Minder krachtige modellen werken mogelijk niet zoals verwacht."
 		},
 		"openRouter": {
 			"providerRouting": {
@@ -476,7 +476,7 @@
 			}
 		},
 		"customModel": {
-			"capabilities": "Stel de mogelijkheden en prijzen in voor je aangepaste OpenAI-compatibele model. Wees voorzichtig met het opgeven van de modelmogelijkheden, want deze kunnen de prestaties van Zoo Code beïnvloeden.",
+			"capabilities": "Stel de mogelijkheden en prijzen in voor je aangepaste OpenAI-compatibele model. Wees voorzichtig met het opgeven van de modelmogelijkheden, want deze kunnen de prestaties van Elephant Code beïnvloeden.",
 			"maxTokens": {
 				"label": "Maximaal aantal outputtokens",
 				"description": "Maximaal aantal tokens dat het model in een antwoord kan genereren. (Geef -1 op om de server het maximum te laten bepalen.)"
@@ -523,7 +523,7 @@
 		},
 		"consecutiveMistakeLimit": {
 			"label": "Fout- & Herhalingslimiet",
-			"description": "Aantal opeenvolgende fouten of herhaalde acties voordat het dialoogvenster 'Zoo ondervindt problemen' wordt weergegeven. Zet op 0 om dit veiligheidsmechanisme uit te schakelen (wordt nooit geactiveerd).",
+			"description": "Aantal opeenvolgende fouten of herhaalde acties voordat het dialoogvenster 'Elephant ondervindt problemen' wordt weergegeven. Zet op 0 om dit veiligheidsmechanisme uit te schakelen (wordt nooit geactiveerd).",
 			"unlimitedDescription": "Onbeperkt aantal nieuwe pogingen ingeschakeld (automatisch doorgaan). Het dialoogvenster zal nooit verschijnen.",
 			"warning": "⚠️ Instellen op 0 staat onbeperkte nieuwe pogingen toe, wat aanzienlijk API-gebruik kan verbruiken"
 		},
@@ -559,18 +559,18 @@
 		},
 		"enable": {
 			"label": "Automatische checkpoints inschakelen",
-			"description": "Indien ingeschakeld, maakt Zoo automatisch checkpoints tijdens het uitvoeren van taken, zodat je eenvoudig wijzigingen kunt bekijken of terugzetten. <0>Meer informatie</0>"
+			"description": "Indien ingeschakeld, maakt Elephant automatisch checkpoints tijdens het uitvoeren van taken, zodat je eenvoudig wijzigingen kunt bekijken of terugzetten. <0>Meer informatie</0>"
 		}
 	},
 	"notifications": {
 		"sound": {
 			"label": "Geluidseffecten inschakelen",
-			"description": "Indien ingeschakeld, speelt Zoo geluidseffecten af voor meldingen en gebeurtenissen.",
+			"description": "Indien ingeschakeld, speelt Elephant geluidseffecten af voor meldingen en gebeurtenissen.",
 			"volumeLabel": "Volume"
 		},
 		"tts": {
 			"label": "Tekst-naar-spraak inschakelen",
-			"description": "Indien ingeschakeld, leest Zoo zijn antwoorden hardop voor via tekst-naar-spraak.",
+			"description": "Indien ingeschakeld, leest Elephant zijn antwoorden hardop voor via tekst-naar-spraak.",
 			"speedLabel": "Snelheid"
 		}
 	},
@@ -578,7 +578,7 @@
 		"description": "Bepaal welke informatie wordt opgenomen in het contextvenster van de AI, wat invloed heeft op tokengebruik en antwoordkwaliteit",
 		"autoCondenseContextPercent": {
 			"label": "Drempelwaarde om intelligente contextcompressie te activeren",
-			"description": "Wanneer het contextvenster deze drempelwaarde bereikt, zal Zoo het automatisch comprimeren."
+			"description": "Wanneer het contextvenster deze drempelwaarde bereikt, zal Elephant het automatisch comprimeren."
 		},
 		"condensingApiConfiguration": {
 			"label": "API-configuratie voor contextcondensatie",
@@ -594,7 +594,7 @@
 		},
 		"autoCondenseContext": {
 			"name": "Automatisch intelligente contextcompressie activeren",
-			"description": "Wanneer ingeschakeld, zal Zoo automatisch de context comprimeren wanneer de drempel wordt bereikt. Wanneer uitgeschakeld, kun je nog steeds handmatig contextcompressie activeren."
+			"description": "Wanneer ingeschakeld, zal Elephant automatisch de context comprimeren wanneer de drempel wordt bereikt. Wanneer uitgeschakeld, kun je nog steeds handmatig contextcompressie activeren."
 		},
 		"openTabs": {
 			"label": "Limiet geopende tabbladen in context",
@@ -610,7 +610,7 @@
 		},
 		"maxReadFile": {
 			"label": "Automatisch afkappen bij bestandslezen",
-			"description": "Zoo leest dit aantal regels wanneer het model geen begin/eindwaarden opgeeft. Als dit aantal lager is dan het totaal, genereert Zoo een index van codelijnen. Speciale gevallen: -1 laat Zoo het hele bestand lezen (zonder indexering), 0 leest geen regels en geeft alleen een minimale index. Lagere waarden minimaliseren het initiële contextgebruik en maken precieze vervolg-leesopdrachten mogelijk. Expliciete begin/eind-aanvragen worden niet door deze instelling beperkt.",
+			"description": "Elephant leest dit aantal regels wanneer het model geen begin/eindwaarden opgeeft. Als dit aantal lager is dan het totaal, genereert Elephant een index van codelijnen. Speciale gevallen: -1 laat Elephant het hele bestand lezen (zonder indexering), 0 leest geen regels en geeft alleen een minimale index. Lagere waarden minimaliseren het initiële contextgebruik en maken precieze vervolg-leesopdrachten mogelijk. Expliciete begin/eind-aanvragen worden niet door deze instelling beperkt.",
 			"lines": "regels",
 			"always_full_read": "Altijd volledig bestand lezen"
 		},
@@ -681,15 +681,15 @@
 		},
 		"outputLineLimit": {
 			"label": "Terminaluitvoerlimiet",
-			"description": "Behoudt eerste en laatste regels en verwijdert middelste om onder de limiet te blijven. Verlaag om tokens te besparen; verhoog om Zoo meer tussendetails te geven. Zoo ziet een placeholder waar inhoud wordt overgeslagen.<0>Meer informatie</0>"
+			"description": "Behoudt eerste en laatste regels en verwijdert middelste om onder de limiet te blijven. Verlaag om tokens te besparen; verhoog om Elephant meer tussendetails te geven. Elephant ziet een placeholder waar inhoud wordt overgeslagen.<0>Meer informatie</0>"
 		},
 		"outputCharacterLimit": {
 			"label": "Terminal-tekenlimiet",
-			"description": "Overschrijft de regellimiet om geheugenproblemen te voorkomen door een harde limiet op uitvoergrootte af te dwingen. Bij overschrijding behoudt het begin en einde en toont een placeholder aan Zoo waar inhoud wordt overgeslagen. <0>Meer informatie</0>"
+			"description": "Overschrijft de regellimiet om geheugenproblemen te voorkomen door een harde limiet op uitvoergrootte af te dwingen. Bij overschrijding behoudt het begin en einde en toont een placeholder aan Elephant waar inhoud wordt overgeslagen. <0>Meer informatie</0>"
 		},
 		"outputPreviewSize": {
 			"label": "Grootte opdrachtuitvoer voorvertoning",
-			"description": "Bepaalt hoeveel opdrachtuitvoer Zoo direct ziet. Volledige uitvoer wordt altijd opgeslagen en is toegankelijk wanneer nodig.",
+			"description": "Bepaalt hoeveel opdrachtuitvoer Elephant direct ziet. Volledige uitvoer wordt altijd opgeslagen en is toegankelijk wanneer nodig.",
 			"options": {
 				"small": "Klein (5KB)",
 				"medium": "Gemiddeld (10KB)",
@@ -702,7 +702,7 @@
 		},
 		"shellIntegrationDisabled": {
 			"label": "Inline Terminal gebruiken (aanbevolen)",
-			"description": "Voer commando's uit in de Inline Terminal (chat) om shell-profielen/integratie te omzeilen voor snellere, betrouwbaardere runs. Wanneer uitgeschakeld gebruikt Zoo de VS Code-terminal met je shell-profiel, prompts en plugins. <0>Meer informatie</0>"
+			"description": "Voer commando's uit in de Inline Terminal (chat) om shell-profielen/integratie te omzeilen voor snellere, betrouwbaardere runs. Wanneer uitgeschakeld gebruikt Elephant de VS Code-terminal met je shell-profiel, prompts en plugins. <0>Meer informatie</0>"
 		},
 		"commandDelay": {
 			"label": "Terminal-commandovertraging",
@@ -739,7 +739,7 @@
 	"advanced": {
 		"diff": {
 			"label": "Bewerken via diffs inschakelen",
-			"description": "Indien ingeschakeld kan Zoo sneller bestanden bewerken en worden afgekorte volledige-bestandswijzigingen automatisch geweigerd",
+			"description": "Indien ingeschakeld kan Elephant sneller bestanden bewerken en worden afgekorte volledige-bestandswijzigingen automatisch geweigerd",
 			"strategy": {
 				"label": "Diff-strategie",
 				"options": {
@@ -756,7 +756,7 @@
 		},
 		"todoList": {
 			"label": "Takenlijst-tool inschakelen",
-			"description": "Wanneer ingeschakeld, kan Zoo takenlijsten maken en beheren om de voortgang van taken bij te houden. Dit helpt complexe taken te organiseren in beheersbare stappen."
+			"description": "Wanneer ingeschakeld, kan Elephant takenlijsten maken en beheren om de voortgang van taken bij te houden. Dit helpt complexe taken te organiseren in beheersbare stappen."
 		}
 	},
 	"experimental": {
@@ -766,15 +766,15 @@
 		},
 		"INSERT_BLOCK": {
 			"name": "Experimentele inhoud-invoeg-tool gebruiken",
-			"description": "Schakel de experimentele inhoud-invoeg-tool in, waarmee Zoo inhoud op specifieke regelnummers kan invoegen zonder een diff te maken."
+			"description": "Schakel de experimentele inhoud-invoeg-tool in, waarmee Elephant inhoud op specifieke regelnummers kan invoegen zonder een diff te maken."
 		},
 		"MULTI_SEARCH_AND_REPLACE": {
 			"name": "Experimentele multi-block diff-tool gebruiken",
-			"description": "Indien ingeschakeld, gebruikt Zoo de multi-block diff-tool. Hiermee wordt geprobeerd meerdere codeblokken in het bestand in één verzoek bij te werken."
+			"description": "Indien ingeschakeld, gebruikt Elephant de multi-block diff-tool. Hiermee wordt geprobeerd meerdere codeblokken in het bestand in één verzoek bij te werken."
 		},
 		"CONCURRENT_FILE_READS": {
 			"name": "Gelijktijdig lezen van bestanden inschakelen",
-			"description": "Wanneer ingeschakeld, kan Zoo meerdere bestanden in één verzoek lezen. Wanneer uitgeschakeld, moet Zoo bestanden één voor één lezen. Uitschakelen kan helpen bij het werken met minder capabele modellen of wanneer u meer controle over bestandstoegang wilt."
+			"description": "Wanneer ingeschakeld, kan Elephant meerdere bestanden in één verzoek lezen. Wanneer uitgeschakeld, moet Elephant bestanden één voor één lezen. Uitschakelen kan helpen bij het werken met minder capabele modellen of wanneer u meer controle over bestandstoegang wilt."
 		},
 		"MARKETPLACE": {
 			"name": "Marketplace inschakelen",
@@ -782,7 +782,7 @@
 		},
 		"PREVENT_FOCUS_DISRUPTION": {
 			"name": "Achtergrondbewerking",
-			"description": "Voorkomt editor focus verstoring wanneer ingeschakeld. Bestandsbewerkingen gebeuren op de achtergrond zonder diff-weergaven te openen of focus te stelen. Je kunt ononderbroken doorwerken terwijl Zoo wijzigingen aanbrengt. Bestanden kunnen zonder focus worden geopend om diagnostiek vast te leggen of volledig gesloten blijven."
+			"description": "Voorkomt editor focus verstoring wanneer ingeschakeld. Bestandsbewerkingen gebeuren op de achtergrond zonder diff-weergaven te openen of focus te stelen. Je kunt ononderbroken doorwerken terwijl Elephant wijzigingen aanbrengt. Bestanden kunnen zonder focus worden geopend om diagnostiek vast te leggen of volledig gesloten blijven."
 		},
 		"ASSISTANT_MESSAGE_PARSER": {
 			"name": "Nieuwe berichtparser gebruiken",
@@ -796,7 +796,7 @@
 			"providerLabel": "Provider",
 			"providerDescription": "Selecteer de provider voor het genereren van afbeeldingen.",
 			"name": "AI-afbeeldingsgeneratie inschakelen",
-			"description": "Wanneer ingeschakeld, kan Zoo afbeeldingen genereren van tekstprompts met behulp van OpenRouter's afbeeldingsgeneratiemodellen. Vereist een geconfigureerde OpenRouter API-sleutel.",
+			"description": "Wanneer ingeschakeld, kan Elephant afbeeldingen genereren van tekstprompts met behulp van OpenRouter's afbeeldingsgeneratiemodellen. Vereist een geconfigureerde OpenRouter API-sleutel.",
 			"openRouterApiKeyLabel": "OpenRouter API-sleutel",
 			"openRouterApiKeyPlaceholder": "Voer je OpenRouter API-sleutel in",
 			"getApiKeyText": "Haal je API-sleutel op van",
@@ -807,11 +807,11 @@
 		},
 		"RUN_SLASH_COMMAND": {
 			"name": "Model-geïnitieerde slash-commando's inschakelen",
-			"description": "Wanneer ingeschakeld, kan Zoo je slash-commando's uitvoeren om workflows uit te voeren."
+			"description": "Wanneer ingeschakeld, kan Elephant je slash-commando's uitvoeren om workflows uit te voeren."
 		},
 		"CUSTOM_TOOLS": {
 			"name": "Aangepaste tools inschakelen",
-			"description": "Indien ingeschakeld kan Zoo aangepaste TypeScript/JavaScript-tools laden en gebruiken uit de map .roo/tools van je project of ~/.roo/tools voor globale tools. Opmerking: deze tools worden automatisch goedgekeurd.",
+			"description": "Indien ingeschakeld kan Elephant aangepaste TypeScript/JavaScript-tools laden en gebruiken uit de map .roo/tools van je project of ~/.roo/tools voor globale tools. Opmerking: deze tools worden automatisch goedgekeurd.",
 			"toolsHeader": "Beschikbare aangepaste tools",
 			"noTools": "Geen aangepaste tools geladen. Voeg .ts- of .js-bestanden toe aan de map .roo/tools van je project of ~/.roo/tools voor globale tools.",
 			"refreshButton": "Vernieuwen",
@@ -823,7 +823,7 @@
 	},
 	"promptCaching": {
 		"label": "Prompt caching inschakelen",
-		"description": "Indien ingeschakeld, gebruikt Zoo dit model met prompt caching om kosten te verlagen."
+		"description": "Indien ingeschakeld, gebruikt Elephant dit model met prompt caching om kosten te verlagen."
 	},
 	"temperature": {
 		"useCustom": "Aangepaste temperatuur gebruiken",
@@ -853,7 +853,7 @@
 		}
 	},
 	"modelPicker": {
-		"automaticFetch": "De extensie haalt automatisch de nieuwste lijst met modellen op van <serviceLink>{{serviceName}}</serviceLink>. Weet je niet welk model je moet kiezen? Zoo Code werkt het beste met <defaultModelLink>{{defaultModelId}}</defaultModelLink>. Je kunt ook zoeken op 'free' voor gratis opties die nu beschikbaar zijn.",
+		"automaticFetch": "De extensie haalt automatisch de nieuwste lijst met modellen op van <serviceLink>{{serviceName}}</serviceLink>. Weet je niet welk model je moet kiezen? Elephant Code werkt het beste met <defaultModelLink>{{defaultModelId}}</defaultModelLink>. Je kunt ook zoeken op 'free' voor gratis opties die nu beschikbaar zijn.",
 		"label": "Model",
 		"searchPlaceholder": "Zoeken",
 		"noMatchFound": "Geen overeenkomsten gevonden",
@@ -863,7 +863,7 @@
 	"footer": {
 		"telemetry": {
 			"label": "Anonieme fout- en gebruiksrapportage toestaan",
-			"description": "Help Zoo Code te verbeteren door anonieme gebruiksgegevens en foutmeldingen te versturen. Deze telemetrie verzamelt geen code, prompts of persoonlijke informatie. Zie ons <privacyLink>privacybeleid</privacyLink> voor meer details."
+			"description": "Help Elephant Code te verbeteren door anonieme gebruiksgegevens en foutmeldingen te versturen. Deze telemetrie verzamelt geen code, prompts of persoonlijke informatie. Zie ons <privacyLink>privacybeleid</privacyLink> voor meer details."
 		},
 		"settings": {
 			"import": "Importeren",

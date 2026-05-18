@@ -5,7 +5,7 @@
 		"invalid_settings_validation": "Geçersiz MCP ayarları formatı: {{errorMessages}}",
 		"create_json": ".roo/mcp.json oluşturulamadı veya açılamadı: {{error}}",
 		"failed_update_project": "Proje MCP sunucuları güncellenemedi",
-		"invalidJsonArgument": "Zoo, {{toolName}} aracını geçersiz bir JSON argümanıyla kullanmaya çalıştı. Tekrar deneniyor...",
+		"invalidJsonArgument": "Elephant, {{toolName}} aracını geçersiz bir JSON argümanıyla kullanmaya çalıştı. Tekrar deneniyor...",
 		"refresh_after_disable": "Devre dışı bıraktıktan sonra MCP bağlantıları yenilenemedi",
 		"refresh_after_enable": "Etkinleştirdikten sonra MCP bağlantıları yenilenemedi",
 		"disconnect_servers_partial": "{{count}} MCP sunucusu bağlantısı kesilemedi. Ayrıntılar için çıktıyı kontrol edin.",
@@ -27,7 +27,7 @@
 	},
 	"oauth": {
 		"callback": {
-			"title": "OAuth Geri Çağırma - Zoo Code",
+			"title": "OAuth Geri Çağırma - Elephant Code",
 			"success": "Başarılı!",
 			"failed": "Başarısız",
 			"auth_failed": "Kimlik doğrulama başarısız oldu. Lütfen MCP sunucu günlüklerini kontrol edin.",

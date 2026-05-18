@@ -1,6 +1,6 @@
 {
 	"extension": {
-		"name": "Zoo Code",
+		"name": "Elephant Code",
 		"description": "Een compleet ontwikkelteam van AI-agenten in je editor."
 	},
 	"number_format": {
@@ -146,7 +146,7 @@
 	"warnings": {
 		"no_terminal_content": "Geen terminalinhoud geselecteerd",
 		"missing_task_files": "De bestanden van deze taak ontbreken. Wil je deze uit de takenlijst verwijderen?",
-		"auto_import_failed": "Automatisch importeren van ZooCode-instellingen mislukt: {{error}}"
+		"auto_import_failed": "Automatisch importeren van ElephantCode-instellingen mislukt: {{error}}"
 	},
 	"info": {
 		"no_changes": "Geen wijzigingen gevonden.",
@@ -155,7 +155,7 @@
 		"custom_storage_path_set": "Aangepast opslagpad ingesteld: {{path}}",
 		"default_storage_path": "Terug naar standaard opslagpad",
 		"settings_imported": "Instellingen succesvol geïmporteerd.",
-		"auto_import_success": "ZooCode-instellingen automatisch geïmporteerd van {{filename}}",
+		"auto_import_success": "ElephantCode-instellingen automatisch geïmporteerd van {{filename}}",
 		"share_link_copied": "Deellink gekopieerd naar klembord",
 		"image_copied_to_clipboard": "Afbeelding data-URI gekopieerd naar klembord",
 		"image_saved": "Afbeelding opgeslagen naar {{path}}",
@@ -191,12 +191,12 @@
 	},
 	"storage": {
 		"prompt_custom_path": "Voer een aangepast opslagpad voor gespreksgeschiedenis in, laat leeg voor standaardlocatie",
-		"path_placeholder": "D:\\ZooCodeStorage",
-		"enter_absolute_path": "Voer een absoluut pad in (bijv. D:\\ZooCodeStorage of /home/user/storage)",
+		"path_placeholder": "D:\\ElephantCodeStorage",
+		"enter_absolute_path": "Voer een absoluut pad in (bijv. D:\\ElephantCodeStorage of /home/user/storage)",
 		"enter_valid_path": "Voer een geldig pad in"
 	},
 	"input": {
-		"task_prompt": "Wat moet Zoo doen?",
+		"task_prompt": "Wat moet Elephant doen?",
 		"task_placeholder": "Typ hier je taak"
 	},
 	"settings": {
@@ -226,8 +226,8 @@
 	},
 	"mdm": {
 		"errors": {
-			"cloud_auth_required": "Je organisatie vereist Zoo Code Cloud-authenticatie. Log in om door te gaan.",
-			"organization_mismatch": "Je moet geauthenticeerd zijn met het Zoo Code Cloud-account van je organisatie.",
+			"cloud_auth_required": "Je organisatie vereist Elephant Code Cloud-authenticatie. Log in om door te gaan.",
+			"organization_mismatch": "Je moet geauthenticeerd zijn met het Elephant Code Cloud-account van je organisatie.",
 			"manual_url_empty": "Voer een geldige callback-URL in",
 			"manual_url_no_query": "Ongeldige callback-URL: query-parameters ontbreken",
 			"manual_url_missing_params": "Ongeldige callback-URL: vereiste parameters ontbreken (code en state)",
@@ -258,14 +258,14 @@
 	},
 	"zooAuth": {
 		"errors": {
-			"invalid_token_received": "Zoo Code: Ongeldig authenticatietoken ontvangen.",
-			"token_verification_failed": "Zoo Code: Tokenverificatie mislukt.",
-			"invalid_token": "Zoo Code: Ongeldig token.",
-			"could_not_verify_token": "Zoo Code: Token kon niet worden geverifieerd."
+			"invalid_token_received": "Elephant Code: Ongeldig authenticatietoken ontvangen.",
+			"token_verification_failed": "Elephant Code: Tokenverificatie mislukt.",
+			"invalid_token": "Elephant Code: Ongeldig token.",
+			"could_not_verify_token": "Elephant Code: Token kon niet worden geverifieerd."
 		},
 		"info": {
-			"connected": "Zoo Code: Succesvol verbonden! Je kunt Zoo Code nu gebruiken als AI-provider.",
-			"disconnected": "Zoo Code: Succesvol losgekoppeld."
+			"connected": "Elephant Code: Succesvol verbonden! Je kunt Elephant Code nu gebruiken als AI-provider.",
+			"disconnected": "Elephant Code: Succesvol losgekoppeld."
 		}
 	}
 }
