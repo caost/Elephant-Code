@@ -53,10 +53,28 @@ interface ClaudeAssistantMessage {
 	content?: ClaudeContentBlock[]
 }
 
+interface ClaudeStreamEvent {
+	type: string
+	index?: number
+	delta?: {
+		type: string
+		text?: string
+		thinking?: string
+		partial_json?: string
+	}
+	content_block?: {
+		type: string
+		name?: string
+		input?: unknown
+	}
+}
+
 interface ClaudeStreamLine {
 	type: string
 	// assistant event
 	message?: ClaudeAssistantMessage
+	// stream_event (--include-partial-messages)
+	event?: ClaudeStreamEvent
 	// result event
 	result?: string
 	is_error?: boolean
@@ -179,6 +197,11 @@ export class ClaudeCodeHandler extends BaseProvider implements SingleCompletionH
 		let cacheReadTokens = 0
 		let gotResult = false
 		let resultText = ""
+		// When `--include-partial-messages` streams deltas via `stream_event`,
+		// claude later emits a redundant aggregate `assistant` event containing
+		// the full text. Flip this once we see any delta so we know to ignore
+		// the aggregate and avoid double-emitting the response.
+		let receivedDeltaStream = false
 		// Tail-buffer the visible text so the `<task_summary>` opening tag never
 		// reaches the user mid-stream, then split body vs summary once detected.
 		let textBuffer = ""
@@ -219,35 +242,70 @@ export class ClaudeCodeHandler extends BaseProvider implements SingleCompletionH
 				}
 				console.log(`[claude-code] event: ${parsed.type}`)
 
+				// Local helper: route a chunk of assistant text into either the
+				// visible text stream or the deferred summary, applying tail-buffer
+				// holding and <task_summary> detection. Reused for both partial
+				// stream_event deltas and the aggregate assistant event fallback.
+				function* routeAssistantText(delta: string): Generator<{ type: "text"; text: string }> {
+					accumulatedText += delta
+					if (summaryStarted) {
+						summaryBuffer += delta
+						return
+					}
+					textBuffer += delta
+					const openIdx = textBuffer.indexOf(SUMMARY_OPEN)
+					if (openIdx >= 0) {
+						const before = textBuffer.slice(0, openIdx)
+						if (before) yield { type: "text", text: before }
+						summaryBuffer = textBuffer.slice(openIdx + SUMMARY_OPEN.length)
+						textBuffer = ""
+						summaryStarted = true
+					} else {
+						yield* flushTextSafe(false)
+					}
+				}
+
 				switch (parsed.type) {
 					case "system":
 						// Initialization message — nothing user-visible to emit.
 						break
+					case "stream_event": {
+						// With `--include-partial-messages`, claude emits incremental
+						// content via `stream_event { event: { type: "content_block_delta", delta: { text } } }`.
+						// We surface these as ApiStream text chunks so the UI shows
+						// token-by-token streaming. The redundant aggregate `assistant`
+						// event that follows is suppressed via `receivedDeltaStream`.
+						const ev = parsed.event
+						if (!ev) break
+						if (ev.type === "content_block_start") {
+							const blk = ev.content_block
+							if (blk?.type === "tool_use" && blk.name) {
+								const argStr =
+									typeof blk.input === "string" ? blk.input : JSON.stringify(blk.input ?? {})
+								const argSummary = argStr.length > 120 ? argStr.slice(0, 120) + "…" : argStr
+								yield { type: "reasoning", text: `→ ${blk.name}(${argSummary})\n` }
+							}
+						} else if (ev.type === "content_block_delta" && ev.delta) {
+							if (ev.delta.type === "text_delta" && ev.delta.text) {
+								receivedDeltaStream = true
+								yield* routeAssistantText(ev.delta.text)
+							} else if (ev.delta.type === "thinking_delta" && ev.delta.thinking) {
+								receivedDeltaStream = true
+								yield { type: "reasoning", text: ev.delta.thinking }
+							}
+						}
+						break
+					}
 					case "assistant": {
+						// If we already streamed text via stream_event deltas, the
+						// aggregate `assistant` event carries the same text again —
+						// skip it to avoid doubling the response.
+						if (receivedDeltaStream) break
 						const blocks = parsed.message?.content ?? []
 						for (const block of blocks) {
 							if (block.type === "text" && block.text) {
-								const delta = block.text
-								accumulatedText += delta
-								if (summaryStarted) {
-									summaryBuffer += delta
-								} else {
-									textBuffer += delta
-									const openIdx = textBuffer.indexOf(SUMMARY_OPEN)
-									if (openIdx >= 0) {
-										const before = textBuffer.slice(0, openIdx)
-										if (before) yield { type: "text", text: before }
-										summaryBuffer = textBuffer.slice(openIdx + SUMMARY_OPEN.length)
-										textBuffer = ""
-										summaryStarted = true
-									} else {
-										yield* flushTextSafe(false)
-									}
-								}
+								yield* routeAssistantText(block.text)
 							} else if (block.type === "thinking" && block.thinking) {
-								// Surface claude's chain-of-thought as reasoning so it
-								// shows in the collapsible reasoning panel without
-								// breaking the assistant text bubble.
 								yield { type: "reasoning", text: block.thinking }
 							} else if (block.type === "tool_use" && block.name) {
 								const argStr =
