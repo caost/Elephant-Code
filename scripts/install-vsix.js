@@ -45,7 +45,8 @@ async function main() {
 			publisher = packageJson.publisher
 		}
 
-		const vsixFileName = `./bin/${name}-${version}.vsix`
+		const artifactBaseName = isNightly ? name : "elephant-code"
+		const vsixFileName = `./bin/${artifactBaseName}-${version}.vsix`
 		const extensionId = `${publisher}.${name}`
 		const buildType = isNightly ? "Nightly" : "Regular"
 
