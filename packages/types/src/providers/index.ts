@@ -4,6 +4,7 @@ export * from "./bedrock.js"
 export * from "./deepseek.js"
 export * from "./fireworks.js"
 export * from "./gemini.js"
+export * from "./gemini-cli.js"
 export * from "./lite-llm.js"
 export * from "./lm-studio.js"
 export * from "./mistral.js"
@@ -32,6 +33,7 @@ import { bedrockDefaultModelId } from "./bedrock.js"
 import { deepSeekDefaultModelId } from "./deepseek.js"
 import { fireworksDefaultModelId } from "./fireworks.js"
 import { geminiDefaultModelId } from "./gemini.js"
+import { geminiCliDefaultModelId } from "./gemini-cli.js"
 import { litellmDefaultModelId } from "./lite-llm.js"
 import { mistralDefaultModelId } from "./mistral.js"
 import { moonshotDefaultModelId } from "./moonshot.js"
@@ -115,8 +117,9 @@ export function getProviderDefaultModelId(
 			return unboundDefaultModelId
 		case "vercel-ai-gateway":
 			return vercelAiGatewayDefaultModelId
-		case "anthropic":
 		case "gemini-cli":
+			return geminiCliDefaultModelId
+		case "anthropic":
 		case "fake-ai":
 		default:
 			return anthropicDefaultModelId

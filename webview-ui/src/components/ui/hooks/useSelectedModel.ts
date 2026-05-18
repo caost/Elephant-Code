@@ -10,6 +10,8 @@ import {
 	moonshotModels,
 	minimaxModels,
 	geminiModels,
+	geminiCliModels,
+	geminiCliDefaultModelId,
 	mistralModels,
 	openAiModelInfoSaneDefaults,
 	openAiNativeModels,
@@ -331,6 +333,16 @@ function getSelectedModel({
 			const info = qwenCodeModels[id as keyof typeof qwenCodeModels]
 			return { id, info }
 		}
+		case "gemini-cli": {
+			// Fall back to the default model if the saved apiModelId no longer
+			// exists in our registry (e.g. legacy "gemini-2.0-flash" entries
+			// that pre-date the removal of that model). Returning a known model
+			// keeps `contextWindow`, pricing, and tooltip metadata populated.
+			const requested = apiConfiguration.apiModelId
+			const validatedId = requested && requested in geminiCliModels ? requested : geminiCliDefaultModelId
+			const info = geminiCliModels[validatedId as keyof typeof geminiCliModels]
+			return { id: validatedId, info }
+		}
 		case "openai-codex": {
 			const id = apiConfiguration.apiModelId ?? defaultModelId
 			const info = openAiCodexModels[id as keyof typeof openAiCodexModels]
@@ -348,7 +360,7 @@ function getSelectedModel({
 		// case "anthropic":
 		// case "fake-ai":
 		default: {
-			provider satisfies "anthropic" | "gemini-cli" | "fake-ai"
+			provider satisfies "anthropic" | "fake-ai"
 			const id = apiConfiguration.apiModelId ?? defaultModelId
 			const baseInfo = anthropicModels[id as keyof typeof anthropicModels]
 
