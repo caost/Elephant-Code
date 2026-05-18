@@ -235,6 +235,34 @@ describe("ClaudeCodeHandler (subprocess)", () => {
 			expect(args.result).toBe("Final concise summary from claude.")
 		})
 
+		it("unwraps zoo-code's <user_message> tag and trims the environment_details block", async () => {
+			spawnMock.mockReturnValueOnce(fakeChild([resultEvent()]))
+			const handler = new ClaudeCodeHandler({} as ApiHandlerOptions)
+			const gen = handler.createMessage("", [
+				{
+					role: "user",
+					content: [
+						{ type: "text", text: "<user_message>\n이 프로젝트 구조를 설명해줘\n</user_message>" },
+						{
+							type: "text",
+							text: "<environment_details>\n# VSCode Visible Files\nfoo.ts\n\n# Current Working Directory (/Users/me/proj) Files\nbar.ts\nbaz.ts\n</environment_details>",
+						},
+					],
+				},
+			])
+			for await (const _ of gen) void _
+			const args = spawnMock.mock.calls[0][1] as string[]
+			const prompt = args[args.indexOf("-p") + 1]
+			// The actual user request must appear unwrapped.
+			expect(prompt).toContain("이 프로젝트 구조를 설명해줘")
+			// Wrapper tags must not leak through to the CLI.
+			expect(prompt).not.toContain("<user_message>")
+			expect(prompt).not.toContain("<environment_details>")
+			// Should NOT carry the raw env_details listing.
+			expect(prompt).not.toContain("# VSCode Visible Files")
+			expect(prompt).not.toContain("bar.ts")
+		})
+
 		it("sends only the latest user-typed text from message history", async () => {
 			spawnMock.mockReturnValueOnce(fakeChild([resultEvent()]))
 			const handler = new ClaudeCodeHandler({} as ApiHandlerOptions)
