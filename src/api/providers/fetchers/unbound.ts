@@ -16,6 +16,12 @@ export async function getUnboundModels(apiKey?: string | null): Promise<Record<s
 
 		const response = await axios.get("https://api.getunbound.ai/models", { headers })
 		const rawModels = response.data?.data ?? response.data
+		if (!Array.isArray(rawModels)) {
+			// API can return a wrapped object (e.g. `{ models: [...] }`) or an
+			// error envelope when unauthenticated. Bail out cleanly so an empty
+			// model map propagates rather than crashing the model-fetch pipeline.
+			return models
+		}
 
 		for (const rawModel of rawModels) {
 			const modelInfo: ModelInfo = {
