@@ -235,6 +235,116 @@ describe("ClaudeCodeHandler (subprocess)", () => {
 			expect(args.result).toBe("Final concise summary from claude.")
 		})
 
+		it("streams partial text via stream_event content_block_delta and ignores the redundant assistant aggregate", async () => {
+			// Realistic claude `--include-partial-messages` event sequence: several
+			// content_block_delta chunks, then a single aggregate `assistant` event
+			// that repeats the full text. We must surface the deltas as separate
+			// text chunks and drop the aggregate so the response is not doubled.
+			// Use chunks > TAIL_HOLD (14 chars) so the tail buffer flushes each
+			// delta separately instead of coalescing them into one emit.
+			spawnMock.mockReturnValueOnce(
+				fakeChild([
+					JSON.stringify({
+						type: "stream_event",
+						event: {
+							type: "content_block_delta",
+							index: 0,
+							delta: { type: "text_delta", text: "Hello there friend " },
+						},
+					}),
+					JSON.stringify({
+						type: "stream_event",
+						event: {
+							type: "content_block_delta",
+							index: 0,
+							delta: { type: "text_delta", text: "this is a longer answer " },
+						},
+					}),
+					JSON.stringify({
+						type: "stream_event",
+						event: {
+							type: "content_block_delta",
+							index: 0,
+							delta: { type: "text_delta", text: "with multiple deltas." },
+						},
+					}),
+					JSON.stringify({
+						type: "assistant",
+						message: {
+							content: [
+								{
+									type: "text",
+									text: "Hello there friend this is a longer answer with multiple deltas.",
+								},
+							],
+						},
+					}),
+					resultEvent(),
+				]),
+			)
+			const handler = new ClaudeCodeHandler({} as ApiHandlerOptions)
+			const text: string[] = []
+			for await (const c of handler.createMessage("", [{ role: "user", content: "x" }])) {
+				if (c.type === "text") text.push(c.text)
+			}
+			expect(text.join("")).toBe("Hello there friend this is a longer answer with multiple deltas.")
+			// Multiple separate text emits — confirms streaming path AND that
+			// the aggregate assistant event is suppressed (otherwise the body
+			// would be duplicated).
+			expect(text.length).toBeGreaterThanOrEqual(2)
+		})
+
+		it("falls back to the aggregate assistant event when no stream_event deltas were received", async () => {
+			// Older CLI versions / `--include-partial-messages` not effective:
+			// we should still surface text from the aggregate assistant event.
+			spawnMock.mockReturnValueOnce(
+				fakeChild([
+					JSON.stringify({
+						type: "assistant",
+						message: { content: [{ type: "text", text: "Full answer." }] },
+					}),
+					resultEvent(),
+				]),
+			)
+			const handler = new ClaudeCodeHandler({} as ApiHandlerOptions)
+			const text: string[] = []
+			for await (const c of handler.createMessage("", [{ role: "user", content: "x" }])) {
+				if (c.type === "text") text.push(c.text)
+			}
+			expect(text.join("")).toBe("Full answer.")
+		})
+
+		it("surfaces thinking_delta from stream_event as reasoning", async () => {
+			spawnMock.mockReturnValueOnce(
+				fakeChild([
+					JSON.stringify({
+						type: "stream_event",
+						event: {
+							type: "content_block_delta",
+							index: 0,
+							delta: { type: "thinking_delta", thinking: "Considering options..." },
+						},
+					}),
+					JSON.stringify({
+						type: "stream_event",
+						event: {
+							type: "content_block_delta",
+							index: 0,
+							delta: { type: "text_delta", text: "Answer." },
+						},
+					}),
+					resultEvent(),
+				]),
+			)
+			const handler = new ClaudeCodeHandler({} as ApiHandlerOptions)
+			const chunks: any[] = []
+			for await (const c of handler.createMessage("", [{ role: "user", content: "x" }])) {
+				chunks.push(c)
+			}
+			const reasoning = chunks.filter((c) => c.type === "reasoning")
+			expect(reasoning.some((c) => c.text.includes("Considering options"))).toBe(true)
+		})
+
 		it("unwraps zoo-code's <user_message> tag and trims the environment_details block", async () => {
 			spawnMock.mockReturnValueOnce(fakeChild([resultEvent()]))
 			const handler = new ClaudeCodeHandler({} as ApiHandlerOptions)
