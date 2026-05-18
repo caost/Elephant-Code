@@ -129,6 +129,11 @@ export class ClaudeCodeHandler extends BaseProvider implements SingleCompletionH
 			"--output-format",
 			"stream-json",
 			"--verbose", // required by claude CLI for stream-json
+			// Without this flag, --print mode buffers the entire response and
+			// only emits one `assistant` event at the end. With it, claude
+			// emits partial chunks as the model generates them, matching what
+			// the user sees in interactive mode.
+			"--include-partial-messages",
 			// Auto-approve tool use in non-interactive mode (same trade-off
 			// as gemini-cli's --approval-mode yolo).
 			"--dangerously-skip-permissions",
