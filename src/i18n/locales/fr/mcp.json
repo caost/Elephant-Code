@@ -5,7 +5,7 @@
 		"invalid_settings_validation": "Format de paramètres MCP invalide : {{errorMessages}}",
 		"create_json": "Échec de la création ou de l'ouverture de .roo/mcp.json : {{error}}",
 		"failed_update_project": "Échec de la mise à jour des serveurs MCP du projet",
-		"invalidJsonArgument": "Zoo a essayé d'utiliser {{toolName}} avec un argument JSON invalide. Nouvelle tentative...",
+		"invalidJsonArgument": "Elephant a essayé d'utiliser {{toolName}} avec un argument JSON invalide. Nouvelle tentative...",
 		"refresh_after_disable": "Échec du rafraîchissement des connexions MCP après désactivation",
 		"refresh_after_enable": "Échec du rafraîchissement des connexions MCP après activation",
 		"disconnect_servers_partial": "Échec de la déconnexion de {{count}} serveur(s) MCP. Vérifiez la sortie pour plus de détails.",
@@ -27,7 +27,7 @@
 	},
 	"oauth": {
 		"callback": {
-			"title": "Rappel OAuth - Zoo Code",
+			"title": "Rappel OAuth - Elephant Code",
 			"success": "Succès !",
 			"failed": "Échec",
 			"auth_failed": "L'authentification a échoué. Veuillez vérifier les journaux du serveur MCP.",

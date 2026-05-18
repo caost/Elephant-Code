@@ -9,6 +9,7 @@ import {
 	deepSeekModels,
 	fireworksModels,
 	geminiModels,
+	geminiCliModels,
 	mistralModels,
 	moonshotModels,
 	openAiCodexModels,
@@ -289,6 +290,9 @@ const geminiSchema = apiModelIdProviderModelSchema.extend({
 })
 
 const geminiCliSchema = apiModelIdProviderModelSchema.extend({
+	geminiCliBinaryPath: z.string().optional(),
+	// Retained for backward compatibility with older saved profiles; no longer
+	// used by the subprocess-based handler.
 	geminiCliOAuthPath: z.string().optional(),
 	geminiCliProjectId: z.string().optional(),
 })
@@ -574,7 +578,7 @@ export const getApiProtocol = (provider: ProviderName | undefined, modelId?: str
  */
 
 export const MODELS_BY_PROVIDER: Record<
-	Exclude<ProviderName, "fake-ai" | "gemini-cli" | "openai">,
+	Exclude<ProviderName, "fake-ai" | "openai">,
 	{ id: ProviderName; label: string; models: string[] }
 > = {
 	anthropic: {
@@ -601,6 +605,11 @@ export const MODELS_BY_PROVIDER: Record<
 		id: "gemini",
 		label: "Google Gemini",
 		models: Object.keys(geminiModels),
+	},
+	"gemini-cli": {
+		id: "gemini-cli",
+		label: "Gemini CLI",
+		models: Object.keys(geminiCliModels),
 	},
 	mistral: {
 		id: "mistral",

@@ -5,7 +5,7 @@
 		"invalid_settings_validation": "Formato de configuración MCP no válido: {{errorMessages}}",
 		"create_json": "Error al crear o abrir .roo/mcp.json: {{error}}",
 		"failed_update_project": "Error al actualizar los servidores MCP del proyecto",
-		"invalidJsonArgument": "Zoo intentó usar {{toolName}} con un argumento JSON no válido. Reintentando...",
+		"invalidJsonArgument": "Elephant intentó usar {{toolName}} con un argumento JSON no válido. Reintentando...",
 		"refresh_after_disable": "Error al actualizar las conexiones MCP después de desactivar",
 		"refresh_after_enable": "Error al actualizar las conexiones MCP después de activar",
 		"disconnect_servers_partial": "Error al desconectar {{count}} servidor(es) MCP. Revisa la salida para más detalles.",
@@ -27,7 +27,7 @@
 	},
 	"oauth": {
 		"callback": {
-			"title": "OAuth Callback - Zoo Code",
+			"title": "OAuth Callback - Elephant Code",
 			"success": "¡Éxito!",
 			"failed": "Fallido",
 			"auth_failed": "La autenticación falló. Por favor, comprueba los registros del servidor MCP.",

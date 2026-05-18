@@ -4,7 +4,7 @@
 		"task_placeholder": "Escriu la teva tasca aquí"
 	},
 	"extension": {
-		"name": "Zoo Code",
+		"name": "Elephant Code",
 		"description": "Tot un equip de desenvolupadors d'IA al teu editor."
 	},
 	"number_format": {
@@ -226,8 +226,8 @@
 	},
 	"mdm": {
 		"errors": {
-			"cloud_auth_required": "La teva organització requereix autenticació de Zoo Code Cloud. Si us plau, inicia sessió per continuar.",
-			"organization_mismatch": "Has d'estar autenticat amb el compte de Zoo Code Cloud de la teva organització.",
+			"cloud_auth_required": "La teva organització requereix autenticació de Elephant Code Cloud. Si us plau, inicia sessió per continuar.",
+			"organization_mismatch": "Has d'estar autenticat amb el compte de Elephant Code Cloud de la teva organització.",
 			"manual_url_empty": "Si us plau, introdueix una URL de callback vàlida",
 			"manual_url_no_query": "URL de callback no vàlida: falten paràmetres de consulta",
 			"manual_url_missing_params": "URL de callback no vàlida: falten paràmetres requerits (code i state)",
@@ -258,14 +258,14 @@
 	},
 	"zooAuth": {
 		"errors": {
-			"invalid_token_received": "Zoo Code: S'ha rebut un token d'autenticació no vàlid.",
-			"token_verification_failed": "Zoo Code: Ha fallat la verificació del token.",
-			"invalid_token": "Zoo Code: Token no vàlid.",
-			"could_not_verify_token": "Zoo Code: No s'ha pogut verificar el token."
+			"invalid_token_received": "Elephant Code: S'ha rebut un token d'autenticació no vàlid.",
+			"token_verification_failed": "Elephant Code: Ha fallat la verificació del token.",
+			"invalid_token": "Elephant Code: Token no vàlid.",
+			"could_not_verify_token": "Elephant Code: No s'ha pogut verificar el token."
 		},
 		"info": {
-			"connected": "Zoo Code: Connectat correctament! Ara podeu utilitzar Zoo Code com a proveïdor d'IA.",
-			"disconnected": "Zoo Code: Desconnectat correctament."
+			"connected": "Elephant Code: Connectat correctament! Ara podeu utilitzar Elephant Code com a proveïdor d'IA.",
+			"disconnected": "Elephant Code: Desconnectat correctament."
 		}
 	}
 }

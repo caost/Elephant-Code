@@ -18,6 +18,7 @@ import {
 	anthropicDefaultModelId,
 	qwenCodeDefaultModelId,
 	geminiDefaultModelId,
+	geminiCliDefaultModelId,
 	deepSeekDefaultModelId,
 	moonshotDefaultModelId,
 	mistralDefaultModelId,
@@ -83,6 +84,7 @@ import {
 	OpenRouter,
 	Poe,
 	QwenCode,
+	GeminiCli,
 	Requesty,
 	SambaNova,
 	Unbound,
@@ -343,6 +345,7 @@ const ApiOptions = ({
 				"qwen-code": { field: "apiModelId", default: qwenCodeDefaultModelId },
 				"openai-native": { field: "apiModelId", default: openAiNativeDefaultModelId },
 				gemini: { field: "apiModelId", default: geminiDefaultModelId },
+				"gemini-cli": { field: "apiModelId", default: geminiCliDefaultModelId },
 				deepseek: { field: "apiModelId", default: deepSeekDefaultModelId },
 				moonshot: { field: "apiModelId", default: moonshotDefaultModelId },
 				minimax: { field: "apiModelId", default: minimaxDefaultModelId },
@@ -588,6 +591,13 @@ const ApiOptions = ({
 
 					{selectedProvider === "gemini" && (
 						<Gemini
+							apiConfiguration={apiConfiguration}
+							setApiConfigurationField={setApiConfigurationField}
+						/>
+					)}
+
+					{selectedProvider === "gemini-cli" && (
+						<GeminiCli
 							apiConfiguration={apiConfiguration}
 							setApiConfigurationField={setApiConfigurationField}
 						/>
