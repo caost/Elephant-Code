@@ -12,6 +12,8 @@ import {
 	geminiModels,
 	geminiCliModels,
 	geminiCliDefaultModelId,
+	claudeCodeModels,
+	claudeCodeDefaultModelId,
 	mistralModels,
 	openAiModelInfoSaneDefaults,
 	openAiNativeModels,
@@ -341,6 +343,15 @@ function getSelectedModel({
 			const requested = apiConfiguration.apiModelId
 			const validatedId = requested && requested in geminiCliModels ? requested : geminiCliDefaultModelId
 			const info = geminiCliModels[validatedId as keyof typeof geminiCliModels]
+			return { id: validatedId, info }
+		}
+		case "claude-code": {
+			// Same fall-back contract as gemini-cli: tolerate unknown / legacy
+			// apiModelId values by returning the default registry entry so the
+			// TaskHeader Context Length and tooltip metadata stay populated.
+			const requested = apiConfiguration.apiModelId
+			const validatedId = requested && requested in claudeCodeModels ? requested : claudeCodeDefaultModelId
+			const info = claudeCodeModels[validatedId as keyof typeof claudeCodeModels]
 			return { id: validatedId, info }
 		}
 		case "openai-codex": {

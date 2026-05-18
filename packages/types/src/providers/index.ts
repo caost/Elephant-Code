@@ -5,6 +5,7 @@ export * from "./deepseek.js"
 export * from "./fireworks.js"
 export * from "./gemini.js"
 export * from "./gemini-cli.js"
+export * from "./claude-code.js"
 export * from "./lite-llm.js"
 export * from "./lm-studio.js"
 export * from "./mistral.js"
@@ -34,6 +35,7 @@ import { deepSeekDefaultModelId } from "./deepseek.js"
 import { fireworksDefaultModelId } from "./fireworks.js"
 import { geminiDefaultModelId } from "./gemini.js"
 import { geminiCliDefaultModelId } from "./gemini-cli.js"
+import { claudeCodeDefaultModelId } from "./claude-code.js"
 import { litellmDefaultModelId } from "./lite-llm.js"
 import { mistralDefaultModelId } from "./mistral.js"
 import { moonshotDefaultModelId } from "./moonshot.js"
@@ -119,6 +121,8 @@ export function getProviderDefaultModelId(
 			return vercelAiGatewayDefaultModelId
 		case "gemini-cli":
 			return geminiCliDefaultModelId
+		case "claude-code":
+			return claudeCodeDefaultModelId
 		case "anthropic":
 		case "fake-ai":
 		default:
