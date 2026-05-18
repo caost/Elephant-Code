@@ -19,6 +19,7 @@ import {
 	qwenCodeDefaultModelId,
 	geminiDefaultModelId,
 	geminiCliDefaultModelId,
+	claudeCodeDefaultModelId,
 	deepSeekDefaultModelId,
 	moonshotDefaultModelId,
 	mistralDefaultModelId,
@@ -85,6 +86,7 @@ import {
 	Poe,
 	QwenCode,
 	GeminiCli,
+	ClaudeCode,
 	Requesty,
 	SambaNova,
 	Unbound,
@@ -346,6 +348,7 @@ const ApiOptions = ({
 				"openai-native": { field: "apiModelId", default: openAiNativeDefaultModelId },
 				gemini: { field: "apiModelId", default: geminiDefaultModelId },
 				"gemini-cli": { field: "apiModelId", default: geminiCliDefaultModelId },
+				"claude-code": { field: "apiModelId", default: claudeCodeDefaultModelId },
 				deepseek: { field: "apiModelId", default: deepSeekDefaultModelId },
 				moonshot: { field: "apiModelId", default: moonshotDefaultModelId },
 				minimax: { field: "apiModelId", default: minimaxDefaultModelId },
@@ -598,6 +601,13 @@ const ApiOptions = ({
 
 					{selectedProvider === "gemini-cli" && (
 						<GeminiCli
+							apiConfiguration={apiConfiguration}
+							setApiConfigurationField={setApiConfigurationField}
+						/>
+					)}
+
+					{selectedProvider === "claude-code" && (
+						<ClaudeCode
 							apiConfiguration={apiConfiguration}
 							setApiConfigurationField={setApiConfigurationField}
 						/>

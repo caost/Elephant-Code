@@ -18,6 +18,7 @@ import {
 	LmStudioHandler,
 	GeminiHandler,
 	GeminiCliHandler,
+	ClaudeCodeHandler,
 	OpenAiNativeHandler,
 	DeepSeekHandler,
 	MoonshotHandler,
@@ -144,6 +145,8 @@ export function buildApiHandler(configuration: ProviderSettings): ApiHandler {
 			return new GeminiHandler(options)
 		case "gemini-cli":
 			return new GeminiCliHandler(options)
+		case "claude-code":
+			return new ClaudeCodeHandler(options)
 		case "openai-codex":
 			return new OpenAiCodexHandler(options)
 		case "openai-native":

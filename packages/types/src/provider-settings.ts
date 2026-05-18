@@ -10,6 +10,7 @@ import {
 	fireworksModels,
 	geminiModels,
 	geminiCliModels,
+	claudeCodeModels,
 	mistralModels,
 	moonshotModels,
 	openAiCodexModels,
@@ -115,6 +116,7 @@ export const providerNames = [
 	"anthropic",
 	"bedrock",
 	"baseten",
+	"claude-code",
 	"deepseek",
 	"fireworks",
 	"gemini",
@@ -297,6 +299,10 @@ const geminiCliSchema = apiModelIdProviderModelSchema.extend({
 	geminiCliProjectId: z.string().optional(),
 })
 
+const claudeCodeSchema = apiModelIdProviderModelSchema.extend({
+	claudeCodeBinaryPath: z.string().optional(),
+})
+
 const openAiCodexSchema = apiModelIdProviderModelSchema.extend({
 	// No additional settings needed - uses OAuth authentication
 })
@@ -414,6 +420,7 @@ export const providerSettingsSchemaDiscriminated = z.discriminatedUnion("apiProv
 	lmStudioSchema.merge(z.object({ apiProvider: z.literal("lmstudio") })),
 	geminiSchema.merge(z.object({ apiProvider: z.literal("gemini") })),
 	geminiCliSchema.merge(z.object({ apiProvider: z.literal("gemini-cli") })),
+	claudeCodeSchema.merge(z.object({ apiProvider: z.literal("claude-code") })),
 	openAiCodexSchema.merge(z.object({ apiProvider: z.literal("openai-codex") })),
 	openAiNativeSchema.merge(z.object({ apiProvider: z.literal("openai-native") })),
 	mistralSchema.merge(z.object({ apiProvider: z.literal("mistral") })),
@@ -448,6 +455,7 @@ export const providerSettingsSchema = z.object({
 	...lmStudioSchema.shape,
 	...geminiSchema.shape,
 	...geminiCliSchema.shape,
+	...claudeCodeSchema.shape,
 	...openAiCodexSchema.shape,
 	...openAiNativeSchema.shape,
 	...mistralSchema.shape,
@@ -526,6 +534,7 @@ export const modelIdKeysByProvider: Record<TypicalProvider, ModelIdKey> = {
 	lmstudio: "lmStudioModelId",
 	gemini: "apiModelId",
 	"gemini-cli": "apiModelId",
+	"claude-code": "apiModelId",
 	mistral: "apiModelId",
 	moonshot: "apiModelId",
 	minimax: "apiModelId",
@@ -610,6 +619,11 @@ export const MODELS_BY_PROVIDER: Record<
 		id: "gemini-cli",
 		label: "Gemini CLI",
 		models: Object.keys(geminiCliModels),
+	},
+	"claude-code": {
+		id: "claude-code",
+		label: "Claude Code",
+		models: Object.keys(claudeCodeModels),
 	},
 	mistral: {
 		id: "mistral",
