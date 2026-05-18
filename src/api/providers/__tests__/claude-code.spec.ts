@@ -394,6 +394,54 @@ describe("ClaudeCodeHandler (subprocess)", () => {
 			expect(prompt).not.toContain("fake history")
 		})
 
+		it("extracts user decision text from a trailing tool_result-only message", async () => {
+			spawnMock.mockReturnValueOnce(fakeChild([resultEvent()]))
+			const handler = new ClaudeCodeHandler({} as ApiHandlerOptions)
+			const gen = handler.createMessage("", [
+				{ role: "user", content: "do the thing" },
+				{ role: "assistant", content: "first answer awaiting approval" },
+				{
+					role: "user",
+					content: [
+						{
+							type: "tool_result",
+							tool_use_id: "abc",
+							content: "no, use the other approach instead",
+						} as any,
+					],
+				},
+			])
+			for await (const _ of gen) void _
+			const args = spawnMock.mock.calls[0][1] as string[]
+			const prompt = args[args.indexOf("-p") + 1]
+			expect(prompt).toContain("no, use the other approach instead")
+			expect(prompt).not.toContain("do the thing")
+		})
+
+		it("extracts user decision text from tool_result whose content is a text-block array", async () => {
+			spawnMock.mockReturnValueOnce(fakeChild([resultEvent()]))
+			const handler = new ClaudeCodeHandler({} as ApiHandlerOptions)
+			const gen = handler.createMessage("", [
+				{ role: "user", content: "initial request" },
+				{ role: "assistant", content: "draft response" },
+				{
+					role: "user",
+					content: [
+						{
+							type: "tool_result",
+							tool_use_id: "xyz",
+							content: [{ type: "text", text: "rewrite to be terser" }],
+						} as any,
+					],
+				},
+			])
+			for await (const _ of gen) void _
+			const args = spawnMock.mock.calls[0][1] as string[]
+			const prompt = args[args.indexOf("-p") + 1]
+			expect(prompt).toContain("rewrite to be terser")
+			expect(prompt).not.toContain("initial request")
+		})
+
 		it("includes mode roleDefinition and custom instructions but drops tool boilerplate", async () => {
 			spawnMock.mockReturnValueOnce(fakeChild([resultEvent()]))
 			const systemPrompt = [
