@@ -617,15 +617,54 @@ function extractModeInstructions(systemPrompt: string): {
 
 /**
  * Extract ONLY genuinely human-authored text from a message. We deliberately
- * skip tool_use / tool_result blocks: those are synthetic content produced by
- * zoo-code's agent loop, never something the user typed.
+ * skip tool_use / tool_result blocks (synthetic agent-loop content) and
+ * strip zoo-code's `<user_message>` / `<environment_details>` wrappers so
+ * the CLI sees just what the user actually typed instead of treating the
+ * wrappers as metadata.
  */
 function extractHumanText(m: Anthropic.Messages.MessageParam): string {
-	if (typeof m.content === "string") return m.content.trim()
-	if (!Array.isArray(m.content)) return ""
-	const parts: string[] = []
-	for (const block of m.content) {
-		if (block.type === "text") parts.push(block.text)
+	const rawText =
+		typeof m.content === "string"
+			? m.content
+			: Array.isArray(m.content)
+				? m.content
+						.filter((b): b is { type: "text"; text: string } => b.type === "text")
+						.map((b) => b.text)
+						.join("\n")
+				: ""
+	return cleanZooCodeUserText(rawText)
+}
+
+/**
+ * Strip zoo-code's wrapping XML so the underlying CLI sees just what the user
+ * actually typed. zoo-code's startTask emits the prompt as
+ * `<user_message>\n…\n</user_message>` (Task.ts:1977-1981) and later appends
+ * a separate `<environment_details>` text block. CLIs treat unfamiliar XML
+ * tags as metadata, so leaving them in makes the model reply with "no user
+ * request was attached." We surface the inner prompt text and collapse the
+ * environment block into a single line about cwd.
+ */
+function cleanZooCodeUserText(raw: string): string {
+	let text = raw
+
+	const userMessageMatch = text.match(/<user_message>\s*([\s\S]*?)\s*<\/user_message>/)
+	let userMessage: string | undefined
+	if (userMessageMatch) {
+		userMessage = userMessageMatch[1].trim()
+		text = text.replace(userMessageMatch[0], "").trim()
 	}
-	return parts.join("\n").trim()
+
+	const envMatch = text.match(/<environment_details>([\s\S]*?)<\/environment_details>/)
+	let envSummary = ""
+	if (envMatch) {
+		const cwdLine = envMatch[1].match(/Current Working Directory[^\n]*/)?.[0] ?? ""
+		envSummary = cwdLine.trim()
+		text = text.replace(envMatch[0], "").trim()
+	}
+
+	const parts: string[] = []
+	if (userMessage) parts.push(userMessage)
+	if (text) parts.push(text)
+	if (envSummary) parts.push(`(${envSummary})`)
+	return parts.join("\n\n").trim()
 }

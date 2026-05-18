@@ -326,6 +326,31 @@ describe("GeminiCliHandler (subprocess)", () => {
 			expect(aArgs[aArgs.indexOf("--session-id") + 1]).not.toBe(bArgs[bArgs.indexOf("--session-id") + 1])
 		})
 
+		it("unwraps zoo-code's <user_message> tag and trims the environment_details block", async () => {
+			spawnMock.mockReturnValueOnce(fakeChild([JSON.stringify({ type: "result", status: "ok", stats: {} })]))
+			const handler = new GeminiCliHandler({} as ApiHandlerOptions)
+			const gen = handler.createMessage("", [
+				{
+					role: "user",
+					content: [
+						{ type: "text", text: "<user_message>\n이 프로젝트 구조를 설명해줘\n</user_message>" },
+						{
+							type: "text",
+							text: "<environment_details>\n# VSCode Visible Files\nfoo.ts\n\n# Current Working Directory (/Users/me/proj) Files\nbar.ts\nbaz.ts\n</environment_details>",
+						},
+					],
+				},
+			])
+			for await (const _ of gen) void _
+			const args = spawnMock.mock.calls[0][1] as string[]
+			const prompt = args[args.indexOf("-p") + 1]
+			expect(prompt).toContain("이 프로젝트 구조를 설명해줘")
+			expect(prompt).not.toContain("<user_message>")
+			expect(prompt).not.toContain("<environment_details>")
+			expect(prompt).not.toContain("# VSCode Visible Files")
+			expect(prompt).not.toContain("bar.ts")
+		})
+
 		it("sends only the latest user-typed text from message history (skips assistant + tool_result-only turns)", async () => {
 			spawnMock.mockReturnValueOnce(fakeChild([JSON.stringify({ type: "result", status: "ok", stats: {} })]))
 			const handler = new GeminiCliHandler({} as ApiHandlerOptions)
