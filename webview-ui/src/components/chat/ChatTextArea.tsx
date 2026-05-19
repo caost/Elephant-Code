@@ -98,6 +98,7 @@ export const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 			commands,
 			enterBehavior,
 			lockApiConfigAcrossModes,
+			selectedApiConfigIds,
 		} = useExtensionState()
 
 		// Find the ID and display text for the currently selected API configuration.
@@ -255,6 +256,38 @@ export const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 		}, [inputValue, setInputValue, t])
 
 		const allModes = useMemo(() => getAllModes(customModes), [customModes])
+
+		// Multi-provider compare picker. Only active when the current mode opts
+		// in via `enableMultipleProviders`. We track the selection here (not in
+		// extension state) for snappy UX; the host is notified via
+		// `setSelectedApiConfigIds` on every change so the set survives reload.
+		const currentModeConfig = useMemo(
+			() => allModes.find((m) => m.slug === mode),
+			[allModes, mode],
+		)
+		const multiSelectEnabled = !!currentModeConfig?.enableMultipleProviders
+		const persistedSelectedIds = useMemo(
+			() => (selectedApiConfigIds && selectedApiConfigIds.length > 0 ? selectedApiConfigIds : []),
+			[selectedApiConfigIds],
+		)
+		const [selectedIdsLocal, setSelectedIdsLocal] = useState<string[]>(persistedSelectedIds)
+		// Re-sync when extension state pushes a fresh value (e.g. after reload).
+		useEffect(() => {
+			setSelectedIdsLocal(persistedSelectedIds)
+		}, [persistedSelectedIds])
+		// Default to the single active profile when entering compare mode for
+		// the first time, so the user has at least one provider already ticked.
+		useEffect(() => {
+			if (multiSelectEnabled && selectedIdsLocal.length === 0 && currentConfigId) {
+				const next = [currentConfigId]
+				setSelectedIdsLocal(next)
+				vscode.postMessage({ type: "setSelectedApiConfigIds", providerProfileIds: next })
+			}
+		}, [multiSelectEnabled, selectedIdsLocal.length, currentConfigId])
+		const handleMultiApiConfigChange = useCallback((next: string[]) => {
+			setSelectedIdsLocal(next)
+			vscode.postMessage({ type: "setSelectedApiConfigIds", providerProfileIds: next })
+		}, [])
 
 		// Memoized check for whether the input has content (text or images)
 		const hasInputContent = useMemo(() => {
@@ -1318,6 +1351,9 @@ export const ChatTextArea = forwardRef<HTMLTextAreaElement, ChatTextAreaProps>(
 							togglePinnedApiConfig={togglePinnedApiConfig}
 							lockApiConfigAcrossModes={!!lockApiConfigAcrossModes}
 							onToggleLockApiConfig={handleToggleLockApiConfig}
+							multiSelect={multiSelectEnabled}
+							values={selectedIdsLocal}
+							onMultiChange={handleMultiApiConfigChange}
 						/>
 						<AutoApproveDropdown triggerClassName="min-w-[28px] text-ellipsis overflow-hidden flex-shrink" />
 					</div>

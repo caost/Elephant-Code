@@ -86,6 +86,7 @@ const ChatViewComponent: React.ForwardRefRenderFunction<ChatViewRef, ChatViewPro
 		soundVolume,
 		messageQueue = [],
 		showWorktreesInHomeScreen,
+		selectedApiConfigIds,
 	} = useExtensionState()
 
 	// Show a WarningRow when the user sends a message with a retired provider.
@@ -621,7 +622,18 @@ const ChatViewComponent: React.ForwardRefRenderFunction<ChatViewRef, ChatViewPro
 				userRespondedRef.current = true
 
 				if (messagesRef.current.length === 0) {
-					vscode.postMessage({ type: "newTask", text, images })
+					// Multi-provider compare: include the selected set on the
+					// initial dispatch. The host branches to createTaskGroup
+					// when length > 1; single id (or none) keeps createTask.
+					// Only honor the selection when the active mode opts in,
+					// so a stale set from another mode doesn't accidentally
+					// fan out.
+					const activeMode = customModes?.find((m) => m.slug === mode)
+					const providerProfileIds =
+						activeMode?.enableMultipleProviders && (selectedApiConfigIds?.length ?? 0) > 1
+							? selectedApiConfigIds
+							: undefined
+					vscode.postMessage({ type: "newTask", text, images, providerProfileIds })
 				} else if (clineAskRef.current) {
 					if (clineAskRef.current === "followup") {
 						markFollowUpAsAnswered()

@@ -11,10 +11,13 @@ import { Button } from "@/components/ui"
 import { IconButton } from "./IconButton"
 
 interface ApiConfigSelectorProps {
+	/** Single-select active id. Ignored when multiSelect is true. */
 	value: string
+	/** Text rendered in the trigger button (single-select only). */
 	displayName: string
 	disabled?: boolean
 	title: string
+	/** Single-select change handler. Called with the clicked id. */
 	onChange: (value: string) => void
 	triggerClassName?: string
 	listApiConfigMeta: Array<{ id: string; name: string; modelId?: string }>
@@ -22,6 +25,16 @@ interface ApiConfigSelectorProps {
 	togglePinnedApiConfig: (id: string) => void
 	lockApiConfigAcrossModes: boolean
 	onToggleLockApiConfig: () => void
+	/**
+	 * Multi-select mode. When true, rows render as toggleable checkboxes,
+	 * the popover stays open across selections, and the trigger summarises
+	 * the current set. Activated by the parent when the active mode has
+	 * `enableMultipleProviders: true`. Single-select callers leave both
+	 * `multiSelect` and `values` unset.
+	 */
+	multiSelect?: boolean
+	values?: string[]
+	onMultiChange?: (values: string[]) => void
 }
 
 export const ApiConfigSelector = ({
@@ -36,11 +49,20 @@ export const ApiConfigSelector = ({
 	togglePinnedApiConfig,
 	lockApiConfigAcrossModes,
 	onToggleLockApiConfig,
+	multiSelect = false,
+	values,
+	onMultiChange,
 }: ApiConfigSelectorProps) => {
 	const { t } = useAppTranslation()
 	const [open, setOpen] = useState(false)
 	const [searchValue, setSearchValue] = useState("")
 	const portalContainer = useRooPortal("roo-portal")
+
+	// Defensive: when multi-select is on but the parent hasn't wired the
+	// multi handler yet, fall back to single-select behavior so nothing
+	// silently breaks.
+	const effectiveMultiSelect = multiSelect && !!onMultiChange
+	const selectedSet = useMemo(() => new Set(values ?? []), [values])
 
 	// Create searchable items for fuzzy search.
 	const searchableItems = useMemo(
@@ -77,11 +99,23 @@ export const ApiConfigSelector = ({
 
 	const handleSelect = useCallback(
 		(configId: string) => {
+			if (effectiveMultiSelect) {
+				// Toggle in/out of the set; keep popover open so the user can
+				// pick several providers without re-opening.
+				const next = new Set(selectedSet)
+				if (next.has(configId)) {
+					next.delete(configId)
+				} else {
+					next.add(configId)
+				}
+				onMultiChange?.([...next])
+				return
+			}
 			onChange(configId)
 			setOpen(false)
 			setSearchValue("")
 		},
-		[onChange],
+		[effectiveMultiSelect, selectedSet, onMultiChange, onChange],
 	)
 
 	const handleEditClick = useCallback(() => {
@@ -91,7 +125,7 @@ export const ApiConfigSelector = ({
 
 	const renderConfigItem = useCallback(
 		(config: { id: string; name: string; modelId?: string }, isPinned: boolean) => {
-			const isCurrentConfig = config.id === value
+			const isCurrentConfig = effectiveMultiSelect ? selectedSet.has(config.id) : config.id === value
 
 			return (
 				<div
@@ -102,7 +136,8 @@ export const ApiConfigSelector = ({
 						"hover:bg-vscode-list-hoverBackground",
 						isCurrentConfig &&
 							"bg-vscode-list-activeSelectionBackground text-vscode-list-activeSelectionForeground",
-					)}>
+					)}
+					data-testid={`api-config-row-${config.id}`}>
 					<div className="flex-1 min-w-0 flex items-center gap-1 overflow-hidden">
 						<span className="flex-shrink-0">{config.name}</span>
 						{config.modelId && (
@@ -142,8 +177,23 @@ export const ApiConfigSelector = ({
 				</div>
 			)
 		},
-		[value, handleSelect, t, togglePinnedApiConfig],
+		[effectiveMultiSelect, selectedSet, value, handleSelect, t, togglePinnedApiConfig],
 	)
+
+	// Trigger label. Single-select keeps the existing `displayName`. Multi-select
+	// summarises the set: empty → "Select providers", one → that provider's
+	// name, ≤ 3 → comma-joined names, more → "N providers".
+	const triggerLabel = useMemo(() => {
+		if (!effectiveMultiSelect) return displayName
+		const ids = values ?? []
+		if (ids.length === 0) return "Select providers"
+		const names = ids
+			.map((id) => listApiConfigMeta.find((c) => c.id === id)?.name)
+			.filter((n): n is string => !!n)
+		if (names.length === 1) return names[0]
+		if (names.length <= 3) return names.join(", ")
+		return `${ids.length} providers`
+	}, [effectiveMultiSelect, displayName, values, listApiConfigMeta])
 
 	return (
 		<Popover open={open} onOpenChange={setOpen} data-testid="api-config-selector-root">
@@ -160,7 +210,7 @@ export const ApiConfigSelector = ({
 							: "opacity-90 hover:opacity-100 hover:bg-[rgba(255,255,255,0.03)] hover:border-[rgba(255,255,255,0.15)] cursor-pointer",
 						triggerClassName,
 					)}>
-					<span className="truncate">{displayName}</span>
+					<span className="truncate">{triggerLabel}</span>
 				</PopoverTrigger>
 			</StandardTooltip>
 			<PopoverContent
@@ -192,7 +242,9 @@ export const ApiConfigSelector = ({
 					) : (
 						<div className="p-3 border-b border-vscode-dropdown-border">
 							<p className="text-xs text-vscode-descriptionForeground m-0">
-								{t("prompts:apiConfiguration.select")}
+								{effectiveMultiSelect
+									? "Select one or more providers to compare. One prompt fans out to all of them in parallel."
+									: t("prompts:apiConfiguration.select")}
 							</p>
 						</div>
 					)}
@@ -232,16 +284,21 @@ export const ApiConfigSelector = ({
 								onClick={handleEditClick}
 								tooltip={false}
 							/>
-							<IconButton
-								iconClass={lockApiConfigAcrossModes ? "codicon-lock" : "codicon-unlock"}
-								title={
-									lockApiConfigAcrossModes
-										? t("chat:unlockApiConfigAcrossModes")
-										: t("chat:lockApiConfigAcrossModes")
-								}
-								className={lockApiConfigAcrossModes ? "text-vscode-focusBorder" : "opacity-60"}
-								onClick={onToggleLockApiConfig}
-							/>
+							{/* Lock-across-modes is incompatible with multi-select for now
+								(the lock stores a single profile name). Hide it in compare
+								mode rather than letting it silently no-op. */}
+							{!effectiveMultiSelect && (
+								<IconButton
+									iconClass={lockApiConfigAcrossModes ? "codicon-lock" : "codicon-unlock"}
+									title={
+										lockApiConfigAcrossModes
+											? t("chat:unlockApiConfigAcrossModes")
+											: t("chat:lockApiConfigAcrossModes")
+									}
+									className={lockApiConfigAcrossModes ? "text-vscode-focusBorder" : "opacity-60"}
+									onClick={onToggleLockApiConfig}
+								/>
+							)}
 						</div>
 
 						{/* Info icon and title on the right with matching spacing */}
@@ -252,7 +309,7 @@ export const ApiConfigSelector = ({
 								</StandardTooltip>
 							)}
 							<h4 className="m-0 font-medium text-sm text-vscode-descriptionForeground">
-								{t("prompts:apiConfiguration.title")}
+								{effectiveMultiSelect ? "Compare providers" : t("prompts:apiConfiguration.title")}
 							</h4>
 						</div>
 					</div>

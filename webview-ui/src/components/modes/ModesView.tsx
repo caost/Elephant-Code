@@ -489,6 +489,23 @@ const ModesView = () => {
 		[updateCustomMode],
 	)
 
+	// Toggle the per-mode "enable multiple providers" flag. Only writable on
+	// custom modes (matching the tool-group toggles above) — built-in modes
+	// keep their canonical schema.
+	const handleEnableMultipleProvidersChange = useCallback(
+		(customMode: ModeConfig | undefined) => (e: Event | React.FormEvent<HTMLElement>) => {
+			if (!customMode) return
+			const target = (e as CustomEvent)?.detail?.target || (e.target as HTMLInputElement)
+			const checked = !!target.checked
+			updateCustomMode(customMode.slug, {
+				...customMode,
+				enableMultipleProviders: checked,
+				source: customMode.source || "global",
+			})
+		},
+		[updateCustomMode],
+	)
+
 	// Handle clicks outside the config menu
 	useEffect(() => {
 		const handleClickOutside = () => {
@@ -1187,6 +1204,30 @@ const ModesView = () => {
 						)}
 					</div>
 				</>
+
+				{/* Multi-provider compare toggle. Custom modes only — when true,
+					the chat provider picker becomes multi-select and selecting 2+
+					providers fans one prompt out in parallel (read-only enforced
+					by TaskGroup). */}
+				{(() => {
+					const customMode = findModeBySlug(visualMode, customModes)
+					if (!customMode) return null
+					return (
+						<div className="mb-4">
+							<VSCodeCheckbox
+								checked={!!customMode.enableMultipleProviders}
+								onChange={handleEnableMultipleProvidersChange(customMode)}
+								data-testid="enable-multiple-providers-toggle">
+								<div className="font-semibold">Multiple providers</div>
+								<div className="text-xs text-vscode-descriptionForeground mt-0.5">
+									Allow picking multiple providers in the chat. One prompt fans out to all of
+									them in parallel; each response shows in its own card. Tool use is forced
+									read-only while compare is active.
+								</div>
+							</VSCodeCheckbox>
+						</div>
+					)
+				})()}
 
 				{/* Role definition for both built-in and custom modes */}
 				<div className="mb-2">

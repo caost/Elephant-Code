@@ -497,6 +497,93 @@ describe("ApiConfigSelector", () => {
 		expect(pinnedStickyHeader).toHaveClass("border-b")
 	})
 
+	test("multi-select: clicking a row adds the id via onMultiChange", () => {
+		const mockOnMultiChange = vi.fn()
+		render(
+			<ApiConfigSelector
+				{...defaultProps}
+				multiSelect
+				values={["config1"]}
+				onMultiChange={mockOnMultiChange}
+			/>,
+		)
+
+		fireEvent.click(screen.getByTestId("dropdown-trigger"))
+		fireEvent.click(screen.getByText("Config 2"))
+
+		expect(mockOnMultiChange).toHaveBeenCalledTimes(1)
+		expect(mockOnMultiChange).toHaveBeenCalledWith(["config1", "config2"])
+		// Single-select onChange must NOT fire in multi-select mode.
+		expect(mockOnChange).not.toHaveBeenCalled()
+	})
+
+	test("multi-select: clicking an already-selected row removes it", () => {
+		const mockOnMultiChange = vi.fn()
+		render(
+			<ApiConfigSelector
+				{...defaultProps}
+				multiSelect
+				values={["config1", "config2"]}
+				onMultiChange={mockOnMultiChange}
+			/>,
+		)
+
+		fireEvent.click(screen.getByTestId("dropdown-trigger"))
+		fireEvent.click(screen.getByText("Config 2"))
+
+		expect(mockOnMultiChange).toHaveBeenCalledWith(["config1"])
+	})
+
+	test("multi-select: trigger summarises the selection (count when > 3)", () => {
+		const props = {
+			...defaultProps,
+			listApiConfigMeta: Array.from({ length: 5 }, (_, i) => ({
+				id: `c${i + 1}`,
+				name: `Config ${i + 1}`,
+			})),
+		}
+		const { rerender } = render(
+			<ApiConfigSelector
+				{...props}
+				multiSelect
+				values={["c1", "c2", "c3", "c4"]}
+				onMultiChange={vi.fn()}
+			/>,
+		)
+		expect(screen.getByTestId("dropdown-trigger")).toHaveTextContent("4 providers")
+
+		// ≤ 3 selected → comma-joined names.
+		rerender(
+			<ApiConfigSelector
+				{...props}
+				multiSelect
+				values={["c1", "c2"]}
+				onMultiChange={vi.fn()}
+			/>,
+		)
+		expect(screen.getByTestId("dropdown-trigger")).toHaveTextContent("Config 1, Config 2")
+	})
+
+	test("multi-select: each selected row shows a check mark", () => {
+		render(
+			<ApiConfigSelector
+				{...defaultProps}
+				multiSelect
+				values={["config1", "config2"]}
+				onMultiChange={vi.fn()}
+			/>,
+		)
+		fireEvent.click(screen.getByTestId("dropdown-trigger"))
+
+		const popoverContent = screen.getByTestId("popover-content")
+		const config1Row = popoverContent.querySelector('[data-testid="api-config-row-config1"]')
+		const config2Row = popoverContent.querySelector('[data-testid="api-config-row-config2"]')
+		const config3Row = popoverContent.querySelector('[data-testid="api-config-row-config3"]')
+		expect(config1Row?.querySelector(".codicon-check")).toBeInTheDocument()
+		expect(config2Row?.querySelector(".codicon-check")).toBeInTheDocument()
+		expect(config3Row?.querySelector(".codicon-check")).not.toBeInTheDocument()
+	})
+
 	test("displays all configs in scrollable container when no configs are pinned", () => {
 		const manyConfigs = Array.from({ length: 10 }, (_, i) => ({
 			id: `config${i + 1}`,
