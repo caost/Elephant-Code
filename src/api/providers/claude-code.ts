@@ -23,6 +23,12 @@ import type { ApiStream } from "../transform/stream"
 
 import type { SingleCompletionHandler, ApiHandlerCreateMessageMetadata } from "../index"
 import { BaseProvider } from "./base-provider"
+import {
+	ASK_QUESTION_OPEN,
+	ASK_QUESTION_CLOSE,
+	parseAskFollowupQuestionBlock,
+	RESPONSE_FORMAT_BLOCK,
+} from "./utils/ask-followup-question"
 
 type ClaudeCodeHandlerOptions = ApiHandlerOptions & {
 	claudeCodeBinaryPath?: string
@@ -202,17 +208,25 @@ export class ClaudeCodeHandler extends BaseProvider implements SingleCompletionH
 		// the full text. Flip this once we see any delta so we know to ignore
 		// the aggregate and avoid double-emitting the response.
 		let receivedDeltaStream = false
-		// Tail-buffer the visible text so the `<task_summary>` opening tag never
-		// reaches the user mid-stream, then split body vs summary once detected.
+		// Tail-buffer the visible text so neither `<task_summary>` nor
+		// `<ask_followup_question>` reach the user mid-stream. Whichever opens
+		// first wins; on `<task_summary>` we capture the summary for the final
+		// result card, on `<ask_followup_question>` we capture the body and
+		// emit a single `tool_call` chunk so Roo's native tool infrastructure
+		// renders the "has a question" decision card with clickable
+		// suggestions (same path as native providers' AskFollowupQuestionTool).
 		let textBuffer = ""
 		let summaryStarted = false
 		let summaryBuffer = ""
+		let questionStarted = false
+		let questionBuffer = ""
+		let questionEmitted = false
 		const SUMMARY_OPEN = "<task_summary>"
 		const SUMMARY_CLOSE = "</task_summary>"
-		const TAIL_HOLD = SUMMARY_OPEN.length
+		const TAIL_HOLD = Math.max(SUMMARY_OPEN.length, ASK_QUESTION_OPEN.length)
 
 		const flushTextSafe = function* (final: boolean): Generator<{ type: "text"; text: string }> {
-			if (summaryStarted) return
+			if (summaryStarted || questionStarted) return
 			if (final) {
 				if (textBuffer) {
 					yield { type: "text", text: textBuffer }
@@ -224,6 +238,40 @@ export class ClaudeCodeHandler extends BaseProvider implements SingleCompletionH
 				const flush = textBuffer.slice(0, textBuffer.length - TAIL_HOLD)
 				textBuffer = textBuffer.slice(textBuffer.length - TAIL_HOLD)
 				if (flush) yield { type: "text", text: flush }
+			}
+		}
+
+		// Look for `</ask_followup_question>` in questionBuffer; once present,
+		// parse the inner body and emit a single `tool_call` chunk so the
+		// downstream parser routes it to AskFollowupQuestionTool. Any text
+		// after the closing tag is folded back into the main textBuffer so a
+		// trailing `<task_summary>` still works.
+		const tryEmitQuestion = function* (): Generator<
+			| { type: "tool_call"; id: string; name: string; arguments: string }
+			| { type: "text"; text: string }
+		> {
+			if (!questionStarted) return
+			const closeIdx = questionBuffer.indexOf(ASK_QUESTION_CLOSE)
+			if (closeIdx < 0) return
+			const inner = questionBuffer.slice(0, closeIdx)
+			const after = questionBuffer.slice(closeIdx + ASK_QUESTION_CLOSE.length)
+			const parsed = parseAskFollowupQuestionBlock(inner)
+			questionStarted = false
+			questionBuffer = ""
+			if (parsed && !questionEmitted) {
+				questionEmitted = true
+				yield {
+					type: "tool_call",
+					id: `ask_followup_question_${randomUUID()}`,
+					name: "ask_followup_question",
+					arguments: JSON.stringify(parsed),
+				}
+			}
+			// Fold the tail back into textBuffer so a subsequent
+			// `<task_summary>` (or extra prose) is still processed normally.
+			if (after) {
+				textBuffer += after
+				yield* flushTextSafe(false)
 			}
 		}
 
@@ -246,20 +294,42 @@ export class ClaudeCodeHandler extends BaseProvider implements SingleCompletionH
 				// visible text stream or the deferred summary, applying tail-buffer
 				// holding and <task_summary> detection. Reused for both partial
 				// stream_event deltas and the aggregate assistant event fallback.
-				function* routeAssistantText(delta: string): Generator<{ type: "text"; text: string }> {
+				function* routeAssistantText(
+					delta: string,
+				): Generator<
+					| { type: "text"; text: string }
+					| { type: "tool_call"; id: string; name: string; arguments: string }
+				> {
 					accumulatedText += delta
 					if (summaryStarted) {
 						summaryBuffer += delta
 						return
 					}
+					if (questionStarted) {
+						questionBuffer += delta
+						yield* tryEmitQuestion()
+						return
+					}
 					textBuffer += delta
-					const openIdx = textBuffer.indexOf(SUMMARY_OPEN)
-					if (openIdx >= 0) {
-						const before = textBuffer.slice(0, openIdx)
+					// Whichever opening tag appears first wins.
+					const summaryIdx = textBuffer.indexOf(SUMMARY_OPEN)
+					const questionIdx = textBuffer.indexOf(ASK_QUESTION_OPEN)
+					const firstSummary = summaryIdx >= 0 && (questionIdx < 0 || summaryIdx < questionIdx)
+					const firstQuestion = questionIdx >= 0 && !firstSummary
+					if (firstSummary) {
+						const before = textBuffer.slice(0, summaryIdx)
 						if (before) yield { type: "text", text: before }
-						summaryBuffer = textBuffer.slice(openIdx + SUMMARY_OPEN.length)
+						summaryBuffer = textBuffer.slice(summaryIdx + SUMMARY_OPEN.length)
 						textBuffer = ""
 						summaryStarted = true
+					} else if (firstQuestion) {
+						const before = textBuffer.slice(0, questionIdx)
+						if (before) yield { type: "text", text: before }
+						questionBuffer = textBuffer.slice(questionIdx + ASK_QUESTION_OPEN.length)
+						textBuffer = ""
+						questionStarted = true
+						// Close tag may already be in the same delta.
+						yield* tryEmitQuestion()
 					} else {
 						yield* flushTextSafe(false)
 					}
@@ -452,16 +522,7 @@ export class ClaudeCodeHandler extends BaseProvider implements SingleCompletionH
 		const parts: string[] = []
 		if (roleDefinition) parts.push(roleDefinition)
 		if (customInstructions) parts.push(`USER'S CUSTOM INSTRUCTIONS:\n${customInstructions}`)
-		parts.push(
-			"FINAL RESULT BLOCK:\n" +
-				"After your main answer, on its own line, append a concise final " +
-				"result message (1–2 sentences) describing what you accomplished. " +
-				"Formulate it so it is final and does not require further input — " +
-				"do not end with questions or offers for further assistance. " +
-				"Wrap it EXACTLY in:\n" +
-				"<task_summary>\n<your concise final result here>\n</task_summary>\n\n" +
-				"Use this tag only once and do not omit it.",
-		)
+		parts.push(RESPONSE_FORMAT_BLOCK)
 		if (userText) parts.push(`USER'S REQUEST:\n${userText}`)
 		return parts.join("\n\n")
 	}

@@ -396,6 +396,79 @@ describe("GeminiCliHandler (subprocess)", () => {
 			expect(prompt).not.toContain("do the thing")
 		})
 
+		it("converts an <ask_followup_question> XML block to a single tool_call chunk", async () => {
+			spawnMock.mockReturnValueOnce(
+				fakeChild([
+					JSON.stringify({ type: "init", model: "gemini-2.5-pro" }),
+					JSON.stringify({
+						type: "message",
+						role: "assistant",
+						content:
+							"Here is my review summary.\n\n<ask_followup_question>\n" +
+							"<question>이 리뷰 결과를 플랜 문서에 반영할까요?</question>\n" +
+							"<follow_up>\n" +
+							"<suggest>피드백 전부 반영</suggest>\n" +
+							"<suggest>Critical만 반영</suggest>\n" +
+							"</follow_up>\n" +
+							"</ask_followup_question>\n",
+					}),
+					JSON.stringify({ type: "result", status: "ok", stats: {} }),
+				]),
+			)
+			const handler = new GeminiCliHandler({} as ApiHandlerOptions)
+			const chunks: any[] = []
+			for await (const c of handler.createMessage("", [{ role: "user", content: "review the plan" }])) {
+				chunks.push(c)
+			}
+			const toolCalls = chunks.filter((c) => c.type === "tool_call")
+			expect(toolCalls).toHaveLength(1)
+			expect(toolCalls[0].name).toBe("ask_followup_question")
+			const args = JSON.parse(toolCalls[0].arguments)
+			expect(args.question).toBe("이 리뷰 결과를 플랜 문서에 반영할까요?")
+			expect(args.follow_up).toEqual([{ text: "피드백 전부 반영" }, { text: "Critical만 반영" }])
+			const allText = chunks
+				.filter((c) => c.type === "text")
+				.map((c) => c.text)
+				.join("")
+			expect(allText).not.toContain("<ask_followup_question>")
+			expect(allText).not.toContain("<question>")
+			expect(allText).toContain("Here is my review summary.")
+		})
+
+		it("emits one tool_call even when the XML arrives across multiple deltas", async () => {
+			spawnMock.mockReturnValueOnce(
+				fakeChild([
+					JSON.stringify({ type: "init", model: "gemini-2.5-pro" }),
+					JSON.stringify({
+						type: "message",
+						role: "assistant",
+						content: "Pre-amble.\n\n<ask_followup_question>\n<question>Continue?",
+					}),
+					JSON.stringify({
+						type: "message",
+						role: "assistant",
+						content: "</question>\n<follow_up>\n<suggest>Yes</suggest>\n",
+					}),
+					JSON.stringify({
+						type: "message",
+						role: "assistant",
+						content: "<suggest>No</suggest>\n</follow_up>\n</ask_followup_question>\n",
+					}),
+					JSON.stringify({ type: "result", status: "ok", stats: {} }),
+				]),
+			)
+			const handler = new GeminiCliHandler({} as ApiHandlerOptions)
+			const chunks: any[] = []
+			for await (const c of handler.createMessage("", [{ role: "user", content: "ask me" }])) {
+				chunks.push(c)
+			}
+			const toolCalls = chunks.filter((c) => c.type === "tool_call")
+			expect(toolCalls).toHaveLength(1)
+			const args = JSON.parse(toolCalls[0].arguments)
+			expect(args.question).toBe("Continue?")
+			expect(args.follow_up).toEqual([{ text: "Yes" }, { text: "No" }])
+		})
+
 		it("extracts user decision text from tool_result whose content is a text-block array", async () => {
 			spawnMock.mockReturnValueOnce(fakeChild([JSON.stringify({ type: "result", status: "ok", stats: {} })]))
 			const handler = new GeminiCliHandler({} as ApiHandlerOptions)

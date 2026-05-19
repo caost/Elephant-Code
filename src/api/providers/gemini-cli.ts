@@ -23,6 +23,12 @@ import type { ApiStream } from "../transform/stream"
 
 import type { SingleCompletionHandler, ApiHandlerCreateMessageMetadata } from "../index"
 import { BaseProvider } from "./base-provider"
+import {
+	ASK_QUESTION_OPEN,
+	ASK_QUESTION_CLOSE,
+	parseAskFollowupQuestionBlock,
+	RESPONSE_FORMAT_BLOCK,
+} from "./utils/ask-followup-question"
 
 type GeminiCliHandlerOptions = ApiHandlerOptions & {
 	geminiCliBinaryPath?: string
@@ -165,22 +171,25 @@ export class GeminiCliHandler extends BaseProvider implements SingleCompletionHa
 		let totalOutput = 0
 		let gotResult = false
 		let toolCallCounter = 0
-		// We instruct gemini to emit a `<task_summary>…</task_summary>` block
-		// at the end. While streaming, hold back the last `pendingTail` chars
-		// so the opening tag never reaches the user mid-stream, then split
-		// `body` (shown) from `summary` (used for attempt_completion) once the
-		// tag arrives.
+		// We instruct gemini to emit either a `<task_summary>…</task_summary>`
+		// block (task done) OR an `<ask_followup_question>…</ask_followup_question>`
+		// block (need user decision). While streaming, hold back the last
+		// `TAIL_HOLD` chars so neither opening tag reaches the user
+		// mid-stream. Whichever tag opens first wins. On a question block we
+		// emit a single `tool_call` chunk so Roo's existing native
+		// tool-routing renders the "has a question" decision card.
 		let textBuffer = ""
 		let summaryStarted = false
 		let summaryBuffer = ""
+		let questionStarted = false
+		let questionBuffer = ""
+		let questionEmitted = false
 		const SUMMARY_OPEN = "<task_summary>"
 		const SUMMARY_CLOSE = "</task_summary>"
-		// Pre-buffer slack must be at least the opening tag length so we never
-		// accidentally stream the first half of the tag before recognising it.
-		const TAIL_HOLD = SUMMARY_OPEN.length
+		const TAIL_HOLD = Math.max(SUMMARY_OPEN.length, ASK_QUESTION_OPEN.length)
 
 		const flushTextSafe = function* (final: boolean): Generator<{ type: "text"; text: string }> {
-			if (summaryStarted) return
+			if (summaryStarted || questionStarted) return
 			// Emit everything except the last TAIL_HOLD chars, in case the
 			// opening tag is split across delta boundaries. On final flush
 			// (stream end / no tag found), emit the entire buffer.
@@ -195,6 +204,38 @@ export class GeminiCliHandler extends BaseProvider implements SingleCompletionHa
 				const flush = textBuffer.slice(0, textBuffer.length - TAIL_HOLD)
 				textBuffer = textBuffer.slice(textBuffer.length - TAIL_HOLD)
 				if (flush) yield { type: "text", text: flush }
+			}
+		}
+
+		// Once `</ask_followup_question>` is buffered, emit a single tool_call
+		// chunk so Roo's existing native tool routing renders the question
+		// card with clickable suggestions. Tail text after the closing tag
+		// is folded back into textBuffer so a follow-up `<task_summary>`
+		// still works (rare, but the prompt does not forbid it).
+		const tryEmitQuestion = function* (): Generator<
+			| { type: "tool_call"; id: string; name: string; arguments: string }
+			| { type: "text"; text: string }
+		> {
+			if (!questionStarted) return
+			const closeIdx = questionBuffer.indexOf(ASK_QUESTION_CLOSE)
+			if (closeIdx < 0) return
+			const inner = questionBuffer.slice(0, closeIdx)
+			const after = questionBuffer.slice(closeIdx + ASK_QUESTION_CLOSE.length)
+			const parsed = parseAskFollowupQuestionBlock(inner)
+			questionStarted = false
+			questionBuffer = ""
+			if (parsed && !questionEmitted) {
+				questionEmitted = true
+				yield {
+					type: "tool_call",
+					id: `ask_followup_question_${randomUUID()}`,
+					name: "ask_followup_question",
+					arguments: JSON.stringify(parsed),
+				}
+			}
+			if (after) {
+				textBuffer += after
+				yield* flushTextSafe(false)
 			}
 		}
 
@@ -228,17 +269,31 @@ export class GeminiCliHandler extends BaseProvider implements SingleCompletionHa
 							accumulatedText += parsed.content
 							if (summaryStarted) {
 								summaryBuffer += parsed.content
+							} else if (questionStarted) {
+								questionBuffer += parsed.content
+								yield* tryEmitQuestion()
 							} else {
 								textBuffer += parsed.content
-								const openIdx = textBuffer.indexOf(SUMMARY_OPEN)
-								if (openIdx >= 0) {
+								const summaryIdx = textBuffer.indexOf(SUMMARY_OPEN)
+								const questionIdx = textBuffer.indexOf(ASK_QUESTION_OPEN)
+								const firstSummary =
+									summaryIdx >= 0 && (questionIdx < 0 || summaryIdx < questionIdx)
+								const firstQuestion = questionIdx >= 0 && !firstSummary
+								if (firstSummary) {
 									// Flush the body that precedes the opening tag,
 									// then route everything after into the summary.
-									const before = textBuffer.slice(0, openIdx)
+									const before = textBuffer.slice(0, summaryIdx)
 									if (before) yield { type: "text", text: before }
-									summaryBuffer = textBuffer.slice(openIdx + SUMMARY_OPEN.length)
+									summaryBuffer = textBuffer.slice(summaryIdx + SUMMARY_OPEN.length)
 									textBuffer = ""
 									summaryStarted = true
+								} else if (firstQuestion) {
+									const before = textBuffer.slice(0, questionIdx)
+									if (before) yield { type: "text", text: before }
+									questionBuffer = textBuffer.slice(questionIdx + ASK_QUESTION_OPEN.length)
+									textBuffer = ""
+									questionStarted = true
+									yield* tryEmitQuestion()
 								} else {
 									yield* flushTextSafe(false)
 								}
@@ -424,23 +479,12 @@ export class GeminiCliHandler extends BaseProvider implements SingleCompletionHa
 		const parts: string[] = []
 		if (roleDefinition) parts.push(roleDefinition)
 		if (customInstructions) parts.push(`USER'S CUSTOM INSTRUCTIONS:\n${customInstructions}`)
-		// Adapter for zoo-code's `attempt_completion` convention. Native zoo-code
-		// providers call the `attempt_completion` tool with a concise `result`
-		// (see src/core/prompts/tools/native-tools/attempt_completion.ts), but
-		// gemini-cli never sees zoo-code's tool registry. We ask gemini to
-		// emit the same kind of final-result message inline so we can lift it
-		// into the completion card. Wording mirrors zoo-code's standard:
-		// "final, does not require further input, no trailing questions."
-		parts.push(
-			"FINAL RESULT BLOCK:\n" +
-				"After your main answer, on its own line, append a concise final " +
-				"result message (1–2 sentences) describing what you accomplished. " +
-				"Formulate it so it is final and does not require further input — " +
-				"do not end with questions or offers for further assistance. " +
-				"Wrap it EXACTLY in:\n" +
-				"<task_summary>\n<your concise final result here>\n</task_summary>\n\n" +
-				"Use this tag only once and do not omit it.",
-		)
+		// gemini-cli never sees Roo's tool registry, so we inline the two
+		// response-shape conventions we care about: `<task_summary>` (mapped
+		// to the attempt_completion card) and `<ask_followup_question>`
+		// (mapped to a real ask_followup_question tool call, rendered as a
+		// clickable decision card).
+		parts.push(RESPONSE_FORMAT_BLOCK)
 		if (userText) parts.push(`USER'S REQUEST:\n${userText}`)
 		return parts.join("\n\n")
 	}
