@@ -166,6 +166,15 @@ export interface TaskOptions extends CreateTaskOptions {
 	 * on disk is never mutated.
 	 */
 	modeOverride?: ModeConfig
+	/**
+	 * When this Task is a member of a TaskGroup, these stamp every
+	 * `messageUpdated` event we emit so the webview can route streaming
+	 * deltas back to the correct provider card in CompareCardStack.
+	 * Full-state pushes already get tagged at merge time in
+	 * `TaskGroup.mergedMessages()`.
+	 */
+	groupId?: string
+	providerProfileId?: string
 }
 
 export class Task extends EventEmitter<TaskEvents> implements TaskLike {
@@ -193,6 +202,10 @@ export class Task extends EventEmitter<TaskEvents> implements TaskLike {
 	 * persisted mode as-is" (legacy single-provider behavior).
 	 */
 	public readonly modeOverride?: ModeConfig
+	/** TaskGroup id when this Task is a compare-run member. */
+	public readonly groupId?: string
+	/** Provider profile id this Task talks to inside a compare run. */
+	public readonly providerProfileId?: string
 
 	/**
 	 * The mode associated with this task. Persisted across sessions
@@ -455,10 +468,14 @@ export class Task extends EventEmitter<TaskEvents> implements TaskLike {
 		workspacePath,
 		initialStatus,
 		modeOverride,
+		groupId,
+		providerProfileId,
 	}: TaskOptions) {
 		super()
 
 		this.modeOverride = modeOverride
+		this.groupId = groupId
+		this.providerProfileId = providerProfileId
 
 		if (startTask && !task && !images && !historyItem) {
 			throw new Error("Either historyItem or task/images must be provided")
@@ -1226,7 +1243,14 @@ export class Task extends EventEmitter<TaskEvents> implements TaskLike {
 
 	private async updateClineMessage(message: ClineMessage) {
 		const provider = this.providerRef.deref()
-		await provider?.postMessageToWebview({ type: "messageUpdated", clineMessage: message })
+		// In a compare run stamp the message so the webview's
+		// CompareCardStack can route streaming deltas to the correct
+		// provider card. Outside a compare run both fields are undefined
+		// and the message goes through the single-pane path unchanged.
+		const tagged = this.groupId
+			? { ...message, groupId: this.groupId, providerProfileId: this.providerProfileId }
+			: message
+		await provider?.postMessageToWebview({ type: "messageUpdated", clineMessage: tagged })
 		this.emit(RooCodeEventName.Message, { action: "updated", message })
 
 		// Check if we should sync to cloud and haven't already synced this message

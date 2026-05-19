@@ -676,9 +676,29 @@ export const webviewMessageHandler = async (
 		case "askResponse":
 			{
 				const resolved = await resolveIncomingImages({ text: message.text, images: message.images })
-				provider
-					.getCurrentTask()
-					?.handleWebviewAskResponse(message.askResponse!, resolved.text, resolved.images)
+				const group = provider.getCurrentTaskGroup()
+				if (group && message.askResponse === "messageResponse") {
+					// Multi-provider compare follow-up: fan the user's reply out
+					// to every member Task so each provider continues its own
+					// conversation in parallel. Non-text askResponses (yes/no
+					// buttons etc.) don't occur in read-only compare runs.
+					// Reset the synthesis latch so the post-hook fires once
+					// more after this new turn settles.
+					group.markNewTurn()
+					await Promise.all(
+						group.tasks.map((t) =>
+							t.handleWebviewAskResponse(
+								message.askResponse!,
+								resolved.text,
+								resolved.images,
+							),
+						),
+					)
+				} else {
+					provider
+						.getCurrentTask()
+						?.handleWebviewAskResponse(message.askResponse!, resolved.text, resolved.images)
+				}
 			}
 			break
 

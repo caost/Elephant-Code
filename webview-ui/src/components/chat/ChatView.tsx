@@ -35,6 +35,7 @@ import VersionIndicator from "../common/VersionIndicator"
 import HistoryPreview from "../history/HistoryPreview"
 import Announcement from "./Announcement"
 import ChatRow from "./ChatRow"
+import { CompareCardStack } from "./CompareCardStack"
 import WarningRow from "./WarningRow"
 import { ChatTextArea } from "./ChatTextArea"
 import TaskHeader from "./TaskHeader"
@@ -87,6 +88,7 @@ const ChatViewComponent: React.ForwardRefRenderFunction<ChatViewRef, ChatViewPro
 		messageQueue = [],
 		showWorktreesInHomeScreen,
 		selectedApiConfigIds,
+		listApiConfigMeta,
 	} = useExtensionState()
 
 	// Show a WarningRow when the user sends a message with a retired provider.
@@ -1643,17 +1645,49 @@ const ChatViewComponent: React.ForwardRefRenderFunction<ChatViewRef, ChatViewPro
 			{task && (
 				<>
 					<div className="grow flex" ref={scrollContainerRef}>
-						<Virtuoso
-							ref={virtuosoRef}
-							key={task.ts}
-							className="scrollable grow overflow-y-scroll mb-1"
-							increaseViewportBy={{ top: 3_000, bottom: 1000 }}
-							data={groupedMessages}
-							itemContent={itemContent}
-							followOutput={followOutputCallback}
-							atBottomStateChange={atBottomStateChangeCallback}
-							atBottomThreshold={10}
-						/>
+						{groupedMessages.some((m) => m.groupId) ? (
+							// Multi-provider compare run — bypass Virtuoso and render
+							// a vertical stack of per-provider cards. The PR 2 host
+							// path posts merged, tagged messages here; PR 4 wires
+							// the rendering. Reuses ChatRow per row so styling /
+							// expand / streaming behavior stays identical.
+							<div className="scrollable grow overflow-y-scroll mb-1">
+								<CompareCardStack
+									messages={groupedMessages}
+									listApiConfigMeta={listApiConfigMeta}
+									renderRow={(m, { isLast }) => (
+										<ChatRow
+											key={m.ts}
+											message={m}
+											isExpanded={expandedRows[m.ts] || false}
+											onToggleExpand={toggleRowExpansion}
+											lastModifiedMessage={modifiedMessages.at(-1)}
+											isLast={isLast}
+											onHeightChange={() => {}}
+											isStreaming={isStreaming}
+											onSuggestionClick={handleSuggestionClickInRow}
+											onBatchFileResponse={handleBatchFileResponse}
+											onFollowUpUnmount={handleFollowUpUnmount}
+											isFollowUpAnswered={m.isAnswered === true}
+											isFollowUpAutoApprovalPaused={isFollowUpAutoApprovalPaused}
+											editable={false}
+										/>
+									)}
+								/>
+							</div>
+						) : (
+							<Virtuoso
+								ref={virtuosoRef}
+								key={task.ts}
+								className="scrollable grow overflow-y-scroll mb-1"
+								increaseViewportBy={{ top: 3_000, bottom: 1000 }}
+								data={groupedMessages}
+								itemContent={itemContent}
+								followOutput={followOutputCallback}
+								atBottomStateChange={atBottomStateChangeCallback}
+								atBottomThreshold={10}
+							/>
+						)}
 					</div>
 					<FileChangesPanel clineMessages={messages} />
 					{areButtonsVisible && (

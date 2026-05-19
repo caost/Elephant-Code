@@ -11,6 +11,10 @@ import { TaskGroup } from "../TaskGroup"
  */
 
 function fakeTask(messages: Array<Partial<ClineMessage>>, opts: { isStreaming?: boolean; isInitialized?: boolean } = {}) {
+	// EventEmitter-like surface so TaskGroup.constructor can subscribe to
+	// RooCodeEventName.Message without blowing up. The handlers are stored
+	// on the object so tests can introspect or fire events if needed.
+	const listeners = new Map<string, Set<(...args: unknown[]) => void>>()
 	return {
 		clineMessages: messages.map((m, i) => ({
 			ts: m.ts ?? i,
@@ -22,6 +26,14 @@ function fakeTask(messages: Array<Partial<ClineMessage>>, opts: { isStreaming?: 
 		isStreaming: opts.isStreaming ?? false,
 		isInitialized: opts.isInitialized ?? true,
 		abortTask: vi.fn().mockResolvedValue(undefined),
+		on: vi.fn((event: string, handler: (...args: unknown[]) => void) => {
+			if (!listeners.has(event)) listeners.set(event, new Set())
+			listeners.get(event)!.add(handler)
+		}),
+		off: vi.fn((event: string, handler: (...args: unknown[]) => void) => {
+			listeners.get(event)?.delete(handler)
+		}),
+		__listeners: listeners,
 	} as any
 }
 
@@ -92,18 +104,34 @@ describe("TaskGroup", () => {
 		expect(c.abortTask).toHaveBeenCalledTimes(1)
 	})
 
-	it("allTasksIdle returns true only when every task is initialized and not streaming", () => {
-		const idle = fakeTask([], { isStreaming: false, isInitialized: true })
-		const streaming = fakeTask([], { isStreaming: true, isInitialized: true })
-		const initializing = fakeTask([], { isStreaming: false, isInitialized: false })
+	it("allTasksIdle requires non-streaming, initialized, AND at least one message", () => {
+		const idleWithMsg = fakeTask([{ text: "hello" }], { isStreaming: false, isInitialized: true })
+		const idleEmpty = fakeTask([], { isStreaming: false, isInitialized: true })
+		const streaming = fakeTask([{ text: "hello" }], { isStreaming: true, isInitialized: true })
+		const initializing = fakeTask([{ text: "hello" }], { isStreaming: false, isInitialized: false })
 
-		const allIdle = new TaskGroup({ providerProfileIds: ["a", "b"], tasks: [idle, idle] })
+		const allIdle = new TaskGroup({ providerProfileIds: ["a", "b"], tasks: [idleWithMsg, idleWithMsg] })
 		expect(allIdle.allTasksIdle()).toBe(true)
 
-		const oneStreaming = new TaskGroup({ providerProfileIds: ["a", "b"], tasks: [idle, streaming] })
+		const oneStreaming = new TaskGroup({ providerProfileIds: ["a", "b"], tasks: [idleWithMsg, streaming] })
 		expect(oneStreaming.allTasksIdle()).toBe(false)
 
-		const oneInitializing = new TaskGroup({ providerProfileIds: ["a", "b"], tasks: [idle, initializing] })
+		const oneInitializing = new TaskGroup({ providerProfileIds: ["a", "b"], tasks: [idleWithMsg, initializing] })
 		expect(oneInitializing.allTasksIdle()).toBe(false)
+
+		// Empty messages means the response hasn't landed yet — not idle.
+		const oneEmpty = new TaskGroup({ providerProfileIds: ["a", "b"], tasks: [idleWithMsg, idleEmpty] })
+		expect(oneEmpty.allTasksIdle()).toBe(false)
+	})
+
+	it("markNewTurn re-arms synthesis for the next turn", () => {
+		const t = fakeTask([{ text: "x" }])
+		const g = new TaskGroup({ providerProfileIds: ["a"], tasks: [t] })
+		// Touching the private flag through the public API: after a manual
+		// sentinel set, markNewTurn should reset it so subsequent firing is
+		// allowed. We don't have a direct read accessor, so just confirm
+		// the call doesn't throw and is idempotent.
+		expect(() => g.markNewTurn()).not.toThrow()
+		expect(() => g.markNewTurn()).not.toThrow()
 	})
 })

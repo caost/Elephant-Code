@@ -2,6 +2,7 @@ import os from "os"
 import * as path from "path"
 import fs from "fs/promises"
 import EventEmitter from "events"
+import { randomUUID } from "node:crypto"
 
 import { Anthropic } from "@anthropic-ai/sdk"
 import delay from "delay"
@@ -2226,7 +2227,13 @@ export class ClineProvider
 			uriScheme: vscode.env.uriScheme,
 			currentTaskId: currentTask?.taskId,
 			currentTaskItem: currentTask?.taskId ? this.taskHistoryStore.get(currentTask.taskId) : undefined,
-			clineMessages: currentTask?.clineMessages || [],
+			// Multi-provider compare: surface the merged, provider-tagged
+			// timeline so ChatView can group rows by `groupId` and render
+			// CompareCardStack. Single-task chats keep the existing flat
+			// stream from the current Task.
+			clineMessages: this.currentTaskGroup
+				? this.currentTaskGroup.mergedMessages()
+				: currentTask?.clineMessages || [],
 			currentTaskTodos: currentTask?.todoList || [],
 			messageQueue: currentTask?.messageQueueService?.messages,
 			taskHistory: this.taskHistoryStore.getAll().filter((item: HistoryItem) => item.ts && item.task),
@@ -3002,6 +3009,11 @@ export class ClineProvider
 		}
 		const modeOverride = { ...resolved, groups: ["read"] as ModeConfig["groups"] }
 
+		// Pre-allocate the group id so each member Task can stamp its
+		// `messageUpdated` deltas with the right tag before the group object
+		// is constructed.
+		const groupId = `group_${randomUUID()}`
+
 		const tasks: Task[] = []
 		for (const profileId of providerProfileIds) {
 			const profile = await this.providerSettingsManager.getProfile({ id: profileId })
@@ -3025,13 +3037,15 @@ export class ClineProvider
 				onCreated: this.taskCreationCallback,
 				initialTodos: options.initialTodos,
 				modeOverride,
+				groupId,
+				providerProfileId: profileId,
 				startTask: false,
 				...options,
 			})
 			tasks.push(task)
 		}
 
-		const group = new TaskGroup({ providerProfileIds, tasks })
+		const group = new TaskGroup({ groupId, providerProfileIds, tasks })
 		this.currentTaskGroup = group
 
 		// Start each member Task in parallel. Each Task manages its own
