@@ -372,6 +372,54 @@ describe("GeminiCliHandler (subprocess)", () => {
 			expect(prompt).not.toContain("fake history")
 		})
 
+		it("extracts user decision text from a trailing tool_result-only message", async () => {
+			spawnMock.mockReturnValueOnce(fakeChild([JSON.stringify({ type: "result", status: "ok", stats: {} })]))
+			const handler = new GeminiCliHandler({} as ApiHandlerOptions)
+			const gen = handler.createMessage("", [
+				{ role: "user", content: "do the thing" },
+				{ role: "assistant", content: "first answer awaiting approval" },
+				{
+					role: "user",
+					content: [
+						{
+							type: "tool_result",
+							tool_use_id: "abc",
+							content: "no, use the other approach instead",
+						} as any,
+					],
+				},
+			])
+			for await (const _ of gen) void _
+			const args = spawnMock.mock.calls[0][1] as string[]
+			const prompt = args[args.indexOf("-p") + 1]
+			expect(prompt).toContain("no, use the other approach instead")
+			expect(prompt).not.toContain("do the thing")
+		})
+
+		it("extracts user decision text from tool_result whose content is a text-block array", async () => {
+			spawnMock.mockReturnValueOnce(fakeChild([JSON.stringify({ type: "result", status: "ok", stats: {} })]))
+			const handler = new GeminiCliHandler({} as ApiHandlerOptions)
+			const gen = handler.createMessage("", [
+				{ role: "user", content: "initial request" },
+				{ role: "assistant", content: "draft response" },
+				{
+					role: "user",
+					content: [
+						{
+							type: "tool_result",
+							tool_use_id: "xyz",
+							content: [{ type: "text", text: "rewrite to be terser" }],
+						} as any,
+					],
+				},
+			])
+			for await (const _ of gen) void _
+			const args = spawnMock.mock.calls[0][1] as string[]
+			const prompt = args[args.indexOf("-p") + 1]
+			expect(prompt).toContain("rewrite to be terser")
+			expect(prompt).not.toContain("initial request")
+		})
+
 		it("throws a friendly error when result indicates failure", async () => {
 			const child = fakeChild([JSON.stringify({ type: "result", status: "error" })], 1, "rate limit 429\n")
 			spawnMock.mockReturnValueOnce(child)

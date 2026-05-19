@@ -627,12 +627,29 @@ function extractHumanText(m: Anthropic.Messages.MessageParam): string {
 		typeof m.content === "string"
 			? m.content
 			: Array.isArray(m.content)
-				? m.content
-						.filter((b): b is { type: "text"; text: string } => b.type === "text")
-						.map((b) => b.text)
-						.join("\n")
+				? m.content.map(extractBlockText).filter(Boolean).join("\n")
 				: ""
 	return cleanZooCodeUserText(rawText)
+}
+
+// User responses to tool asks (approve+feedback, deny+reason,
+// attempt_completion feedback) arrive as tool_result blocks whose content
+// carries the actual user words. Treating only `text` blocks here used to
+// drop those, so the prompt fell back to an older user turn and the CLI
+// replayed its prior answer. Pull text out of tool_result content too.
+function extractBlockText(b: Anthropic.Messages.ContentBlockParam): string {
+	if (b.type === "text") return b.text
+	if (b.type === "tool_result") {
+		const c = b.content
+		if (typeof c === "string") return c
+		if (Array.isArray(c)) {
+			return c
+				.filter((inner): inner is Anthropic.TextBlockParam => inner.type === "text")
+				.map((inner) => inner.text)
+				.join("\n")
+		}
+	}
+	return ""
 }
 
 /**
