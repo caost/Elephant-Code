@@ -8,7 +8,7 @@
 import { describe, it, expect } from "vitest"
 
 import { modeConfigSchema } from "../mode.js"
-import { clineMessageSchema } from "../message.js"
+import { clineMessageSchema, clineSaySchema } from "../message.js"
 import { globalSettingsSchema } from "../global-settings.js"
 
 describe("modeConfigSchema.enableMultipleProviders", () => {
@@ -70,6 +70,27 @@ describe("clineMessageSchema multi-provider tagging", () => {
 		const parsed = clineMessageSchema.parse(input)
 		expect(parsed.providerProfileId).toBeUndefined()
 		expect(parsed.groupId).toBeUndefined()
+	})
+})
+
+describe("clineSays compare_summary", () => {
+	it("accepts 'compare_summary' as a valid say value", () => {
+		expect(clineSaySchema.parse("compare_summary")).toBe("compare_summary")
+	})
+
+	it("round-trips a compare_summary message with group + provider tags", () => {
+		const input = {
+			ts: 2_000_000_000_000,
+			type: "say" as const,
+			say: "compare_summary" as const,
+			text: "공통점:\n- ...\n차이점:\n- ...\n추천:\n- ...",
+			groupId: "group-xyz",
+			providerProfileId: "anthropic-default",
+		}
+		const parsed = clineMessageSchema.parse(input)
+		expect(parsed.say).toBe("compare_summary")
+		expect(parsed.groupId).toBe("group-xyz")
+		expect(clineMessageSchema.parse(parsed)).toEqual(parsed)
 	})
 })
 

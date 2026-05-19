@@ -170,6 +170,12 @@ export const clineSays = [
 	"user_edit_todos",
 	"too_many_tools_warning",
 	"tool",
+	// Emitted once per turn by TaskGroup.synthesizeCompareSummary after every
+	// member Task in a multi-provider compare run has reached a terminal state
+	// for the current turn. Carries `groupId` and the default provider's id in
+	// `providerProfileId`; ChatView renders it as a dedicated card at the
+	// bottom of the CompareCardStack.
+	"compare_summary",
 ] as const
 
 export const clineSaySchema = z.enum(clineSays)
