@@ -597,7 +597,10 @@ export async function presentAssistantMessage(cline: Task) {
 					validateToolUse(
 						block.name as ToolName,
 						mode ?? defaultModeSlug,
-						customModes ?? [],
+						// Respect TaskGroup's read-only mode override (multi-provider
+						// compare runs). For legacy single-provider Tasks the helper
+						// returns the input array unchanged.
+						cline.getEffectiveCustomModes(customModes) ?? [],
 						toolRequirements,
 						block.params,
 						stateExperiments,

@@ -629,13 +629,28 @@ export const webviewMessageHandler = async (
 			// task. This essentially creates a fresh slate for the new task.
 			try {
 				const resolved = await resolveIncomingImages({ text: message.text, images: message.images })
-				await provider.createTask(
-					resolved.text,
-					resolved.images,
-					undefined,
-					{ taskId: message.taskId },
-					message.taskConfiguration,
-				)
+				// Multi-provider compare path: when the webview sent more than
+				// one selected provider id, fan the prompt out via a TaskGroup
+				// (read-only enforced; persisted ModeConfig untouched). Single
+				// id (or none) keeps today's createTask flow.
+				const providerProfileIds = message.providerProfileIds ?? []
+				if (providerProfileIds.length > 1) {
+					await provider.createTaskGroup(
+						resolved.text,
+						resolved.images,
+						providerProfileIds,
+						{ taskId: message.taskId },
+						message.taskConfiguration,
+					)
+				} else {
+					await provider.createTask(
+						resolved.text,
+						resolved.images,
+						undefined,
+						{ taskId: message.taskId },
+						message.taskConfiguration,
+					)
+				}
 				// Task created successfully - notify the UI to reset
 				await provider.postMessageToWebview({ type: "invoke", invoke: "newChat" })
 			} catch (error) {
@@ -646,6 +661,13 @@ export const webviewMessageHandler = async (
 					`Failed to create task: ${error instanceof Error ? error.message : String(error)}`,
 				)
 			}
+			break
+		case "setSelectedApiConfigIds":
+			// Multi-provider picker persistence. Stored in global settings so
+			// the selection survives reload. PR 3 (multi-select picker UI)
+			// emits this on every selection change.
+			await provider.setValues({ selectedApiConfigIds: message.providerProfileIds ?? [] })
+			await provider.postStateToWebview()
 			break
 		case "customInstructions":
 			await provider.updateCustomInstructions(message.text)

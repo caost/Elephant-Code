@@ -250,6 +250,7 @@ export type ExtensionState = Pick<
 	| "currentApiConfigName"
 	| "listApiConfigMeta"
 	| "pinnedApiConfigs"
+	| "selectedApiConfigIds"
 	| "customInstructions"
 	| "dismissedUpsells"
 	| "autoApprovalEnabled"
@@ -425,6 +426,7 @@ export interface WebviewMessage {
 		| "loadApiConfigurationById"
 		| "renameApiConfiguration"
 		| "getListApiConfiguration"
+		| "setSelectedApiConfigIds"
 		| "customInstructions"
 		| "webviewDidLaunch"
 		| "newTask"
@@ -687,6 +689,12 @@ export interface WebviewMessage {
 	updatedSettings?: RooCodeSettings
 	/** Task configuration applied via `createTask()` when starting a cloud task. */
 	taskConfiguration?: RooCodeSettings
+	/**
+	 * Multi-provider compare: ids of all selected provider profiles. When
+	 * length > 1 on a "newTask", the host fans out to N parallel Tasks via
+	 * `createTaskGroup`. Absent or length === 1 keeps the single-task flow.
+	 */
+	providerProfileIds?: string[]
 	// Worktree properties
 	worktreePath?: string
 	worktreeBranch?: string

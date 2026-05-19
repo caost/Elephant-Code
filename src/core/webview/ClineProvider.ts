@@ -94,9 +94,10 @@ import { ContextProxy } from "../config/ContextProxy"
 import { ProviderSettingsManager } from "../config/ProviderSettingsManager"
 import { CustomModesManager } from "../config/CustomModesManager"
 import { Task } from "../task/Task"
+import { TaskGroup } from "../task-group/TaskGroup"
 
 import { webviewMessageHandler } from "./webviewMessageHandler"
-import type { ClineMessage, TodoItem } from "@roo-code/types"
+import type { ClineMessage, ModeConfig, TodoItem } from "@roo-code/types"
 import { readApiMessages, saveApiMessages, saveTaskMessages, TaskHistoryStore } from "../task-persistence"
 import { readTaskMessages } from "../task-persistence/taskMessages"
 import { getNonce } from "./getNonce"
@@ -137,6 +138,11 @@ export class ClineProvider
 	private webviewDisposables: vscode.Disposable[] = []
 	private view?: vscode.WebviewView | vscode.WebviewPanel
 	private clineStack: Task[] = []
+	// Active multi-provider compare run. Mutually exclusive with clineStack:
+	// when a group is live, getCurrentTask() returns group.primary and
+	// single-task code paths route through it. See TaskGroup.ts and
+	// ~/.claude/plans/modes-providers-mutiple-smooth-pretzel.md.
+	private currentTaskGroup?: TaskGroup
 	private codeIndexStatusSubscription?: vscode.Disposable
 	private codeIndexManager?: CodeIndexManager
 	private _workspaceTracker?: WorkspaceTracker // workSpaceTracker read-only for access outside this class
@@ -2765,11 +2771,22 @@ export class ClineProvider
 	 */
 
 	public getCurrentTask(): Task | undefined {
+		// While a multi-provider compare run is active, fall back to the
+		// group's primary Task so single-task code paths (cancel, state
+		// snapshot, telemetry) keep working without explicit branching.
+		// Single-task chats always go through clineStack as before.
+		if (this.currentTaskGroup) {
+			return this.currentTaskGroup.primary
+		}
 		if (this.clineStack.length === 0) {
 			return undefined
 		}
 
 		return this.clineStack[this.clineStack.length - 1]
+	}
+
+	public getCurrentTaskGroup(): TaskGroup | undefined {
+		return this.currentTaskGroup
 	}
 
 	public getRecentTasks(): string[] {
@@ -2916,7 +2933,131 @@ export class ClineProvider
 		return task
 	}
 
+	/**
+	 * Spawn N parallel `Task`s, one per selected provider profile, sharing
+	 * the same user prompt but each running with its own provider and its
+	 * own conversation history. Forces a read-only effective mode on every
+	 * member Task so the multi-provider compare run cannot edit files, run
+	 * commands, or use MCP — the persisted mode is never mutated. Returns
+	 * the resulting `TaskGroup`, which becomes the provider's
+	 * `currentTaskGroup` until aborted or replaced.
+	 *
+	 * Single-task chats continue to go through `createTask`; this method is
+	 * invoked only when `providerProfileIds.length > 1` (see
+	 * `webviewMessageHandler.ts` "newTask" branch).
+	 */
+	public async createTaskGroup(
+		text: string | undefined,
+		images: string[] | undefined,
+		providerProfileIds: string[],
+		options: CreateTaskOptions = {},
+		configuration: RooCodeSettings = {},
+	): Promise<TaskGroup> {
+		if (providerProfileIds.length < 2) {
+			throw new Error("createTaskGroup requires at least 2 provider profile ids")
+		}
+		if (configuration) {
+			await this.setValues(configuration)
+			if (configuration.customModes?.length) {
+				for (const mode of configuration.customModes) {
+					await this.customModesManager.updateCustomMode(mode.slug, mode)
+				}
+			}
+		}
+
+		// Tear down any prior single-task stack AND any previous group so the
+		// new group is the sole live conversation.
+		try {
+			await this.removeClineFromStack()
+		} catch {
+			// Non-fatal
+		}
+		if (this.currentTaskGroup) {
+			await this.currentTaskGroup.abortAll().catch(() => {
+				/* non-fatal */
+			})
+			this.currentTaskGroup = undefined
+		}
+
+		const state = await this.getState()
+		const {
+			mode = defaultModeSlug,
+			customModes,
+			enableCheckpoints,
+			checkpointTimeout,
+			experiments,
+			organizationAllowList,
+		} = state
+
+		// Build the read-only shadow ModeConfig from the user's selected
+		// mode. Same slug + roleDefinition + customInstructions, but with
+		// `groups: ["read"]` so write/exec/browser/MCP tools are
+		// unavailable for the duration of the compare run.
+		const resolved = getModeBySlug(mode ?? defaultModeSlug, customModes)
+		if (!resolved) {
+			throw new Error(`Active mode '${mode}' could not be resolved`)
+		}
+		const modeOverride = { ...resolved, groups: ["read"] as ModeConfig["groups"] }
+
+		const tasks: Task[] = []
+		for (const profileId of providerProfileIds) {
+			const profile = await this.providerSettingsManager.getProfile({ id: profileId })
+			if (!profile) {
+				throw new Error(`Provider profile not found: ${profileId}`)
+			}
+			if (!ProfileValidator.isProfileAllowed(profile, organizationAllowList)) {
+				throw new OrganizationAllowListViolationError(t("common:errors.violated_organization_allowlist"))
+			}
+
+			const task = new Task({
+				provider: this,
+				apiConfiguration: profile,
+				enableCheckpoints,
+				checkpointTimeout,
+				consecutiveMistakeLimit: profile.consecutiveMistakeLimit,
+				task: text,
+				images,
+				experiments,
+				taskNumber: -1,
+				onCreated: this.taskCreationCallback,
+				initialTodos: options.initialTodos,
+				modeOverride,
+				startTask: false,
+				...options,
+			})
+			tasks.push(task)
+		}
+
+		const group = new TaskGroup({ providerProfileIds, tasks })
+		this.currentTaskGroup = group
+
+		// Start each member Task in parallel. Each Task manages its own
+		// streaming + persistence; the group just keeps references.
+		for (const task of tasks) {
+			task.start()
+		}
+
+		this.log(
+			`[createTaskGroup] group ${group.groupId} spawned with ${tasks.length} tasks (providers: ${providerProfileIds.join(", ")})`,
+		)
+
+		return group
+	}
+
 	public async cancelTask(): Promise<void> {
+		// Multi-provider compare run: cancel every member Task at once. We
+		// skip the rehydrate-from-history dance that single-task cancel does
+		// — group conversations are not resumable in MVP (see plan).
+		if (this.currentTaskGroup) {
+			const group = this.currentTaskGroup
+			console.log(`[cancelTask] cancelling task group ${group.groupId} (${group.tasks.length} tasks)`)
+			this.currentTaskGroup = undefined
+			await group.abortAll().catch((err) => {
+				this.log(`[cancelTask] group ${group.groupId} abort error: ${err}`)
+			})
+			return
+		}
+
 		const task = this.getCurrentTask()
 
 		if (!task) {

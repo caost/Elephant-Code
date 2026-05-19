@@ -32,6 +32,7 @@ import {
 	type ToolProgressStatus,
 	type HistoryItem,
 	type CreateTaskOptions,
+	type ModeConfig,
 	type ModelInfo,
 	type ClineApiReqCancelReason,
 	type ClineApiReqInfo,
@@ -157,6 +158,14 @@ export interface TaskOptions extends CreateTaskOptions {
 	workspacePath?: string
 	/** Initial status for the task's history item (e.g., "active" for child tasks) */
 	initialStatus?: "active" | "delegated" | "completed"
+	/**
+	 * Optional shadow ModeConfig that takes precedence over the persisted mode
+	 * with the same slug for the lifetime of this Task. Used by TaskGroup to
+	 * force `groups: ["read"]` on multi-provider compare runs so write/exec
+	 * tools never reach the model or the tool gate. The persisted ModeConfig
+	 * on disk is never mutated.
+	 */
+	modeOverride?: ModeConfig
 }
 
 export class Task extends EventEmitter<TaskEvents> implements TaskLike {
@@ -175,6 +184,15 @@ export class Task extends EventEmitter<TaskEvents> implements TaskLike {
 	readonly parentTask: Task | undefined = undefined
 	readonly taskNumber: number
 	readonly workspacePath: string
+
+	/**
+	 * Shadow ModeConfig that takes precedence over the persisted mode with
+	 * the same slug for this Task only. Set by TaskGroup so the system prompt
+	 * advertises and the tool gate permits only read-only tools while a
+	 * multi-provider compare run is active. `undefined` means "use the
+	 * persisted mode as-is" (legacy single-provider behavior).
+	 */
+	public readonly modeOverride?: ModeConfig
 
 	/**
 	 * The mode associated with this task. Persisted across sessions
@@ -436,8 +454,11 @@ export class Task extends EventEmitter<TaskEvents> implements TaskLike {
 		initialTodos,
 		workspacePath,
 		initialStatus,
+		modeOverride,
 	}: TaskOptions) {
 		super()
+
+		this.modeOverride = modeOverride
 
 		if (startTask && !task && !images && !historyItem) {
 			throw new Error("Either historyItem or task/images must be provided")
@@ -575,6 +596,20 @@ export class Task extends EventEmitter<TaskEvents> implements TaskLike {
 				throw new Error("Either historyItem or task/images must be provided")
 			}
 		}
+	}
+
+	/**
+	 * Merge `modeOverride` into the persisted `customModes` array. When
+	 * `getModeBySlug(slug, customModes)` is called downstream — for system
+	 * prompt assembly and runtime tool gating — the override (which carries
+	 * the same slug as the active mode) wins, because custom modes are
+	 * checked before built-in modes. Returns the original array unchanged
+	 * when no override is set, so legacy single-provider Tasks pay no cost.
+	 */
+	public getEffectiveCustomModes(stateCustomModes?: ModeConfig[]): ModeConfig[] | undefined {
+		if (!this.modeOverride) return stateCustomModes
+		const others = (stateCustomModes ?? []).filter((m) => m.slug !== this.modeOverride!.slug)
+		return [this.modeOverride, ...others]
 	}
 
 	/**
@@ -3827,7 +3862,7 @@ export class Task extends EventEmitter<TaskEvents> implements TaskLike {
 				this.diffStrategy,
 				mode ?? defaultModeSlug,
 				customModePrompts,
-				customModes,
+				this.getEffectiveCustomModes(customModes),
 				customInstructions,
 				experiments,
 				language,
