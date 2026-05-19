@@ -102,6 +102,12 @@ export const modeConfigSchema = z.object({
 	customInstructions: z.string().optional(),
 	groups: groupEntryArraySchema,
 	source: z.enum(["global", "project"]).optional(),
+	// When true, the chat provider picker becomes multi-select for this mode.
+	// Picking 2+ providers fans the user prompt out in parallel and renders one
+	// response card per provider; tool use is forced read-only for the duration
+	// of the compare run (see TaskGroup). Persisted ModeConfig is never mutated
+	// — the read-only override happens at Task construction.
+	enableMultipleProviders: z.boolean().optional(),
 })
 
 export type ModeConfig = z.infer<typeof modeConfigSchema>

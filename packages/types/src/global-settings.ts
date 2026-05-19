@@ -82,6 +82,11 @@ export const globalSettingsSchema = z.object({
 	currentApiConfigName: z.string().optional(),
 	listApiConfigMeta: z.array(providerSettingsEntrySchema).optional(),
 	pinnedApiConfigs: z.record(z.string(), z.boolean()).optional(),
+	// The set of provider config ids currently selected in the chat picker.
+	// Only honored when the active mode has `enableMultipleProviders: true`.
+	// Length === 1 → identical behavior to `currentApiConfigName`.
+	// Length > 1 → user prompt fans out to all selected providers in parallel.
+	selectedApiConfigIds: z.array(z.string()).optional(),
 
 	lastShownAnnouncementId: z.string().optional(),
 	customInstructions: z.string().optional(),

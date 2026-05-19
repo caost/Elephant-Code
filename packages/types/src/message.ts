@@ -271,6 +271,12 @@ export const clineMessageSchema = z.object({
 	isProtected: z.boolean().optional(),
 	apiProtocol: z.union([z.literal("openai"), z.literal("anthropic")]).optional(),
 	isAnswered: z.boolean().optional(),
+	// Set when this message was produced inside a multi-provider compare run.
+	// `groupId` identifies the TaskGroup; `providerProfileId` identifies which
+	// provider produced this row, so the chat UI can stack one card per
+	// provider. Optional so the field is invisible to single-provider chats.
+	providerProfileId: z.string().optional(),
+	groupId: z.string().optional(),
 })
 
 export type ClineMessage = z.infer<typeof clineMessageSchema>
