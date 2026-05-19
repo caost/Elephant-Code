@@ -118,7 +118,7 @@ jobs:
             gh release upload "$tag_name" "$vsix_path" --clobber
           else
             gh release create "$tag_name" \
-              --title "Zoo Code ${tag_name}" \
+              --title "Elephant Code ${tag_name}" \
               --notes-file /tmp/zoo-code-release-notes.md \
               --target "$GITHUB_SHA" \
               "$vsix_path"

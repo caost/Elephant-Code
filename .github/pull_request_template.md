@@ -1,5 +1,5 @@
 <!--
-Thank you for contributing to Zoo Code!
+Thank you for contributing to Elephant Code!
 
 Before submitting your PR, please ensure:
 - It's linked to an approved GitHub Issue.

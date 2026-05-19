@@ -1682,7 +1682,7 @@ export class ClineProvider
 		await this.upsertProviderProfile(currentApiConfigName, newConfiguration)
 	}
 
-	// Zoo Code Auth (for observability telemetry)
+	// Elephant Code Auth (for observability telemetry)
 
 	async handleZooCodeCallback(_token: string) {
 		// Auth mutation (token storage, subscription check, success toast) was already
@@ -2196,7 +2196,7 @@ export class ClineProvider
 				deviceName: os.hostname(),
 			}
 		} catch {
-			// Keep the default unauthenticated state if the optional Zoo Code auth service is unavailable.
+			// Keep the default unauthenticated state if the optional Elephant Code auth service is unavailable.
 		}
 
 		return {

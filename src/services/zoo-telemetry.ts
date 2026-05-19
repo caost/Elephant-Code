@@ -20,7 +20,7 @@ export type LlmTelemetryPayload = {
 }
 
 /**
- * Send LLM telemetry to the Zoo Code observability backend.
+ * Send LLM telemetry to the Elephant Code observability backend.
  * This is a fire-and-forget operation that silently fails on error.
  * Only sends telemetry for authenticated users with active subscriptions.
  */

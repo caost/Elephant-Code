@@ -7,7 +7,7 @@ vi.mock("../../../shared/package", () => ({
 		name: "zoo-code",
 		publisher: "ZooCodeOrganization",
 		version: "1.0.0",
-		outputChannel: "Zoo-Code",
+		outputChannel: "Elephant-Code",
 	},
 }))
 

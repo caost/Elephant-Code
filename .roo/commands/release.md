@@ -1,5 +1,5 @@
 ---
-description: "Prepare a new release of the Zoo Code extension"
+description: "Prepare a new release of the Elephant Code extension"
 argument-hint: patch | minor | major
 mode: code
 ---
@@ -29,7 +29,7 @@ mode: code
     - Treat root `README.md` as the source of truth for Marketplace content.
     - Update the "What's New" section for the release when appropriate.
     - Do not manually edit `src/README.md`; the extension bundle step copies root `README.md` into `src/README.md`.
-    - Check for stale upstream Roo Code wording that should now say Zoo Code.
+    - Check for stale upstream Roo Code wording that should now say Elephant Code.
 
 6. Create the release notes as a changeset file at `.changeset/v[version].md`, then run `pnpm changeset:version` on the release branch before opening the PR.
 

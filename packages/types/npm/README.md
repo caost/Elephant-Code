@@ -1,10 +1,10 @@
-# Zoo Code API
+# Elephant Code API
 
-The Zoo Code extension exposes an API that can be used by other extensions.
+The Elephant Code extension exposes an API that can be used by other extensions.
 
 > Note: The npm package and exported API type names intentionally retain the
 > legacy `@roo-code` and `RooCodeAPI` names for backward compatibility after the
-> extension rebrand to Zoo Code.
+> extension rebrand to Elephant Code.
 
 To use this API in your extension:
 
@@ -28,7 +28,7 @@ if (!api) {
 }
 
 // Start a new task with an initial message.
-await api.startNewTask("Hello, Zoo Code API! Let's make a new project...")
+await api.startNewTask("Hello, Elephant Code API! Let's make a new project...")
 
 // Start a new task with an initial message and images.
 await api.startNewTask("Use this design language", ["data:image/webp;base64,..."])

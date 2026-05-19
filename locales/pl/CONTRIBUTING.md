@@ -11,9 +11,9 @@
 </sub>
 </div>
 
-# Wkład w Zoo Code
+# Wkład w Elephant Code
 
-Zoo Code to projekt społecznościowy i głęboko cenimy każdy wkład. Aby usprawnić współpracę, działamy w oparciu o [podejście „najpierw zgłoszenie”](#podejście-najpierw-zgłoszenie), co oznacza, że wszystkie [żądania ściągnięcia (PR)](#przesyłanie-żądania-ściągnięcia) muszą być najpierw połączone ze zgłoszeniem na GitHubie. Prosimy o uważne zapoznanie się z tym przewodnikiem.
+Elephant Code to projekt społecznościowy i głęboko cenimy każdy wkład. Aby usprawnić współpracę, działamy w oparciu o [podejście „najpierw zgłoszenie”](#podejście-najpierw-zgłoszenie), co oznacza, że wszystkie [żądania ściągnięcia (PR)](#przesyłanie-żądania-ściągnięcia) muszą być najpierw połączone ze zgłoszeniem na GitHubie. Prosimy o uważne zapoznanie się z tym przewodnikiem.
 
 ## Spis treści
 
@@ -52,7 +52,7 @@ Nasza mapa drogowa wyznacza kierunek projektu. Dostosuj swój wkład do tych klu
 
 Wspomnij o dostosowaniu do tych obszarów w swoich PR-ach.
 
-### 3. Dołącz do społeczności Zoo Code
+### 3. Dołącz do społeczności Elephant Code
 
 - **Discord:** Dołącz do naszego [Discorda](https://discord.gg/VxfP4Vx3gX).
 - **Reddit:** Dołącz do naszego [Reddita](https://www.reddit.com/r/ZooCode/).
@@ -69,7 +69,7 @@ Wspomnij o dostosowaniu do tych obszarów w swoich PR-ach.
 
 Wszystkie wkłady zaczynają się od zgłoszenia na GitHubie przy użyciu naszych uproszczonych szablonów.
 
-- **Sprawdź istniejące zgłoszenia**: Przeszukaj [zgłoszenia na GitHubie](https://github.com/Zoo-Code-Org/Zoo-Code/issues).
+- **Sprawdź istniejące zgłoszenia**: Przeszukaj [zgłoszenia na GitHubie](https://github.com/Elephant-Code-Org/Elephant-Code/issues).
 - **Utwórz zgłoszenie**, używając:
     - **Ulepszenia:** szablon „Prośba o ulepszenie” (prosty język skoncentrowany na korzyściach dla użytkownika).
     - **Błędy:** szablon „Zgłoszenie błędu” (minimalna reprodukcja + oczekiwane a rzeczywiste + wersja).
@@ -78,17 +78,17 @@ Wszystkie wkłady zaczynają się od zgłoszenia na GitHubie przy użyciu naszyc
 
 ### Decydowanie, nad czym pracować
 
-- Sprawdź [stronę GitHub Issues](https://github.com/Zoo-Code-Org/Zoo-Code/issues), aby znaleźć issues.
-- Aby uzyskać dokumentację, odwiedź [dokumentację Zoo Code](https://github.com/Zoo-Code-Org/Zoo-Code-Docs).
+- Sprawdź [stronę GitHub Issues](https://github.com/Elephant-Code-Org/Elephant-Code/issues), aby znaleźć issues.
+- Aby uzyskać dokumentację, odwiedź [dokumentację Elephant Code](https://github.com/Elephant-Code-Org/Elephant-Code-Docs).
 
 ### Zgłaszanie błędów
 
 - Najpierw sprawdź istniejące raporty.
-- Utwórz nowy błąd, używając szablonu [„Zgłoszenie błędu”](https://github.com/Zoo-Code-Org/Zoo-Code/issues/new/choose) z:
+- Utwórz nowy błąd, używając szablonu [„Zgłoszenie błędu”](https://github.com/Elephant-Code-Org/Elephant-Code/issues/new/choose) z:
     - Jasnymi, ponumerowanymi krokami reprodukcji
     - Oczekiwanym a rzeczywistym wynikiem
-    - Wersją Zoo Code (wymagane); dostawcą/modelem sztucznej inteligencji, jeśli ma to zastosowanie
-- **Problemy z bezpieczeństwem**: Zgłoś je prywatnie za pośrednictwem [zaleceń dotyczących bezpieczeństwa](https://github.com/Zoo-Code-Org/Zoo-Code/security/advisories/new).
+    - Wersją Elephant Code (wymagane); dostawcą/modelem sztucznej inteligencji, jeśli ma to zastosowanie
+- **Problemy z bezpieczeństwem**: Zgłoś je prywatnie za pośrednictwem [zaleceń dotyczących bezpieczeństwa](https://github.com/Elephant-Code-Org/Elephant-Code/security/advisories/new).
 
 ## Proces rozwoju i przesyłania
 
@@ -97,7 +97,7 @@ Wszystkie wkłady zaczynają się od zgłoszenia na GitHubie przy użyciu naszyc
 1. **Sforkuj i sklonuj:**
 
 ```
-git clone https://github.com/YOUR_USERNAME/Zoo-Code.git
+git clone https://github.com/YOUR_USERNAME/Elephant-Code.git
 ```
 
 2. **Zainstaluj zależności:**
@@ -138,4 +138,4 @@ pnpm install
 
 ## Kwestie prawne
 
-Przesyłając wkład, zgadzasz się, że Twoje wkłady będą licencjonowane na podstawie licencji Apache 2.0, zgodnie z licencją Zoo Code.
+Przesyłając wkład, zgadzasz się, że Twoje wkłady będą licencjonowane na podstawie licencji Apache 2.0, zgodnie z licencją Elephant Code.

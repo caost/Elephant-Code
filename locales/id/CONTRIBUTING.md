@@ -11,9 +11,9 @@
 </sub>
 </div>
 
-# Berkontribusi pada Zoo Code
+# Berkontribusi pada Elephant Code
 
-Zoo Code adalah proyek yang digerakkan oleh komunitas, dan kami sangat menghargai setiap kontribusi. Untuk menyederhanakan kolaborasi, kami beroperasi dengan dasar [Pendekatan Masalah-Dulu](#pendekatan-masalah-dulu), yang berarti semua [Pull Request (PR)](#mengajukan-pull-request) harus terlebih dahulu ditautkan ke Masalah GitHub. Harap tinjau panduan ini dengan cermat.
+Elephant Code adalah proyek yang digerakkan oleh komunitas, dan kami sangat menghargai setiap kontribusi. Untuk menyederhanakan kolaborasi, kami beroperasi dengan dasar [Pendekatan Masalah-Dulu](#pendekatan-masalah-dulu), yang berarti semua [Pull Request (PR)](#mengajukan-pull-request) harus terlebih dahulu ditautkan ke Masalah GitHub. Harap tinjau panduan ini dengan cermat.
 
 ## Daftar Isi
 
@@ -52,7 +52,7 @@ Peta jalan kami memandu arah proyek. Sejajarkan kontribusi Anda dengan tujuan-tu
 
 Sebutkan keselarasan dengan area-area ini di PR Anda.
 
-### 3. Bergabunglah dengan Komunitas Zoo Code
+### 3. Bergabunglah dengan Komunitas Elephant Code
 
 - **Discord:** Bergabunglah dengan [Discord](https://discord.gg/VxfP4Vx3gX) kami.
 - **Reddit:** Bergabunglah dengan [Reddit](https://www.reddit.com/r/ZooCode/) kami.
@@ -69,7 +69,7 @@ Sebutkan keselarasan dengan area-area ini di PR Anda.
 
 Semua kontribusi dimulai dengan Masalah GitHub menggunakan template ramping kami.
 
-- **Periksa masalah yang ada**: Cari di [Masalah GitHub](https://github.com/Zoo-Code-Org/Zoo-Code/issues).
+- **Periksa masalah yang ada**: Cari di [Masalah GitHub](https://github.com/Elephant-Code-Org/Elephant-Code/issues).
 - **Buat masalah** menggunakan:
     - **Penyempurnaan:** Template "Permintaan Penyempurnaan" (bahasa sederhana yang berfokus pada manfaat pengguna).
     - **Bug:** Template "Laporan Bug" (repro minimal + yang diharapkan vs aktual + versi).
@@ -78,17 +78,17 @@ Semua kontribusi dimulai dengan Masalah GitHub menggunakan template ramping kami
 
 ### Memutuskan Apa yang Akan Dikerjakan
 
-- Periksa [halaman GitHub Issues](https://github.com/Zoo-Code-Org/Zoo-Code/issues) untuk melihat issues.
-- Untuk dokumentasi, kunjungi [Dokumentasi Zoo Code](https://github.com/Zoo-Code-Org/Zoo-Code-Docs).
+- Periksa [halaman GitHub Issues](https://github.com/Elephant-Code-Org/Elephant-Code/issues) untuk melihat issues.
+- Untuk dokumentasi, kunjungi [Dokumentasi Elephant Code](https://github.com/Elephant-Code-Org/Elephant-Code-Docs).
 
 ### Melaporkan Bug
 
 - Periksa laporan yang ada terlebih dahulu.
-- Buat bug baru menggunakan [template "Laporan Bug"](https://github.com/Zoo-Code-Org/Zoo-Code/issues/new/choose) dengan:
+- Buat bug baru menggunakan [template "Laporan Bug"](https://github.com/Elephant-Code-Org/Elephant-Code/issues/new/choose) dengan:
     - Langkah-langkah reproduksi yang jelas dan bernomor
     - Hasil yang diharapkan vs aktual
-    - Versi Zoo Code (wajib); penyedia/model API jika relevan
-- **Masalah keamanan**: Laporkan secara pribadi melalui [saran keamanan](https://github.com/Zoo-Code-Org/Zoo-Code/security/advisories/new).
+    - Versi Elephant Code (wajib); penyedia/model API jika relevan
+- **Masalah keamanan**: Laporkan secara pribadi melalui [saran keamanan](https://github.com/Elephant-Code-Org/Elephant-Code/security/advisories/new).
 
 ## Proses Pengembangan & Pengajuan
 
@@ -97,7 +97,7 @@ Semua kontribusi dimulai dengan Masalah GitHub menggunakan template ramping kami
 1. **Fork & Klon:**
 
 ```
-git clone https://github.com/YOUR_USERNAME/Zoo-Code.git
+git clone https://github.com/YOUR_USERNAME/Elephant-Code.git
 ```
 
 2. **Instal Ketergantungan:**
@@ -138,4 +138,4 @@ pnpm install
 
 ## Hukum
 
-Dengan berkontribusi, Anda setuju bahwa kontribusi Anda akan dilisensikan di bawah Lisensi Apache 2.0, sesuai dengan lisensi Zoo Code.
+Dengan berkontribusi, Anda setuju bahwa kontribusi Anda akan dilisensikan di bawah Lisensi Apache 2.0, sesuai dengan lisensi Elephant Code.

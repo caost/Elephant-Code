@@ -4,17 +4,17 @@
   <a href="https://youtube.com/@roocodeyt?feature=shared"><img src="https://img.shields.io/badge/YouTube-FF0000?style=flat&logo=youtube&logoColor=white" alt="YouTube"></a>
   <a href="https://discord.gg/VxfP4Vx3gX"><img src="https://img.shields.io/badge/Join%20Discord-5865F2?style=flat&logo=discord&logoColor=white" alt="Join Discord"></a>
   <a href="https://www.reddit.com/r/ZooCode/"><img src="https://img.shields.io/badge/Join%20r%2FZooCode-FF4500?style=flat&logo=reddit&logoColor=white" alt="Join r/ZooCode"></a>
-  <a href="https://github.com/Zoo-Code-Org/Zoo-Code/issues"><img src="https://img.shields.io/badge/GitHub-Issues-181717?style=flat&logo=github&logoColor=white" alt="GitHub Issues"></a>
+  <a href="https://github.com/Elephant-Code-Org/Elephant-Code/issues"><img src="https://img.shields.io/badge/GitHub-Issues-181717?style=flat&logo=github&logoColor=white" alt="GitHub Issues"></a>
 </p>
 <p align="center">
   <em>Get help fast → <a href="https://discord.gg/VxfP4Vx3gX">Join Discord</a> • Prefer async? → <a href="https://www.reddit.com/r/ZooCode/">Join r/ZooCode</a></em>
 </p>
 
-# Zoo Code
+# Elephant Code
 
 > Your AI-Powered Dev Team, Right in Your Editor
 
-## We are Zoo Code
+## We are Elephant Code
 
 > You may have seen the
 > [recent announcement](https://x.com/mattrubens/status/2046636598859559114)
@@ -36,26 +36,26 @@
 > we felt a "Zoo" 🐘🦡🦒🦓🦛🦧🦭🦦 of different species better reflected this
 > diversity of the plugin's users.
 >
-> So we would like to announce that **Zoo Code** will continue development on
+> So we would like to announce that **Elephant Code** will continue development on
 > this important project. The core team is a group of developers who contributed
 > to Roo previously and care deeply about this plugin. We will continue to make
 > model updates, fix bugs, and release features. But more than anything, we plan
 > to listen to the community that made this plugin so special. Feel free to join
 > us on [Discord](https://discord.gg/VxfP4Vx3gX),
 > [Reddit](https://www.reddit.com/r/ZooCode), or
-> [open a PR or issue](https://github.com/Zoo-Code-Org/Zoo-Code), and above all,
+> [open a PR or issue](https://github.com/Elephant-Code-Org/Elephant-Code), and above all,
 > please stay involved, connected, and active as a community.
 >
-> _-Zoo Code Team_
+> _-Elephant Code Team_
 
-## Roo Code to Zoo Code migration
+## Roo Code to Elephant Code migration
 
-You can find a quick guide for migrating from Roo Code to Zoo Code in the [Roo→Zoo migration guide](https://docs.zoocode.dev/roo-to-zoo-migration). We plan to try and help users as they transition over, we have our [Reddit](https://www.reddit.com/r/ZooCode) and [Discord](https://discord.gg/VxfP4Vx3gX)
+You can find a quick guide for migrating from Roo Code to Elephant Code in the [Roo→Zoo migration guide](https://docs.zoocode.dev/roo-to-zoo-migration). We plan to try and help users as they transition over, we have our [Reddit](https://www.reddit.com/r/ZooCode) and [Discord](https://discord.gg/VxfP4Vx3gX)
 for this exact support, so if you are having problems or if you have question, jump on and ask.
 
 ## What's New in v3.54.1
 
-**Initial Zoo Code release** — establishes Zoo Code as an independent extension
+**Initial Elephant Code release** — establishes Elephant Code as an independent extension
 on the VS Code Marketplace under `ZooCodeOrganization.zoo-code`, with
 pre-release builds published automatically on every merge to `main`.
 
@@ -91,7 +91,7 @@ pre-release builds published automatically on every merge to `main`.
 
 ---
 
-## What Can Zoo Code Do For YOU?
+## What Can Elephant Code Do For YOU?
 
 - Generate Code from natural language descriptions and specs
 - Adapt with Modes: Code, Architect, Ask, Debug, and Custom Modes
@@ -103,7 +103,7 @@ pre-release builds published automatically on every merge to `main`.
 
 ## Modes
 
-Zoo Code adapts to how you work:
+Elephant Code adapts to how you work:
 
 - Code Mode: everyday coding, edits, and file ops
 - Architect Mode: plan systems, specs, and migrations
@@ -131,16 +131,16 @@ Learn more: [Using Modes](https://docs.zoocode.dev/basic-usage/using-modes) •
 ## Resources
 
 - **[Documentation](https://docs.zoocode.dev):** The official guide to
-  installing, configuring, and mastering Zoo Code.
+  installing, configuring, and mastering Elephant Code.
 - **[YouTube Channel](https://youtube.com/@roocodeyt?feature=shared):** Watch
   tutorials and see features in action.
 - **[Discord Server](https://discord.gg/VxfP4Vx3gX):** Join the community for
   real-time help and discussion.
 - **[Reddit Community](https://www.reddit.com/r/ZooCode/):** Share your
   experiences and see what others are building.
-- **[GitHub Issues](https://github.com/Zoo-Code-Org/Zoo-Code/issues):** Report
+- **[GitHub Issues](https://github.com/Elephant-Code-Org/Elephant-Code/issues):** Report
   bugs and track development.
-- **[Feature Requests](https://github.com/Zoo-Code-Org/Zoo-Code/discussions/categories/feature-requests?discussions_q=is%3Aopen+category%3A%22Feature+Requests%22+sort%3Atop):**
+- **[Feature Requests](https://github.com/Elephant-Code-Org/Elephant-Code/discussions/categories/feature-requests?discussions_q=is%3Aopen+category%3A%22Feature+Requests%22+sort%3Atop):**
   Have an idea? Share it with the developers.
 
 ---
@@ -150,7 +150,7 @@ Learn more: [Using Modes](https://docs.zoocode.dev/basic-usage/using-modes) •
 1. **Clone** the repo:
 
 ```sh
-git clone https://github.com/Zoo-Code-Org/Zoo-Code.git
+git clone https://github.com/Elephant-Code-Org/Elephant-Code.git
 ```
 
 2. **Install dependencies**:
@@ -161,14 +161,14 @@ pnpm install
 
 3. **Run the extension**:
 
-There are several ways to run the Zoo Code extension:
+There are several ways to run the Elephant Code extension:
 
 ### Development Mode (F5)
 
 For active development, use VSCode's built-in debugging:
 
 Press `F5` (or go to **Run** → **Start Debugging**) in VSCode. This will open a
-new VSCode window with the Zoo Code extension running.
+new VSCode window with the Elephant Code extension running.
 
 - Changes to the webview will appear immediately.
 - Changes to the core extension will also hot reload automatically.
@@ -220,9 +220,9 @@ publishing. Check our `CHANGELOG.md` for release notes.
 
 ## Disclaimer
 
-**Please note** that Zoo Code does **not** make any representations or
+**Please note** that Elephant Code does **not** make any representations or
 warranties regarding any code, models, or other tools provided or made available
-in connection with Zoo Code, any associated third-party tools, or any resulting
+in connection with Elephant Code, any associated third-party tools, or any resulting
 outputs. You assume **all risks** associated with the use of any such tools or
 outputs; such tools are provided on an **"AS IS"** and **"AS AVAILABLE"** basis.
 Such risks may include, without limitation, intellectual property infringement,
@@ -242,12 +242,12 @@ We love community contributions! Get started by reading our
 
 ## License
 
-[Apache 2.0 © 2026 Zoo Code Org](./LICENSE)
+[Apache 2.0 © 2026 Elephant Code Org](./LICENSE)
 
 ---
 
-**Enjoy Zoo Code!** Whether you keep it on a short leash or let it roam
+**Enjoy Elephant Code!** Whether you keep it on a short leash or let it roam
 autonomously, we can’t wait to see what you build. If you have questions or
 feature ideas, drop by our [Reddit community](https://www.reddit.com/r/ZooCode/)
 or [Discord](https://discord.gg/VxfP4Vx3gX), or open an
-[issue](https://github.com/Zoo-Code-Org/Zoo-Code/issues). Happy coding!
+[issue](https://github.com/Elephant-Code-Org/Elephant-Code/issues). Happy coding!

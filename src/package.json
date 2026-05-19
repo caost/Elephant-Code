@@ -3,7 +3,7 @@
 	"displayName": "%extension.displayName%",
 	"description": "%extension.description%",
 	"publisher": "ZooCodeOrganization",
-	"version": "3.54.1-1",
+	"version": "3.54.1-2",
 	"icon": "assets/icons/icon.png",
 	"galleryBanner": {
 		"color": "#617A91",
@@ -14,11 +14,11 @@
 		"node": "20.20.2"
 	},
 	"author": {
-		"name": "Zoo Code"
+		"name": "Elephant Code"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/Zoo-Code-Org/Zoo-Code"
+		"url": "https://github.com/Elephant-Code-Org/Elephant-Code"
 	},
 	"homepage": "https://zoocode.dev",
 	"categories": [

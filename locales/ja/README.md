@@ -4,17 +4,17 @@
           <a href="https://youtube.com/@roocodeyt?feature=shared"><img src="https://img.shields.io/badge/YouTube-FF0000?style=flat&logo=youtube&logoColor=white" alt="YouTube"></a>
           <a href="https://discord.gg/VxfP4Vx3gX"><img src="https://img.shields.io/badge/Join%20Discord-5865F2?style=flat&logo=discord&logoColor=white" alt="Join Discord"></a>
           <a href="https://www.reddit.com/r/ZooCode/"><img src="https://img.shields.io/badge/Join%20r%2FZooCode-FF4500?style=flat&logo=reddit&logoColor=white" alt="Join r/ZooCode"></a>
-          <a href="https://github.com/Zoo-Code-Org/Zoo-Code/issues"><img src="https://img.shields.io/badge/GitHub-Issues-181717?style=flat&logo=github&logoColor=white" alt="GitHub Issues"></a>
+          <a href="https://github.com/Elephant-Code-Org/Elephant-Code/issues"><img src="https://img.shields.io/badge/GitHub-Issues-181717?style=flat&logo=github&logoColor=white" alt="GitHub Issues"></a>
         </p>
         <p align="center">
           <em>すぐに助けが必要なら → <a href="https://discord.gg/VxfP4Vx3gX">Discord に参加</a> • 非同期のほうがいい？→ <a href="https://www.reddit.com/r/ZooCode/">r/ZooCode に参加</a></em>
         </p>
 
-        # Zoo Code
+        # Elephant Code
 
         > あなたのエディタの中に、AIで強化された開発チームを
 
-        ## 私たちは Zoo Code です
+        ## 私たちは Elephant Code です
 
 > Roo チーム 🦘🦘🦘 の[最近の発表](https://x.com/mattrubens/status/2046636598859559114)を見たかもしれません。要するに、チームは [Roomote](https://roomote.dev/) に注力するため、Roo Code の積極的な開発を段階的に縮小しています。この知らせは多くの Roo ユーザーにとってつらいものでした。このプラグインはこのコミュニティにとってとても大切な存在です。
 >
@@ -22,17 +22,17 @@
 >
 > Roo ユーザーには本当にいろいろな人がいます。日々の仕事でプロとして使っている人もいれば、信じられないほど複雑なワークフローを考えるために使っている人もいます。Roo 自体を改善するために使う人もいれば、Roo が使っているモデルそのものを改善するために使う人もいます（超メタです）。言いたいのは、コミュニティは多様だということです。カンガルー 🦘🦘🦘 も立派で高貴な動物ですが、さまざまな種が集まる「Zoo」🐘🦡🦒🦓🦛🦧🦭🦦 のほうが、このプラグインのユーザーの多様性をよりよく表していると感じました。
 >
-> そこで、**Zoo Code** がこの重要なプロジェクトの開発を継続することをお知らせします。コアチームは、以前 Roo に貢献していた開発者たちで構成されており、このプラグインを心から大切に思っています。これからもモデルの更新、バグ修正、機能リリースを続けていきます。ですが何よりも、このプラグインを特別なものにしてくれたコミュニティのみなさんの声に耳を傾けたいと考えています。ぜひ私たちの [Discord](https://discord.gg/VxfP4Vx3gX)、[Reddit](https://www.reddit.com/r/ZooCode) に参加したり、[PR や issue を作成](https://github.com/Zoo-Code-Org/Zoo-Code)したりしてください。何よりも、コミュニティとして関わり続け、つながり続け、活発でいてほしいと願っています。
+> そこで、**Elephant Code** がこの重要なプロジェクトの開発を継続することをお知らせします。コアチームは、以前 Roo に貢献していた開発者たちで構成されており、このプラグインを心から大切に思っています。これからもモデルの更新、バグ修正、機能リリースを続けていきます。ですが何よりも、このプラグインを特別なものにしてくれたコミュニティのみなさんの声に耳を傾けたいと考えています。ぜひ私たちの [Discord](https://discord.gg/VxfP4Vx3gX)、[Reddit](https://www.reddit.com/r/ZooCode) に参加したり、[PR や issue を作成](https://github.com/Elephant-Code-Org/Elephant-Code)したりしてください。何よりも、コミュニティとして関わり続け、つながり続け、活発でいてほしいと願っています。
 >
-> _-Zoo Code Team_
+> _-Elephant Code Team_
 
-## Roo Code から Zoo Code への移行
+## Roo Code から Elephant Code への移行
 
-Roo Code から Zoo Code へ移行するためのクイックガイドは、[Roo→Zoo 移行ガイド](https://docs.zoocode.dev/roo-to-zoo-migration) で確認できます。移行中のユーザーをできるだけ支援したいと考えていて、そのために [Reddit](https://www.reddit.com/r/ZooCode) と [Discord](https://discord.gg/VxfP4Vx3gX) を用意しています。困ったことや質問があれば、気軽に参加して聞いてください。
+Roo Code から Elephant Code へ移行するためのクイックガイドは、[Roo→Zoo 移行ガイド](https://docs.zoocode.dev/roo-to-zoo-migration) で確認できます。移行中のユーザーをできるだけ支援したいと考えていて、そのために [Reddit](https://www.reddit.com/r/ZooCode) と [Discord](https://discord.gg/VxfP4Vx3gX) を用意しています。困ったことや質問があれば、気軽に参加して聞いてください。
 
 ## v3.54.1 の新機能
 
-**Zoo Code の初回リリース** — `ZooCodeOrganization.zoo-code` として VS Code Marketplace 上の独立した拡張機能となり、`main` への merge ごとに pre-release ビルドが自動公開されます。
+**Elephant Code の初回リリース** — `ZooCodeOrganization.zoo-code` として VS Code Marketplace 上の独立した拡張機能となり、`main` への merge ごとに pre-release ビルドが自動公開されます。
 
 - OpenAI Codex プロバイダー経由で GPT-5.5 のサポートを追加。
 - Vertex AI 上で Claude Opus 4.7 のサポートを追加。
@@ -66,7 +66,7 @@ Roo Code から Zoo Code へ移行するためのクイックガイドは、[Roo
 
 ---
 
-## Zoo Codeがあなたのためにできること
+## Elephant Codeがあなたのためにできること
 
 - 自然言語の記述からコードを生成
 - モードで適応：コード、アーキテクト、質問、デバッグ、カスタムモード
@@ -78,7 +78,7 @@ Roo Code から Zoo Code へ移行するためのクイックガイドは、[Roo
 
 ## モード
 
-Zoo Codeは、あなたの働き方に合わせるように適応します。
+Elephant Codeは、あなたの働き方に合わせるように適応します。
 
 - コードモード：日常的なコーディング、編集、ファイル操作
 - アーキテクトモード：システム、仕様、移行の計画
@@ -94,7 +94,7 @@ Zoo Codeは、あなたの働き方に合わせるように適応します。
 
 |                                                                                                                                                                              |                                                                                                                                                                          |                                                                                                                                                                                      |
 | :--------------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------: | :----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------: |
-| <a href="https://www.youtube.com/watch?v=Mcq3r1EPZ-4"><img src="https://img.youtube.com/vi/Mcq3r1EPZ-4/maxresdefault.jpg" width="100%"></a><br><b>Zoo Codeのインストール</b> | <a href="https://www.youtube.com/watch?v=ZBML8h5cCgo"><img src="https://img.youtube.com/vi/ZBML8h5cCgo/maxresdefault.jpg" width="100%"></a><br><b>プロファイルの設定</b> | <a href="https://www.youtube.com/watch?v=r1bpod1VWhg"><img src="https://img.youtube.com/vi/r1bpod1VWhg/maxresdefault.jpg" width="100%"></a><br><b>コードベースのインデックス作成</b> |
+| <a href="https://www.youtube.com/watch?v=Mcq3r1EPZ-4"><img src="https://img.youtube.com/vi/Mcq3r1EPZ-4/maxresdefault.jpg" width="100%"></a><br><b>Elephant Codeのインストール</b> | <a href="https://www.youtube.com/watch?v=ZBML8h5cCgo"><img src="https://img.youtube.com/vi/ZBML8h5cCgo/maxresdefault.jpg" width="100%"></a><br><b>プロファイルの設定</b> | <a href="https://www.youtube.com/watch?v=r1bpod1VWhg"><img src="https://img.youtube.com/vi/r1bpod1VWhg/maxresdefault.jpg" width="100%"></a><br><b>コードベースのインデックス作成</b> |
 |     <a href="https://www.youtube.com/watch?v=iiAv1eKOaxk"><img src="https://img.youtube.com/vi/iiAv1eKOaxk/maxresdefault.jpg" width="100%"></a><br><b>カスタムモード</b>     |  <a href="https://www.youtube.com/watch?v=Ho30nyY332E"><img src="https://img.youtube.com/vi/Ho30nyY332E/maxresdefault.jpg" width="100%"></a><br><b>チェックポイント</b>  |        <a href="https://www.youtube.com/watch?v=HmnNSasv7T8"><img src="https://img.youtube.com/vi/HmnNSasv7T8/maxresdefault.jpg" width="100%"></a><br><b>コンテキスト管理</b>        |
 
 </div>
@@ -104,12 +104,12 @@ Zoo Codeは、あなたの働き方に合わせるように適応します。
 
 ## リソース
 
-- **[ドキュメント](https://docs.zoocode.dev):** Zoo Codeのインストール、設定、習熟のための公式ガイド。
+- **[ドキュメント](https://docs.zoocode.dev):** Elephant Codeのインストール、設定、習熟のための公式ガイド。
 - **[YouTubeチャンネル](https://youtube.com/@roocodeyt?feature=shared):** チュートリアルを見て、実際の機能を確認できます。
 - **[Discordサーバー](https://discord.gg/VxfP4Vx3gX):** コミュニティに参加して、リアルタイムのヘルプやディスカッションに参加できます。
 - **[Redditコミュニティ](https://www.reddit.com/r/ZooCode):** あなたの経験を共有し、他の人が何を構築しているかを見ることができます。
-- **[GitHub Issues](https://github.com/Zoo-Code-Org/Zoo-Code/issues):** バグを報告し、開発を追跡します。
-- **[機能リクエスト](https://github.com/Zoo-Code-Org/Zoo-Code/discussions/categories/feature-requests?discussions_q=is%3Aopen+category%3A%22Feature+Requests%22+sort%3Atop):** アイデアがありますか？開発者と共有してください。
+- **[GitHub Issues](https://github.com/Elephant-Code-Org/Elephant-Code/issues):** バグを報告し、開発を追跡します。
+- **[機能リクエスト](https://github.com/Elephant-Code-Org/Elephant-Code/discussions/categories/feature-requests?discussions_q=is%3Aopen+category%3A%22Feature+Requests%22+sort%3Atop):** アイデアがありますか？開発者と共有してください。
 
 ---
 
@@ -118,7 +118,7 @@ Zoo Codeは、あなたの働き方に合わせるように適応します。
 1. **リポジトリをクローンする**:
 
 ```sh
-git clone https://github.com/Zoo-Code-Org/Zoo-Code.git
+git clone https://github.com/Elephant-Code-Org/Elephant-Code.git
 ```
 
 2. **依存関係をインストールする**:
@@ -129,13 +129,13 @@ pnpm install
 
 3. **拡張機能を実行する**:
 
-Zoo Code拡張機能を実行するにはいくつかの方法があります：
+Elephant Code拡張機能を実行するにはいくつかの方法があります：
 
 ### 開発モード (F5)
 
 アクティブな開発には、VSCodeの内蔵デバッグ機能を使用します：
 
-VSCodeで`F5`キーを押すか、**実行** → **デバッグの開始**に移動します。これにより、Zoo Code拡張機能が実行されている新しいVSCodeウィンドウが開きます。
+VSCodeで`F5`キーを押すか、**実行** → **デバッグの開始**に移動します。これにより、Elephant Code拡張機能が実行されている新しいVSCodeウィンドウが開きます。
 
 - ウェブビューへの変更はすぐに表示されます。
 - コア拡張機能への変更も自動的にホットリロードされます。
@@ -183,7 +183,7 @@ VSIXパッケージを手動でインストールしたい場合：
 
 ## 免責事項
 
-**ご注意ください**：Zoo Codeは、Zoo Code、関連するサードパーティのツール、またはそれらから生じる出力に関連して提供または利用可能にされたコード、モデル、またはその他のツールに関して、いかなる表明も保証も行いません。お客様は、そのようなツール或いは出力の使用に関連する**すべてのリスク**を負うものとします。そのようなツールは**「現状のまま」**および**「利用可能な限り」**のベースで提供されます。そのようなリスクには、知的財産権の侵害、サイバー脆弱性または攻撃、バイアス、不正確さ、エラー、欠陥、ウイルス、ダウンタイム、財産の損失または損害、および/または人身傷害が含まれますが、これらに限定されません。お客様は、そのようなツールまたは出力の使用（合法性、適切性、およびその結果を含むがこれらに限定されない）について単独で責任を負います。
+**ご注意ください**：Elephant Codeは、Elephant Code、関連するサードパーティのツール、またはそれらから生じる出力に関連して提供または利用可能にされたコード、モデル、またはその他のツールに関して、いかなる表明も保証も行いません。お客様は、そのようなツール或いは出力の使用に関連する**すべてのリスク**を負うものとします。そのようなツールは**「現状のまま」**および**「利用可能な限り」**のベースで提供されます。そのようなリスクには、知的財産権の侵害、サイバー脆弱性または攻撃、バイアス、不正確さ、エラー、欠陥、ウイルス、ダウンタイム、財産の損失または損害、および/または人身傷害が含まれますが、これらに限定されません。お客様は、そのようなツールまたは出力の使用（合法性、適切性、およびその結果を含むがこれらに限定されない）について単独で責任を負います。
 
 ---
 
@@ -195,8 +195,8 @@ VSIXパッケージを手動でインストールしたい場合：
 
 ## ライセンス
 
-[Apache 2.0 © 2025 Zoo Code Org](../../LICENSE)
+[Apache 2.0 © 2025 Elephant Code Org](../../LICENSE)
 
 ---
 
-**Zoo Code を楽しんでください！** しっかり手元で使うにせよ、自律的に動かすにせよ、みなさんが何を作るのか楽しみにしています。質問や機能のアイデアがあれば、[issue](https://github.com/Zoo-Code-Org/Zoo-Code/issues) を開くか、[discussion](https://github.com/Zoo-Code-Org/Zoo-Code/discussions) を始めてください。Happy coding!
+**Elephant Code を楽しんでください！** しっかり手元で使うにせよ、自律的に動かすにせよ、みなさんが何を作るのか楽しみにしています。質問や機能のアイデアがあれば、[issue](https://github.com/Elephant-Code-Org/Elephant-Code/issues) を開くか、[discussion](https://github.com/Elephant-Code-Org/Elephant-Code/discussions) を始めてください。Happy coding!

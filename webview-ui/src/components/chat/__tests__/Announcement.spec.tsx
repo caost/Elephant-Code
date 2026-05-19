@@ -86,7 +86,7 @@ describe("Announcement", () => {
 		expect(screen.getAllByRole("listitem")).toHaveLength(3)
 	})
 
-	it("links support users to the Zoo Code GitHub repository", () => {
+	it("links support users to the Elephant Code GitHub repository", () => {
 		render(<Announcement hideAnnouncement={vi.fn()} />)
 
 		expect(screen.getByRole("link", { name: "GitHub" })).toHaveAttribute("href", EXTERNAL_LINKS.GITHUB_REPO)
